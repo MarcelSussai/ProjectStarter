@@ -68,6 +68,13 @@ Object.entries(FinalColors).map((colorGroup, i1) => {
   })
 })
 
+let rawColorsKeysValues: any = []
+Object.entries(theme_colors_default).map((colorGroup, i1) => {
+  let raw: any = []
+  Object.entries(colorGroup[1]).map((v2, i2) => { raw.push(v2) })
+  rawColorsKeysValues.push({ colorName: colorGroup[0], colors: raw })
+})
+
 // conseguindo todos os pesos que definem o tom de cada cor na escala da cor
 export const rawWeights: any = []
 Object.entries(FinalColors).map((colorGroup, i1) => {
@@ -82,5 +89,5 @@ const colors = {
 }
 
 
-export { rawStringAllCssVars }
+export { rawStringAllCssVars, rawColorsKeysValues }
 export default colors

@@ -4,11 +4,12 @@ import { StyLink } from '@/components/ui/links/linkDefault'
 import { HeadTitleDefault } from '@/components/ui/type/headTitles'
 import { TextDefault } from '@/components/ui/type/textDefault'
 import { ColumnFlex } from '@/styles/parts'
+import Image from 'next/image'
 import styled from 'styled-components'
 
 
 const links = [
-  {txt: 'Colors', link: './colors'}
+  {txt: 'Colors', link: '/projectStarter/colors'},
 ]
 
 const ContainerLinks = styled.nav`
@@ -22,6 +23,9 @@ export default function Home() {
   return (
     <>
       <HeadDefault title='Home' />
+      <Image
+        priority src='/logo.svg' height={80} width={80} alt='logo ms dev'
+      />
       <Main>
         <HeadTitleDefault> {`Bem vindo ao ProjectStarter`} </HeadTitleDefault>
         <TextDefault>

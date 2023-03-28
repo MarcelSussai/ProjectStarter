@@ -14,6 +14,7 @@ export const TextDefault = styled.p`
     `var(--color-${color}-800)` :
     'var(--color-default-800)'
   };
+  background: #FFF;
 `
 
 export const BoldTextDefault = styled.span`

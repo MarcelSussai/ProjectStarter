@@ -13,4 +13,5 @@ export const HeadTitleDefault = styled.h1<IHeadTitle>`
     `var(--color-${color}-800)` :
     'var(--color-default-800)'
   };
+  background: #FFF;
 `

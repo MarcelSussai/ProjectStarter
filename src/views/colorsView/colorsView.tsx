@@ -1,10 +1,10 @@
-import { colorsNames, rawWeights } from '@/styles/makingColorsTheme/colors'
+import { FinalColors, colorsNames, rawColorsKeysValues, rawWeights } from '@/styles/makingColorsTheme/colors'
 import * as S from './styles'
 import { HeadTitleDefault } from '@/components/ui/type/headTitles'
 import { BoldTextDefault, TextDefault } from '@/components/ui/type/textDefault'
 
 export default function ColorsView() {
-
+  
   return (
     <S.ContainerAll>
       <HeadTitleDefault>{'Cores disponíveis nas variáveis css:'}</HeadTitleDefault>
@@ -33,6 +33,24 @@ export default function ColorsView() {
         ))
       }
       </S.All>
+      <HeadTitleDefault as={'h2'}>{'Valores Hexadecimais das cores (não utilizar no código, somente a fim de design):'}</HeadTitleDefault>
+      <S.ContainerColorsValues>
+        {
+          rawColorsKeysValues.map((group: any, i1: number) => (
+            <S.AllColorValues key={i1}>
+              <S.ColorName>{ group.colorName }</S.ColorName>
+              {
+                group.colors.map((colors: any, i2: number) => (
+                  <S.ContainerColor color={`--color-${group.colorName}-${colors[0].substring(1)}`} key={i2}>
+                    <div>{ colors[0].substring(1) }</div>
+                    <div>{ colors[1] }</div>
+                  </S.ContainerColor>
+                ))
+              }
+            </S.AllColorValues>
+          ))
+        }
+      </S.ContainerColorsValues>
     </S.ContainerAll>
   )
 }

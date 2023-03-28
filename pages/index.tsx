@@ -1,14 +1,17 @@
+'use client'
 import HeadDefault from '@/components/head'
-import { MainGradient } from '@/components/ui/containers/main'
+import { Main } from '@/components/ui/containers/main'
 
 
 export default function Home() {
+
+
   return (
     <>
       <HeadDefault title='Home' />
-      <MainGradient>
-        teste
-      </MainGradient>
+      <Main>
+        teste 0 125,26
+      </Main>
     </>
   )
 }

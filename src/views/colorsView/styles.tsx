@@ -33,10 +33,10 @@ export const Item = styled.div.attrs( (props: I.IColorsItem) => ({
 }))<I.IColorsItem>`
   ${TransitionDefault}
   display: flex;
-  font-family: var(--font-ibm-mono);
+  font-family: var(--font-mono);
   justify-content: center;
   border: solid 1px #000;
-  font-size: clamp(${fontSizes[0]}, 3vw, ${fontSizes[2]});
+  font-size: clamp(${fontSizes[0]}, 3vw, ${fontSizes[3]});
   line-height: 1;
   color: #FFF;
   padding: 8px 4px;
@@ -75,6 +75,7 @@ export const ColorName = styled.section`
   ${CenterFlex}
   width: 100%;
   padding: 8px;
+  background: var(--color-grey-025);
 `
 
 export const ContainerColor = styled.div.attrs(props => ({
@@ -87,7 +88,7 @@ export const ContainerColor = styled.div.attrs(props => ({
   justify-content: space-between;
   width: 100%;
   font-size: clamp(${fontSizes[0]}, 3vw, ${fontSizes[2]});
-  font-family: var(--font-ibm-mono);
+  font-family: var(--font-mono);
   line-height: 1;
   color: #FFF;
   padding: 12px 16px;

@@ -1,13 +1,43 @@
-import { makingTonesGiant } from './makingTones'
+import { ImakeColorsTone, makingTonesGiant } from './makingTones'
 
+type DefaultColors = typeof theme_colors_default
+export interface IColors {
+  default: ImakeColorsTone
+  main: ImakeColorsTone
+  second: ImakeColorsTone
+  grey: ImakeColorsTone
+  greyAzure?: ImakeColorsTone
+  limeGreen?: ImakeColorsTone
+  green?: ImakeColorsTone
+  leaf?: ImakeColorsTone
+  paleGreen?: ImakeColorsTone
+  teal?: ImakeColorsTone
+  cyan?: ImakeColorsTone
+  blue?: ImakeColorsTone
+  greyBlue?: ImakeColorsTone
+  greyPurple?: ImakeColorsTone
+  purple?: ImakeColorsTone
+  wine?: ImakeColorsTone
+  paleRed?: ImakeColorsTone
+  pink?: ImakeColorsTone
+  red?: ImakeColorsTone
+  strongRed?: ImakeColorsTone
+  brown?: ImakeColorsTone
+  orange?: ImakeColorsTone
+  strongYellow?: ImakeColorsTone
+  yellow?: ImakeColorsTone
+  gold?: ImakeColorsTone
+  cream?: ImakeColorsTone
+}
 // valores dos alphas em dois digitos hexadecimais a ser acrescido na cor
-const alphas = ['16', '24', '32', '48', '64', '80', '96', 'A0', 'B0', 'C0', 'D0', 'E0']
+const alphas = ['08', '12', '16', '24', '32', '48', '64', '80', '96', 'A0', 'B0', 'C0', 'D0', 'E0']
 // criando o objecto com as escalas
-const theme_colors_default = {
+const theme_colors_default: IColors = {
+  default:        makingTonesGiant('#888888'),
   main:           makingTonesGiant('#3C90E5'),
   second:         makingTonesGiant('#3ce579'),
-  greyAzure:      makingTonesGiant('#a5b9cd'),
   grey:           makingTonesGiant('#A3ABBD'),
+  greyAzure:      makingTonesGiant('#a5b9cd'),
   limeGreen:      makingTonesGiant('#a8e53c'),
   green:          makingTonesGiant('#2AA071'),
   leaf:           makingTonesGiant('#00755D'),
@@ -29,7 +59,6 @@ const theme_colors_default = {
   yellow:         makingTonesGiant('#F9F871'),
   gold:           makingTonesGiant('#FFDE82'),
   cream:          makingTonesGiant('#FFEDCB'),
-  default:        makingTonesGiant('#888888'),
 }
 // criando arrays de nomes das cores
 export type themeRawColors = typeof theme_colors_default

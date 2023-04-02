@@ -1,22 +1,26 @@
-import { CenterFlex, TransitionDefault, fontSizes } from '@/styles/parts'
 import styled from 'styled-components'
+import * as I from './interfaces'
+import * as P from '@/styles/parts'
 
-export const TextDefault = styled.p`
-  /* ${ CenterFlex } */
-  ${ TransitionDefault }
-  flex-wrap: wrap;
+export const TextDefaultStyled = styled.p<I.ITextDefault>`
+  ${({color}) => P.doCssColor(`${color}`, '800', 'c1')}
+  ${ P.ShowTransition }
+  ${ P.TransitionDefault }
   width: 100%;
-  font-size: ${fontSizes[4]};
+  font-size: ${P.fontSizes[3]};
   font-weight: 500;
-  line-height: 1.6;
-  padding: 16px;
-  color: ${({color}) => color ?
-    `var(--color-${color}-800)` :
-    'var(--color-default-800)'
-  };
-  background: #FFF;
+  line-height: 1.4;
+  /* padding: 8px; */
+  color: var(--c1-800);
+  cursor: text;
 `
-
 export const BoldTextDefault = styled.span`
   font-weight: 700;
 `
+interface TextDefault extends I.ITextDefault { children?: React.ReactNode }
+export default function TextDefault({children, color = 'grey'}: TextDefault) {
+  return (
+    <TextDefaultStyled color={color}>{children}</TextDefaultStyled>
+  )
+}
+

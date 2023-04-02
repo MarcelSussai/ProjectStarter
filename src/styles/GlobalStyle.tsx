@@ -25,7 +25,7 @@ export default createGlobalStyle<IGlobalSTyle>`
     font-size: 62.5%;
     overflow-x: hidden;
     scrollbar-color: var(--color-default-800) var(--color-default-500);
-    font-family: var(--font-montserrat);
+    font-family: var(--font-default);
   }
   a {
     text-decoration: none;
@@ -36,22 +36,41 @@ export default createGlobalStyle<IGlobalSTyle>`
     padding: 0;
     line-height: 1.4;
     font-size: 1.6rem;
+    position: relative;
     ${({isDarkTheme}) => isDarkTheme ? `
       background: linear-gradient(
         45deg,
-        var(--color-default-900),
-        var(--color-default-925),
-        var(--color-default-950),
-        var(--color-default-975)
+        var(--color-grey-900),
+        var(--color-grey-925),
+        var(--color-grey-900)
       );
     ` : `
       background: linear-gradient(
-        45deg,
-        var(--color-default-025),
-        var(--color-default-050),
-        var(--color-default-075)
+        24deg,
+        var(--color-grey-075),
+        var(--color-grey-025),
+        var(--color-grey-050)
       );
     ` }
+    background-repeat: repeat;
+    &::before, &::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      mix-blend-mode: darken;
+      mix-blend-mode: difference;
+      mix-blend-mode: exclusion;
+      mix-blend-mode: multiply;
+    }
+    &::before {
+      opacity: var(--alpha-texture);
+      background: #000;
+      filter: url(#noiseFilter);
+    }
   }
   ul[class], ol[class] { list-style: none; }
   a:not([class]) {

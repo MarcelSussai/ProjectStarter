@@ -102,3 +102,13 @@ export const TransitionDefault = css `
   transition: all .24s ease-in-out;
 `
 
+export const ShowTransition = css `
+  @keyframes show { from { opacity: 0; } to { opacity: 1; } }
+  opacity: 0;
+  animation: show .24s ease-in-out forwards;
+`
+
+export const doCssColor = (
+  color: string, weight: string, localName: string, alpha?: string
+) => `
+--${localName}-${weight}${alpha || ''}: var(--color-${color}-${weight}${alpha || ''});`

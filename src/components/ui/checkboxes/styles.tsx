@@ -82,7 +82,7 @@ export const StyledCheckbox = styled.div<I.IStyledCheckbox>`
   font-size: ${P.fontSizes[1]};
   font-weight: 900;
   line-height: 1;
-  border: solid 1px ${({checked}) => !checked ? 'var(--c1-500)' : 'var(--c1-925)'};
+  border: solid 1px ${({checked}) => !checked ? 'var(--c1-275)' : 'var(--c1-925)'};
 `
 
 

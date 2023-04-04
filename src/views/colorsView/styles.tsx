@@ -1,29 +1,17 @@
-import { CenterFlex, ColumnFlex, GridAutoFit, TransitionDefault, fontSizes, medias } from '@/styles/parts'
+import * as P from '@/styles/parts'
 import styled from 'styled-components'
 import * as I from './interfaces'
 
 
 
 export const ContainerAll = styled.section`
-  ${CenterFlex}
-  ${TransitionDefault}
+  ${P.CenterFlex}
+  ${P.TransitionDefault}
   flex-wrap: wrap;
+  padding: 16px;
+  gap: 40px;
 `
 
-export const All = styled.section`
-  ${TransitionDefault}
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  width: 100%;
-  gap: 8px;
-  padding: 4px;
-  ${medias[16]} {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  ${medias[32]} {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`
 
 export const Item = styled.div.attrs( (props: I.IColorsItem) => ({
   style: {
@@ -31,12 +19,12 @@ export const Item = styled.div.attrs( (props: I.IColorsItem) => ({
     gridColumn: `${props.stretch ? '1 / -1' : 'unset'}`
   }
 }))<I.IColorsItem>`
-  ${TransitionDefault}
+  ${P.TransitionDefault}
   display: flex;
   font-family: var(--font-mono);
   justify-content: center;
   border: solid 1px #000;
-  font-size: clamp(${fontSizes[0]}, 3vw, ${fontSizes[3]});
+  font-size: clamp(${P.fontSizes[0]}, 3vw, ${P.fontSizes[3]});
   line-height: 1;
   color: #FFF;
   padding: 8px 4px;
@@ -47,52 +35,61 @@ export const Item = styled.div.attrs( (props: I.IColorsItem) => ({
 `
 
 export const ItemColor = styled.article`
-  ${TransitionDefault}
+  ${P.TransitionDefault}
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  border: solid 1px #000;
-  ${medias[25]} {
+  border: solid 2px #000;
+  ${P.medias[25]} {
     grid-template-columns: repeat(4, 1fr);
   }
 `
 
 export const ContainerColorsValues = styled.section`
-  ${TransitionDefault}
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 16px;
+  /* width: 88%; */
   width: 100%;
+  padding: 24px;
 `
 
 export const AllColorValues = styled.section`
-  ${TransitionDefault}
-  ${CenterFlex}
-  flex-direction: column;
-  max-width: 200px;
+  ${P.TransitionDefault}
+  ${P.TransitionDefault}
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  width: 100%;
   border: solid 1px;
 `
-export const ColorName = styled.section`
-  ${TransitionDefault}
-  ${CenterFlex}
+export const ColorName = styled.h2`
+  ${P.TransitionDefault}
   width: 100%;
   padding: 8px;
   background: var(--color-grey-025);
+  grid-column: 1 / -1;
 `
 
-export const ContainerColor = styled.div.attrs(props => ({
-  style: { background: `var(${props.color})` }
+export const ContainerColor = styled.div.attrs((props: I.IColorsItem) => ({
+  style: {
+    background: `var(${props.color})`,
+    gridColumn: `${props.stretch ? '1 / -1' : 'unset'}`,
+    gap: `${props.stretch ? '16px' : '0'}`,
+  }
 }))<I.IColorsItem>`
-  ${TransitionDefault}
+  ${P.TransitionDefault}
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: ${({stretch}) => stretch ? 'center' : 'space-between'};
   width: 100%;
-  font-size: clamp(${fontSizes[0]}, 3vw, ${fontSizes[2]});
+  font-size: clamp(${P.fontSizes[0]}, 3vw, ${P.fontSizes[2]});
   font-family: var(--font-mono);
   line-height: 1;
-  color: #FFF;
   padding: 12px 16px;
+  color: #FFF;
   font-weight: 600;
+  border: solid 1px #000;
   text-shadow: 0 0 4px #000,
     0 0 6px #000, 0 0 8px #000, 0 0 12px #000, 0 0 16px #000
   ;

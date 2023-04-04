@@ -98,8 +98,17 @@ export const GridAutoFit = (value: string) => css `
   grid-template-columns: repeat(auto-fit, ${value});
 `
 
+export const Size = (value: string) => css `
+  width: ${value};
+  height: ${value};
+`
+
 export const TransitionDefault = css `
   transition: all .24s ease-in-out;
+`
+
+export const TransitionFn = (t: string, e: string | undefined = 'ease-in-out') => css `
+  transition: all ${t} ${e};
 `
 
 export const ShowTransition = css `

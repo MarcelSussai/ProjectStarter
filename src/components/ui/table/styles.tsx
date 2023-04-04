@@ -9,29 +9,30 @@ export const All = styled.section<I.IAll>`
   ${({color1})  => P.doCssColor(color1,  '050', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '075', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '100', 'c1')}
-  ${({color1})  => P.doCssColor(color1,  '100', 'c1', '-12')}
+  ${({color1})  => P.doCssColor(color1,  '100', 'c1', '')}
   ${({color1})  => P.doCssColor(color1,  '125', 'c1')}
-  ${({color1})  => P.doCssColor(color1,  '175', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '150', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '175', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '200', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '300', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '400', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '500', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '650', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '725', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '750', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '800', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-3')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-4')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-5')}
-  ${({colorG1}) => P.doCssColor(colorG1, '100', 'g1')}
-  ${({colorG2}) => P.doCssColor(colorG2, '100', 'g2')}
+  ${({colorG1}) => P.doCssColor(colorG1, '075', 'g1')}
+  ${({colorG2}) => P.doCssColor(colorG2, '075', 'g2')}
   ${({colorG1}) => P.doCssColor(colorG1, '500', 'g1')}
   ${({colorG2}) => P.doCssColor(colorG2, '500', 'g2')}
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   width: 100%;
   position: relative;
-  /* border: solid 1px var(--c1-300); */
+  border: solid 1px var(--c1-300);
   box-shadow: 6px 6px 8px var(--c1-975-4);
   border-radius: ${P.roundeds[1]};
 `
@@ -40,7 +41,7 @@ export const AllScroll = styled.div`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   width: 100%;
-  border: solid 4px var(--c1-025);
+  border: solid 4px var(--c1-050);
   border-radius: ${P.roundeds[1]};
   background: var(--c1-025);
   overflow: auto;
@@ -73,15 +74,15 @@ export const WrapperTable = styled.div`
   position: relative;
 `
 
-export const TableTitle = styled.div`
+export const TableTitle = styled.div<I.ITableTitle>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   display: flex;
   align-items: center;
   width: 100%;
-  height: 60px;
-  padding: 8px;
-  background: linear-gradient( 45deg, var(--g1-100), var(--g2-100) );
+  height: ${({showTitle}) => showTitle ? '48px' : '48px'};
+  padding: 8px 0 8px 8px;
+  background: linear-gradient( 45deg, var(--g1-075), var(--g2-075) );
 `
 
 export const TitleText = styled.div`
@@ -105,6 +106,7 @@ export const TableHeader = styled.div<I.IStyTableHeader>`
   grid-template-columns: ${ ({sizesString}) => sizesString };
   position: relative;
   width: 100%;
+  min-height: 40px;
   background: var(--c1-075);
   border-top: solid 1px var(--c1-300);
   border-bottom: solid 1px var(--c1-300);
@@ -119,8 +121,7 @@ export const TableRow = styled.div<I.ITableRow>`
   background: ${({alternateBg}) => alternateBg ?
     'var(--c1-050)' : 'var(--c1-025)'
   };
-  border-bottom: solid 1px var(--c1-125);
-  min-height: 64px;
+  min-height: 44px;
   cursor: pointer;
   &:hover {
     background: var(--c1-075);
@@ -139,8 +140,9 @@ export const CellHeader = styled.div<I.ICellHeader>`
   height: 100%;
   padding: 0 8px;
   position: relative;
-  cursor: pointer;
+  cursor: ${({sortByHeader}) => sortByHeader ? 'pointer' : 'default'};
   user-select: none;
+  /* border-bottom: solid 1px var(--c1-125); */
   z-index: 1;
   &::before {
     content: '';
@@ -166,26 +168,33 @@ export const CellHeader = styled.div<I.ICellHeader>`
 export const CellHeaderSelector = styled.div<I.ICellHeaderSelector>`
   ${P.CenterFlex}
   width: 100%;
-  background: var(--c1-075);
+  height: calc(100%);
+  background: var(--c1-025);
   border-right: solid 1px var(--c1-150);
   border-left: solid 1px var(--c1-150);
   position: relative;
-  z-index: 4;
+  z-index: 40;
   &::after {
     transition: all .24s ease-in-out;
     content: '${({qtd}) => qtd}';
-    /* content: '${({qtd}) => qtd !== '0' ? qtd : ''}'; */
     opacity: ${({qtd}) => qtd !== '0' ? '1' : '0'};
     position: absolute;
-    top: -8px;
-    right: -14px;
-    border-radius: ${P.roundeds[2]};
-    padding: 4px;
-    color: var(--c1-025);
-    background: var(--c1-800);
+    border-top: solid 1px var(--c1-150);
+    border-left: solid 1px var(--c1-150);
+    border-right: solid 1px var(--c1-150);
+    ${P.CenterFlex}
+    width: calc(100% + 2px);
+    min-height: 14px;
+    top: -14px;
+    /* right: -14px; */
+    border-top-left-radius: ${P.roundeds[3]};
+    border-top-right-radius: ${P.roundeds[3]};
+    padding: 2px 0 0 0;
+    color: var(--c1-725);
+    background: var(--c1-025);
     font-family: var(--font-mono);
-    font-weight: 400;
-    font-size: ${P.fontSizes[1]};
+    font-weight: 600;
+    font-size: ${P.fontSizes[2]};
     line-height: 1;
     min-width: 20px;
     display: flex;
@@ -197,9 +206,12 @@ export const CellHeaderSelector = styled.div<I.ICellHeaderSelector>`
 export const CellSelector = styled.div`
   ${P.CenterFlex}
   width: 100%;
-  background: var(--c1-075);
+  height: calc(100%);
+  background: var(--c1-025);
   border-right: solid 1px var(--c1-150);
   border-left: solid 1px var(--c1-150);
+  /* border-bottom: solid 1px var(--c1-150); */
+  z-index: 40;
 `
 
 export const TextHeader = styled.span`
@@ -235,7 +247,8 @@ export const CellRow = styled.div<I.ICellRow>`
   width: 100%;
   height: 100%;
   position: relative;
-  padding: 0 8px;
+  /* padding: 0px 8px; */
+  /* border-bottom: solid 1px var(--c1-125); */
   &::before {
     content: '';
     position: absolute;
@@ -256,37 +269,40 @@ export const CellRow = styled.div<I.ICellRow>`
   }
 `
 
-export const AllTableOptions = styled.div`
+export const AllTableOptions = styled.div<I.IAllTableOptions>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
+  --size: ${({showTitle}) => showTitle ? '10px' : '10px'};
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   position: absolute;
-  right: 18px;
-  top: 18px;
+  right: var(--size);
+  top: var(--size);
   z-index: 2;
 `
 
 export const IconOption = styled.button<I.IIconOption>`
-  ${P.CenterFlex}
+  ${ P.CenterFlex }
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: ${P.roundeds[16]};
-  background: ${({opened}) => opened ? 'var(--c1-025)' : 'var(--c1-100-12)'} ;
+  background: ${({opened}) => opened ? 'var(--c1-025)' : 'var(--c1-100)'};
+  backdrop-filter: blur(4px);
   z-index: ${({zIndex}) => zIndex ? zIndex : '1'};
   cursor: pointer;
   box-shadow: 2px 2px 6px var(--c1-975-4);
-  /* border: solid 1px var(--c1-200); */
+  border: solid 1px var(--c1-300);
+  ${({opened}) => opened ? 'transform: translate3d(2px, 2px, 0);' : ''}
   &:hover {
     background: var(--c1-025);
   }
   &:active {
     transition: all .1s ease-in-out;
-    transform: translate3d(1px, 1px, 0);
+    transform: translate3d(2px, 2px, 0);
     box-shadow: 1px 1px 6px var(--c1-975-4);
   }
 `
@@ -300,7 +316,7 @@ export const OneOptions = styled.div`
     ${ P.TransitionDefault }
     font-size: ${P.fontSizes[3]};
     font-weight: 600;
-    color: var(--c1-400);
+    color: var(--c1-500);
     background: var(--c1-050);
     padding: 8px;
     user-select: none;
@@ -310,16 +326,48 @@ export const OneOptions = styled.div`
 export const OptionsColumns = styled.div`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  box-shadow: 2px 2px 8px var(--c1-975-3);
+  box-shadow: 4px 4px 16px var(--c1-975-5);
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: absolute;
   right: 0px;
-  top: 40px;
+  top: 48px;
   white-space: nowrap;
-  /* border: solid 1px var(--c1-300); */
+  outline: solid 1px var(--c1-300);
+  border: solid 4px var(--c1-050);
   border-radius: 8px;
-  padding: 2px;
+  /* padding: 2px; */
   background: var(--c1-025);
+`
+
+export const ExpandableAll = styled.div`
+  ${P.Size('100%')}
+  ${P.TransitionDefault}
+`
+
+export const ExpandableIcon = styled.div`
+  ${P.CenterFlex}
+  ${P.Size('100%')}
+  background: var(--c1-025-8);
+  /* border-bottom: solid 1px var(--c1-150); */
+`
+
+export const ExpandableWrapper = styled.div<I.IExapandableWrapper>`
+  ${P.TransitionFn('.5s')}
+  height: auto;
+  width: 100%;
+  max-height:${ ({isOpen, elementHeight}) => isOpen ? `${elementHeight}px` : '0px' };
+  transform-origin: top center;
+  opacity: ${ ({isOpen}) => isOpen ? '1' : '0' };
+  overflow: ${ ({isOpen}) => isOpen ? 'hidden' : 'hidden' };
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0;
+  border-top: solid ${ ({isOpen}) => isOpen ? '1px var(--c1-100)' : '0px transparent' };
+  border-bottom: solid ${ ({isOpen}) => isOpen ? '1px var(--c1-100)' : '0px transparent' };
+  border-left: solid 24px var(--c1-200);
 `

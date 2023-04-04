@@ -3,20 +3,25 @@ import * as I from './interfaces'
 import styled from 'styled-components'
 
 export const HeadTitleSty = styled.h1<I.IHeadTitles>`
+  ${({color}) => P.doCssColor(`${color}`, '025', 'c1', '-8')}
   ${({color}) => P.doCssColor(`${color}`, '750', 'c1')}
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  ${ P.CenterFlex }
+  display: flex;
+  justify-content: ${({alignment}) => alignment};
+  align-items: center;
   width: 100%;
   font-size: ${P.fontSizes[8]};
   font-weight: 900;
   padding: 8px;
   color: var(--c1-750);
+  background: var(--c1-025-8);
+  backdrop-filter: blur(2px);
 `
 
 interface HeadTitles extends I.IHeadTitles { children?: React.ReactNode }
-export default function HeadTitles({children, color = 'grey'}: HeadTitles) {
+export default function HeadTitles({children, color = 'grey', alignment = 'center'}: HeadTitles) {
   return (
-    <HeadTitleSty color={color}>{children}</HeadTitleSty>
+    <HeadTitleSty alignment={alignment} color={color}>{children}</HeadTitleSty>
   )
 }

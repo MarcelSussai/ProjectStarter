@@ -1,16 +1,17 @@
 import { useState, useEffect, useLayoutEffect, Fragment, useRef } from 'react'
 import * as S from './styles'
 import * as I from './interfaces'
-import ColumnsIcon from '@/components/icons/columnsIcon'
 import { isClickOutside } from '@/utils/isClickedOutSide'
 import FilterIcon from '@/components/icons/filterIcon'
 import PrintIcon from '@/components/icons/printIcon'
 import Checkbox from '@/checkboxes/checkbox'
+import SearchIcon from '@/components/icons/searchIcon'
+import ColumnsIcon from '@/components/icons/columnsIcon'
+import DownloadIcon from '@/components/icons/downloadIcon'
 
-
-export default function TableOptions({
-  color, configColumns, hiddens, showOrHideColumn
-}: I.ITableOptions) {
+export default function TableOptions<T>({
+  color, configColumns, hiddens, showOrHideColumn, showTitle, opts
+}: I.ITableOptions<T>) {
 
   const RefColumns = useRef<HTMLDivElement>(null)
   const [btnShowColumns, setBtnShowColumns] = useState<boolean>(false)
@@ -25,32 +26,48 @@ export default function TableOptions({
 
   return (
     <>
-      <S.AllTableOptions>
+      <S.AllTableOptions showTitle={showTitle}>
+        { opts?.optSearch &&
           <S.IconOption>
-            <PrintIcon width='14px' color={color} show />
+            <SearchIcon width='16px' color={color} show />
           </S.IconOption>
-        <S.IconOption>
-          <FilterIcon width='16px' color={color} show />
-        </S.IconOption>
-        <S.OneOptions  ref={RefColumns}>
-          <S.IconOption opened={btnShowColumns} onClick={handleBtnShowColumns}>
-            <ColumnsIcon width='20px' color={color} show />
+        }
+        { opts?.optDownload &&
+          <S.IconOption>
+            <DownloadIcon width='20px' color={color} show />
           </S.IconOption>
-          {
-            btnShowColumns &&
-            <S.OptionsColumns>
-              <span className='title'>{'Mostrar Colunas'}</span>
-              { configColumns?.map((col, i1) => (
-                <Checkbox
-                  text={col.name} noBg
-                  key={i1} color={color}
-                  onChange={() => showOrHideColumn(col)}
-                  checked={!hiddens.includes(col)}
-                />
-              )) }
-            </S.OptionsColumns>
-          }
-        </S.OneOptions>
+        }
+        { opts?.optPrint &&
+          <S.IconOption>
+            <PrintIcon width='16px' color={color} show />
+          </S.IconOption>
+        }
+        { opts?.optColumns &&
+          <S.OneOptions ref={RefColumns}>
+            <S.IconOption opened={btnShowColumns} onClick={handleBtnShowColumns}>
+              <ColumnsIcon width='20px' color={color} show />
+            </S.IconOption>
+            {
+              btnShowColumns &&
+              <S.OptionsColumns>
+                <span className='title'>{'Mostrar Colunas'}</span>
+                { configColumns?.map((col, i1) => (
+                  <Checkbox
+                    text={col.name} noBg
+                    key={i1} color={color}
+                    onChange={() => showOrHideColumn(col)}
+                    checked={!hiddens.includes(col)}
+                  />
+                )) }
+              </S.OptionsColumns>
+            }
+          </S.OneOptions>
+        }
+        { opts?.optFilters &&
+          <S.IconOption>
+            <FilterIcon width='16px' color={color} show />
+          </S.IconOption>
+        }
       </S.AllTableOptions>
     </>
   )

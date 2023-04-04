@@ -8,39 +8,45 @@ import ArrowUp from '@/icons/arrowUp'
 import TableOptions from './tableOptions'
 import Loading from '@/loading/loading'
 import Checkbox from '@/checkboxes/checkbox'
+import SemiArrowUp from '@/components/icons/semiArrowUp'
+import ExpandableItem from './expandableItem'
 
+const rawOpts = {
+  optColumns: true,
+  optFilters: true,
+  optPrint: true,
+  optDownload: true,
+  optSearch: true,
+}
 
-
-export default function Table({
+export default function Table<T>({
   data, configColumns, color1 = 'grey', colorG1 = 'main', showTitle = true,
   colorG2 = 'second', title = 'Título exemplo da tabela', showCheck = true,
-  alternateBg = true, maxOptionCellSize, showOptionsCell = true, isLoading,
+  alternateBg = true, maxOptionCellSize, sortByHeader = true,
+  showExpandableCell = true, isLoading, opts = rawOpts,
   expandableComponent, componentOptionsCell, onChangeSelecteds, onChangeClicked
-}: I.ITable) {
+}: I.ITable<T>) {
 
   const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
-  const {
-    hiddens, columnsToShow, showOrHideColumn, sizeString
-  } = useTable({ configColumns })
+  const { hiddens, columnsToShow, showOrHideColumn, sizeString } = useTable({ configColumns })
 
   const [results, setResults] = useState<I.IResults[] | undefined[]>()
-  useEffect(() => { if(data?.status === 200) { setResults(data?.results) } }, [data])
-
   const [clickedKeyColumn, setClickedKeyColumn] = useState<string>()
   const [sortMode, setSortMode] = useState(false)
   const [selectAll, setSelecAll] = useState<boolean>(false)
   const [selectedsRows, setSelectedRows] = useState<string[]>([])
   const [clickedRow, setClickedRow] = useState<string>('')
   const [expandedRowsIds, setExpandedRows] = useState<string[]>([])
-
   const [sizesCompositeString, setSizesCompositeString] = useState(
-    U.refineOptionsOfRow(showCheck, showOptionsCell, sizeString, maxOptionCellSize)
+    U.refineOptionsOfRow(showCheck, showExpandableCell, sizeString)
   )
-  
+  const [optsState, setOptsState] = useState(opts)
+
   const handleExpand = (id: string) => {
     let raw = addOrRemoveInArray(id, expandedRowsIds)
     setExpandedRows(raw)
   }
+
   const handleCheckRow = (rowIndex: string) => {
     let raw: string[] = []
     if(selectedsRows?.includes(rowIndex)) {
@@ -52,9 +58,17 @@ export default function Table({
     }
   }
 
-  useEffect(() => {console.log(sizesCompositeString)}, [sizesCompositeString])
-  useEffect(() => {onChangeClicked?.(clickedRow)}, [onChangeClicked, clickedRow])
-  useEffect(() => {onChangeSelecteds?.(selectedsRows)}, [selectedsRows, onChangeSelecteds])
+  useEffect(() => { if(data?.status === 200) { setResults(data?.results) } }, [data])
+
+  useEffect(() => { if(results?.length === selectedsRows.length) {
+    setSelecAll(true) }
+    if (selectedsRows.length === 0) {setSelecAll(false)}
+  }, [selectedsRows, results])
+
+  useEffect(() => { onChangeClicked?.(clickedRow) }, [onChangeClicked, clickedRow])
+
+  useEffect(() => { onChangeSelecteds?.(selectedsRows) }, [selectedsRows, onChangeSelecteds])
+
   useEffect(() => {
     let raw: string[] = []
     if(selectAll) {
@@ -64,98 +78,110 @@ export default function Table({
       } )
     } else { setSelectedRows(raw) }
   }, [selectAll, results])
+
   useIsomorphicLayoutEffect(() => {
-    setSizesCompositeString(U.refineOptionsOfRow(showCheck, showOptionsCell, sizeString, maxOptionCellSize))
-  }, [sizeString, showCheck, showOptionsCell])
+    setSizesCompositeString(U.refineOptionsOfRow(showCheck, showExpandableCell, sizeString))
+  }, [sizeString, showCheck, showExpandableCell])
 
   return (
     <>
       <S.All color1={color1} colorG1={colorG1} colorG2={colorG2}>
-        <TableOptions
-          color={color1} configColumns={configColumns}
+        <TableOptions opts={optsState}
+          color={color1} configColumns={configColumns} showTitle={showTitle}
           hiddens={hiddens} showOrHideColumn={showOrHideColumn}
         />
         <S.AllScroll>
           <S.WrapperAll>
             <S.WrapperTable>
-              <S.TableTitle>
-                {
-                  showTitle &&
+              <S.TableTitle showTitle={showTitle}>
+                { showTitle &&
                   <S.TitleText>
                     {title}
                   </S.TitleText>
                 }
               </S.TableTitle>
-              {
-                isLoading ? <Loading color={color1} /> :
+              { isLoading ? <Loading color={color1} /> :
                 <>
                   <S.TableHeader sizesString={sizesCompositeString}>
-                    { showOptionsCell && (<div></div>) }
+                    { showExpandableCell && (<div></div>) }
                     { showCheck && (<S.CellHeaderSelector
-                      qtd={selectedsRows.length.toString()}
-                    >
+                        qtd={selectedsRows.length.toString()}
+                      >
                       <Checkbox
-                        checked={selectAll} hideText
+                        checked={selectAll}
+                        hideText
                         horizontalAlignment='center'
                         onChange={() => setSelecAll(!selectAll)}
                         color={color1} noBg
                       />
                     </S.CellHeaderSelector>) }
-                    {
-                      columnsToShow.map((col: I.ICollunnsConfig, i1: number) => (
-                        <S.CellHeader key={i1}
-                          onClick={() => {
+                    { columnsToShow.map((col: I.ICollunnsConfig<T>, i1: number) => (
+                      <S.CellHeader key={i1} sortByHeader={sortByHeader}
+                        onClick={() => {
+                          if(sortByHeader) {
                             setClickedKeyColumn(col?.idKey)
                             if(clickedKeyColumn === col?.idKey) setSortMode(!sortMode)
-                          }}
-                          isFirst={i1 === 0}
-                          isLast={i1 === (columnsToShow.length - 1)}
-                        >
-                          <S.TextHeader>{col.name}</S.TextHeader>
-                          <S.CellHeaderDetail>
-                            <ArrowUp
-                              color={color1}
-                              show={(clickedKeyColumn === col?.idKey)}
-                              mode={sortMode ? 'up' : 'down'}
-                            />
-                          </S.CellHeaderDetail>
-                        </S.CellHeader>
-                      ))
-                    }
+                          }
+                        }}
+                        isFirst={i1 === 0}
+                        isLast={i1 === (columnsToShow.length - 1)}
+                      >
+                        <S.TextHeader>{col.name}</S.TextHeader>
+                        <S.CellHeaderDetail>
+                          <ArrowUp
+                            color={color1}
+                            show={(clickedKeyColumn === col?.idKey)}
+                            mode={sortMode ? 'up' : 'down'}
+                          />
+                        </S.CellHeaderDetail>
+                      </S.CellHeader>
+                    )) }
                   </S.TableHeader>
-                  {
-                    results?.map((row: any, i1: number) => (
+                  { results && results?.map((row: any, i1: number) => (
+                    <Fragment key={i1}>
                       <S.TableRow
-                        key={i1} sizesString={sizesCompositeString}
+                        sizesString={sizesCompositeString}
                         alternateBg={(alternateBg ? !(i1 % 2 === 0) : false)}
-                        onClick={() => setClickedRow(row.id.toString())}
+                        onClick={() => setClickedRow(`${row.id}`)}
                         isLast={i1 === (results.length - 1)} isFirst={i1 === 0}
                       >
-                        { showOptionsCell && (<div></div>) }
+                        { showExpandableCell && (<S.ExpandableIcon onClick={() => handleExpand(`${row.id}`)}>
+                          <SemiArrowUp
+                            color={color1}
+                            show={showExpandableCell}
+                            mode={!expandedRowsIds.includes(`${row.id}`) ? 'right' : 'down'}
+                          />
+                        </S.ExpandableIcon>) }
                         { showCheck && (<S.CellSelector>
                           <Checkbox
-                            checked={selectedsRows.includes(row.id.toString())}
-                            onChange={() => handleCheckRow(row.id.toString())} hideText
+                            checked={selectedsRows.includes(`${row.id}`)}
+                            onChange={() => handleCheckRow(`${row.id}`)} hideText
                             horizontalAlignment='center' color={color1} noBg
                           />
                         </S.CellSelector>) }
-                        {
-                          columnsToShow.map((col: I.ICollunnsConfig, i2: number) => (
-                            <S.CellRow key={i2}
-                              isLast={i2 === (columnsToShow.length - 1)}
-                              isFirst={i2 === 0}
-                            >
-                              {
-                                col.ValueComponent ?
-                                col.ValueComponent(row, color1) :
-                                row[col.idKey]
-                              }
-                            </S.CellRow>
-                          ))
-                        }
+                        { columnsToShow.map((col: I.ICollunnsConfig<T>, i2: number) => (
+                          <S.CellRow key={i2}
+                            isLast={i2 === (columnsToShow.length - 1)}
+                            isFirst={i2 === 0}
+                          >
+                            {
+                              col.ValueComponent ?
+                              col.ValueComponent({row, color: color1, rowId: `${row.id}`}) :
+                              row[col.idKey]
+                            }
+                          </S.CellRow>
+                        )) }
                       </S.TableRow>
-                    ))
-                  }
+                      {
+                        // expandedRowsIds.includes(row.id) &&
+                        expandableComponent && (
+                        <ExpandableItem
+                          showExpandable={expandedRowsIds.includes(`${row.id}`) || false}
+                          ExpandThis={expandableComponent({row, color: color1, rowId: `${row.id}`})}
+                        />)
+                      }
+                    </Fragment>
+                  )) }
                   <div>footer</div>
                 </>
               }

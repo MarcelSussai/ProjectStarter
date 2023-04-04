@@ -8,7 +8,7 @@ const transformSizesofColumns = ({min, max}: I.IsizeOfColumn) => ` minmax(${min}
 
 export default function useTable<T>({
   configColumns
-}: I.IuseTable) {
+}: I.IuseTable<T>) {
   const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
   const hiddensDefaults = configColumns.filter((col: any) => col.hideByDefault && col.idKey !== undefined)
@@ -46,9 +46,9 @@ export default function useTable<T>({
     setSizeString(stringRaw)
   }, [hiddens, columnsToShow])
 
-  const showOrHideColumn = (col: I.ICollunnsConfig) => {
-    let rawHiddens: I.ICollunnsConfig[] = []
-    let rawShow: I.ICollunnsConfig[] = []
+  const showOrHideColumn = (col: I.ICollunnsConfig<T>) => {
+    let rawHiddens: I.ICollunnsConfig<T>[] = []
+    let rawShow: I.ICollunnsConfig<T>[] = []
     if(!hiddens.includes(col)) {
       rawHiddens = [...hiddens, col]
       rawShow = columnsToShow.filter((col2: any) => { if(col.idKey !== col2.idKey) return col2} )

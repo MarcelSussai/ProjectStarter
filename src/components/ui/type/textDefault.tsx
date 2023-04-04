@@ -10,7 +10,7 @@ export const TextDefaultStyled = styled.p<I.ITextDefault>`
   font-size: ${P.fontSizes[3]};
   font-weight: 500;
   line-height: 1.4;
-  /* padding: 8px; */
+  padding: 0px 8px;
   color: var(--c1-800);
   cursor: text;
 `

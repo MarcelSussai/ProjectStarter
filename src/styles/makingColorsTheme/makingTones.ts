@@ -1,42 +1,7 @@
 import { listOfColors } from "./colorsMakeScheme"
+import * as I from './interfaces'
 
-type typeOfColor = string | undefined
-export interface ImakeColorsTone {
-  c025?: typeOfColor,
-  c050?: typeOfColor,
-  c075?: typeOfColor,
-  c100?: typeOfColor,
-  c125?: typeOfColor,
-  c150?: typeOfColor,
-  c175?: typeOfColor,
-  c200?: typeOfColor,
-  c225?: typeOfColor,
-  c250?: typeOfColor,
-  c275?: typeOfColor,
-  c300?: typeOfColor,
-  c325?: typeOfColor,
-  c350?: typeOfColor,
-  c400?: typeOfColor,
-  c450?: typeOfColor,
-  c500?: typeOfColor,
-  c550?: typeOfColor,
-  c600?: typeOfColor,
-  c650?: typeOfColor,
-  c675?: typeOfColor,
-  c700?: typeOfColor,
-  c725?: typeOfColor,
-  c750?: typeOfColor,
-  c775?: typeOfColor,
-  c800?: typeOfColor,
-  c825?: typeOfColor,
-  c850?: typeOfColor,
-  c875?: typeOfColor,
-  c900?: typeOfColor,
-  c925?: typeOfColor,
-  c950?: typeOfColor,
-  c975?: typeOfColor,
-}
-export const makingTonesGiant = (color: string): ImakeColorsTone => {
+export const makingTonesGiant = (color: string): I.ImakeColorsTone => {
   let colorList = listOfColors(color, 16, 16)
   return {
     c025: colorList.lightColors[15],
@@ -75,7 +40,7 @@ export const makingTonesGiant = (color: string): ImakeColorsTone => {
   }
 }
 
-export const makingTonesLargest = (color: string): ImakeColorsTone => {
+export const makingTonesLargest = (color: string): I.ImakeColorsTone => {
   let colorList = listOfColors(color, 12, 12)
   return {
     c025: colorList.lightColors[11],
@@ -106,7 +71,7 @@ export const makingTonesLargest = (color: string): ImakeColorsTone => {
   }
 }
 
-export const makingTonesLarge = (color: string): ImakeColorsTone => {
+export const makingTonesLarge = (color: string): I.ImakeColorsTone => {
   let colorList = listOfColors(color)
   return {
     c050: colorList.lightColors[8],
@@ -131,7 +96,7 @@ export const makingTonesLarge = (color: string): ImakeColorsTone => {
   }
 }
 
-export const makingTonesSmall = (color: string): ImakeColorsTone => {
+export const makingTonesSmall = (color: string): I.ImakeColorsTone => {
   let colorList = listOfColors(color, 2, 2)
   return {
     c300: colorList.lightColors[1],
@@ -142,7 +107,7 @@ export const makingTonesSmall = (color: string): ImakeColorsTone => {
   }
 }
 
-export const makingTonesClassic = (color: string): ImakeColorsTone => {
+export const makingTonesClassic = (color: string): I.ImakeColorsTone => {
   let colorList = listOfColors(color, 4, 4)
   return {
     c100: colorList.lightColors[3],
@@ -157,7 +122,7 @@ export const makingTonesClassic = (color: string): ImakeColorsTone => {
   }
 }
 
-export const makingTonesBig = (color: string): ImakeColorsTone => {
+export const makingTonesBig = (color: string): I.ImakeColorsTone => {
   let colorList = listOfColors(color, 6, 6)
   return {
     c100: colorList.lightColors[5],

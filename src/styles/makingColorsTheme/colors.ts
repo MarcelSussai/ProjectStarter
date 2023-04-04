@@ -1,33 +1,34 @@
-import { ImakeColorsTone, makingTonesGiant } from './makingTones'
+import { makingTonesGiant } from './makingTones'
+import * as I from './interfaces'
 
-type DefaultColors = typeof theme_colors_default
+
 export interface IColors {
-  default: ImakeColorsTone
-  main: ImakeColorsTone
-  second: ImakeColorsTone
-  grey: ImakeColorsTone
-  greyAzure?: ImakeColorsTone
-  limeGreen?: ImakeColorsTone
-  green?: ImakeColorsTone
-  leaf?: ImakeColorsTone
-  paleGreen?: ImakeColorsTone
-  teal?: ImakeColorsTone
-  cyan?: ImakeColorsTone
-  blue?: ImakeColorsTone
-  greyBlue?: ImakeColorsTone
-  greyPurple?: ImakeColorsTone
-  purple?: ImakeColorsTone
-  wine?: ImakeColorsTone
-  paleRed?: ImakeColorsTone
-  pink?: ImakeColorsTone
-  red?: ImakeColorsTone
-  strongRed?: ImakeColorsTone
-  brown?: ImakeColorsTone
-  orange?: ImakeColorsTone
-  strongYellow?: ImakeColorsTone
-  yellow?: ImakeColorsTone
-  gold?: ImakeColorsTone
-  cream?: ImakeColorsTone
+  default: I.ImakeColorsTone
+  main: I.ImakeColorsTone
+  second: I.ImakeColorsTone
+  grey: I.ImakeColorsTone
+  greyAzure?: I.ImakeColorsTone
+  limeGreen?: I.ImakeColorsTone
+  green?: I.ImakeColorsTone
+  leaf?: I.ImakeColorsTone
+  paleGreen?: I.ImakeColorsTone
+  teal?: I.ImakeColorsTone
+  cyan?: I.ImakeColorsTone
+  blue?: I.ImakeColorsTone
+  greyBlue?: I.ImakeColorsTone
+  greyPurple?: I.ImakeColorsTone
+  purple?: I.ImakeColorsTone
+  wine?: I.ImakeColorsTone
+  paleRed?: I.ImakeColorsTone
+  pink?: I.ImakeColorsTone
+  red?: I.ImakeColorsTone
+  strongRed?: I.ImakeColorsTone
+  brown?: I.ImakeColorsTone
+  orange?: I.ImakeColorsTone
+  strongYellow?: I.ImakeColorsTone
+  yellow?: I.ImakeColorsTone
+  gold?: I.ImakeColorsTone
+  cream?: I.ImakeColorsTone
 }
 // valores dos alphas em dois digitos hexadecimais a ser acrescido na cor
 const alphas = ['08', '12', '16', '24', '32', '48', '64', '80', '96', 'A0', 'B0', 'C0', 'D0', 'E0']
@@ -44,7 +45,7 @@ const theme_colors_default: IColors = {
   paleGreen:      makingTonesGiant('#6C9F76'),
   teal:           makingTonesGiant('#008796'),
   cyan:           makingTonesGiant('#3ce4e5'),
-  blue:           makingTonesGiant('#3564FC'),
+  blue:           makingTonesGiant('#3B6AFF'),
   greyBlue:       makingTonesGiant('#3D4372'),
   greyPurple:     makingTonesGiant('#555480'),
   purple:         makingTonesGiant('#913ce5'),
@@ -53,7 +54,7 @@ const theme_colors_default: IColors = {
   pink:           makingTonesGiant('#D92884'),
   red:            makingTonesGiant('#E53C3B'),
   strongRed:      makingTonesGiant('#990F09'),
-  brown:          makingTonesGiant('#3e2710'),
+  brown:          makingTonesGiant('#6D563F'),
   orange:         makingTonesGiant('#E5913C'),
   strongYellow:   makingTonesGiant('#e5cd3c'),
   yellow:         makingTonesGiant('#F9F871'),
@@ -87,6 +88,12 @@ function expandColors(colors: any, weights: string[]): Colors {
   return newColors;
 }
 export const FinalColors = expandColors(theme_colors_default, alphas)
+
+let colorsToTable: any = []
+Object.entries(theme_colors_default).map((item, i1) => {
+  colorsToTable.push({id: i1, nameColor: item[0], tones: item[1]})
+})
+export {colorsToTable}
 
 // criando a string crua que contém todas as cores transformadas em variáveis css
 let rawStringAllCssVars = ''

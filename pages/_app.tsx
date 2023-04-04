@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <style jsx global>{`
         :root {
           ${rawStringAllCssVars}
-          --alpha-texture: ${isDarkTheme ? '1' : '.3'};
+          --alpha-texture: ${isDarkTheme ? '.2' : '.1'};
           --font-default: 'Montserrat', sans-serif;
           --font-mono: 'Source Code Pro', monospace;
           --font-main: 'MuseoModerno', cursive;

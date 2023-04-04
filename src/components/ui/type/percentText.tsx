@@ -13,7 +13,7 @@ export const PercentTextStyle = styled.span<I.IPercentText>`
   overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: clamp(${P.fontSizes[2]}, 3vw, ${P.fontSizes[3]});
+  font-size: clamp(${P.fontSizes[1]}, 3vw, ${P.fontSizes[2]});
   width: 100%;
   height: 100%;
   margin: 0 8px;

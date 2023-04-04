@@ -3,7 +3,7 @@ import * as I from './interfaces'
 
 
 
-export default function SemiArrowUp({color = 'default', show = false, mode = 'up'}: I.IIcon) {
+export default function SemiArrowUp({color = 'grey', show = false, mode = 'up'}: I.IIcon) {
   return (
     <S.Svg
       viewBox="0 0 16 10"

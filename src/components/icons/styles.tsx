@@ -6,7 +6,7 @@ export const Svg = styled.svg<I.ISvg>`
   width: ${ ({width}) => width ? width : '12px' };
   height: ${ ({height}) => height ? height : '100%' };
   /* height: 12px; */
-  path { fill: ${({color}) => `var(--color-${color}-700`}) }
+  path { fill: ${({color}) => `var(--color-${color}-675`}) }
   transition: all .2s ease-in-out;
   transform: rotate(${({mode}) =>
     mode === 'up' ? '0deg' :

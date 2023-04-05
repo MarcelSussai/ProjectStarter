@@ -1,5 +1,5 @@
 import * as S from '../../components/ui/table/styles'
-import * as I from '../../components/ui/table/interfaces'
+import * as I from './interfaces'
 import { formatAsPercentage } from '@/utils/formatAsPercentage';
 import { configMonetaryValue } from '@/utils/configMonetaryValue';
 import MonetaryText from '@/type/monetaryText';
@@ -8,6 +8,7 @@ import TextDefault from '@/type/textDefault';
 import PercentText from '@/type/percentText';
 import IdText from '@/type/idText';
 import { StatusType } from '@/components/ui/type/interfaces';
+import { ICollunnsConfig } from '@/components/ui/table/interfaces';
 
 const rawNormalStatus = [
   3000.50,
@@ -28,14 +29,9 @@ const rawInfoStatus = [
   40.00,
 ]
 
-export interface IRowData extends I.IResults {
-  description?: string
-  percentage?: number | string
-  date?: string
-  monetaryValue?: number
-}
 
-export const ConfigColumns: I.ICollunnsConfig<IRowData>[] = [
+
+export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
   {
     idKey: 'id', name: 'ID', order: 1,
     ValueComponent: ({row, color}) => (
@@ -49,7 +45,7 @@ export const ConfigColumns: I.ICollunnsConfig<IRowData>[] = [
     ValueComponent: ({row, color}) => (
       <TextDefault color={color}>{row.description}</TextDefault>
     ),
-    sizeOfColumn: { min: '440px', max: '10fr' },
+    sizeOfColumn: { min: '512px', max: '10fr' },
     hideByDefault: false,
   },
   {

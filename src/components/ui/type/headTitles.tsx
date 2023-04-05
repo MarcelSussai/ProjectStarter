@@ -11,12 +11,14 @@ export const HeadTitleSty = styled.h1<I.IHeadTitles>`
   justify-content: ${({alignment}) => alignment};
   align-items: center;
   width: 100%;
-  font-size: ${P.fontSizes[8]};
+  font-size: ${P.fontSizes[13]};
   font-weight: 900;
+  line-height: 1.16;
   padding: 8px;
   color: var(--c1-750);
   background: var(--c1-025-8);
   backdrop-filter: blur(2px);
+  font-family: var(--font-main);
 `
 
 interface HeadTitles extends I.IHeadTitles { children?: React.ReactNode }

@@ -7,7 +7,7 @@ import DateText from '@/type/dateText';
 import TextDefault from '@/type/textDefault';
 import PercentText from '@/type/percentText';
 import IdText from '@/type/idText';
-import { ImakeColorsTone } from '@/styles/makingColorsTheme/makingTones';
+import { ImakeColorsTone } from '@/styles/makingColorsTheme/interfaces';
 import { ColorBox, ContainerAllColors } from '@/components/ui/containers/colorItemContainer';
 
 export interface IRowData extends I.IResults {

@@ -11,13 +11,13 @@ export const IdTextStyled = styled.span<I.IIdText>`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: ${({alignment}) => alignment};
   text-overflow: ellipsis;
   overflow: hidden;
   z-index: 2;
   cursor: text;
   font-size: clamp(${P.fontSizes[1]}, 3vw, ${P.fontSizes[2]});
-  width: 100%;
+  width: ${({fit}) => fit ? 'fit-content' : '100%'};
   height: calc(100% - 16px);
   border-radius: ${P.roundeds[1]};
   font-weight: 500;
@@ -32,8 +32,8 @@ export const IdTextStyled = styled.span<I.IIdText>`
   backdrop-filter: blur(2px);
 `
 interface IdText extends I.IIdText { children?: React.ReactNode }
-export default function IdText({children, color = 'grey'}: IdText) {
+export default function IdText({children, color = 'grey', alignment = 'flex-end', fit = false}: IdText) {
   return (
-    <IdTextStyled color={color}>{children}</IdTextStyled>
+    <IdTextStyled fit={fit} alignment={alignment} color={color}>{children}</IdTextStyled>
   )
 }

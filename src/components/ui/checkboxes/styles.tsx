@@ -17,6 +17,8 @@ export const All = styled.label<I.IAll>`
   ${({color}) => P.doCssColor(color,  '500', 'c1')}
   ${({color}) => P.doCssColor(color,  '650', 'c1')}
   ${({color}) => P.doCssColor(color,  '725', 'c1')}
+  ${({color}) => P.doCssColor(color,  '775', 'c1')}
+  ${({color}) => P.doCssColor(color,  '800', 'c1')}
   ${({color}) => P.doCssColor(color,  '825', 'c1')}
   ${({color}) => P.doCssColor(color,  '925', 'c1')}
   ${({color}) => P.doCssColor(color,  '975', 'c1', '-2')}
@@ -77,7 +79,7 @@ export const StyledCheckbox = styled.div<I.IStyledCheckbox>`
   width: var(--size);
   height: var(--size);
   border-radius: ${P.roundeds[0]};
-  background: ${ ({checked}) => checked ? 'var(--c1-825)' : 'var(--c1-025)' };
+  background: ${ ({checked}) => checked ? 'var(--c1-775)' : 'var(--c1-025)' };
   color: ${ ({checked}) => !checked ? 'var(--c1-400)' : 'var(--c1-050)' };
   font-size: ${P.fontSizes[1]};
   font-weight: 900;

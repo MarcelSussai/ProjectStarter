@@ -1,11 +1,12 @@
 import * as P from '@/styles/parts'
 import * as I from './interfaces'
+import * as U from './utils'
 import styled from 'styled-components'
 
 export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
   ${({color}) => P.doCssColor(`${color}`, '825', 'c1')}
   ${({color}) => P.doCssColor(`${color}`, '300', 'c1')}
-  ${({color}) => P.doCssColor(`${color}`, '050', 'c1', '-8')}
+  ${({color}) => P.doCssColor(`${color}`, '050', 'c1', '-12')}
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   display: flex;
@@ -19,12 +20,12 @@ export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
   width: 100%;
   height: 100%;
   padding: 0 8px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
   position: relative;
   font-family: var(--font-mono);
   color: var(--c1-825);
-  ${({status}) => status !== 'normal' && `background: var(--c1-050-8);`}
+  ${({status}) => status !== 'normal' && `background: var(--c1-050-12);`}
   
   &::before {
     content: 'R$';
@@ -41,9 +42,6 @@ export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
 interface IMonetaryText extends I.IMonetaryText { children?: React.ReactNode }
 export default function MonetaryText({children, color = 'grey', status = 'normal'}: IMonetaryText) {
   return (
-    <MonetaryTextStyled color={ status === 'normal' ?
-      color : status === 'ok' ? 'green' : status === 'warn' ? 'orange' :
-      status === 'alert' ? 'red' : status === 'info' ? 'teal' : color
-    } status={status}>{children}</MonetaryTextStyled>
+    <MonetaryTextStyled color={ U.changeStatusToColorName(status, color) } status={status}>{children}</MonetaryTextStyled>
   )
 }

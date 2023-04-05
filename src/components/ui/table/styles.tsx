@@ -1,15 +1,15 @@
 import styled from 'styled-components'
-import * as I from './interfaces'
 import * as P from '@/styles/parts'
+import * as I from './interfaces'
 
 export const All = styled.section<I.IAll>`
   ${({color1})  => P.doCssColor(color1,  '025', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '025', 'c1', '-7')}
   ${({color1})  => P.doCssColor(color1,  '025', 'c1', '-8')}
   ${({color1})  => P.doCssColor(color1,  '025', 'c1', '-10')}
   ${({color1})  => P.doCssColor(color1,  '050', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '075', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '100', 'c1')}
-  ${({color1})  => P.doCssColor(color1,  '100', 'c1', '')}
   ${({color1})  => P.doCssColor(color1,  '125', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '150', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '175', 'c1')}
@@ -18,14 +18,16 @@ export const All = styled.section<I.IAll>`
   ${({color1})  => P.doCssColor(color1,  '400', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '500', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '650', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '675', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '700', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '725', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '750', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '800', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-3')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-4')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-5')}
-  ${({colorG1}) => P.doCssColor(colorG1, '075', 'g1')}
-  ${({colorG2}) => P.doCssColor(colorG2, '075', 'g2')}
+  ${({colorG1}) => P.doCssColor(colorG1, '125', 'g1')}
+  ${({colorG2}) => P.doCssColor(colorG2, '125', 'g2')}
   ${({colorG1}) => P.doCssColor(colorG1, '500', 'g1')}
   ${({colorG2}) => P.doCssColor(colorG2, '500', 'g2')}
   ${ P.ShowTransition }
@@ -34,23 +36,29 @@ export const All = styled.section<I.IAll>`
   position: relative;
   border: solid 1px var(--c1-300);
   box-shadow: 6px 6px 8px var(--c1-975-4);
-  border-radius: ${P.roundeds[1]};
+  border-radius: ${P.roundeds[6]};
 `
 
 export const AllScroll = styled.div`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   width: 100%;
-  border: solid 4px var(--c1-050);
-  border-radius: ${P.roundeds[1]};
+  border: solid 4px var(--c1-025);
+  border-radius: ${P.roundeds[6]};
   background: var(--c1-025);
-  overflow: auto;
   position: relative;
+  overflow: auto;
   scrollbar-color: var(--c1-800) var(--c1-025);
   &::-webkit-scrollbar { width: 10px; height: 10px; }
   &::-webkit-scrollbar-button { display: none; }
-  &::-webkit-scrollbar-track-piece { background: var(--c1-025); }
-  &::-webkit-scrollbar-thumb { background: var(--c1-800); border-radius: 10px; }
+  &::-webkit-scrollbar-track-piece {
+    background: var(--c1-100);
+    border-radius: 0 0 10px 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--c1-800);
+    border-radius: 0 0 10px 10px;
+  }
 `
 
 export const WrapperAll = styled.div`
@@ -81,8 +89,8 @@ export const TableTitle = styled.div<I.ITableTitle>`
   align-items: center;
   width: 100%;
   height: ${({showTitle}) => showTitle ? '48px' : '48px'};
-  padding: 8px 0 8px 8px;
-  background: linear-gradient( 45deg, var(--g1-075), var(--g2-075) );
+  padding: 4px 0 4px 4px;
+  background: linear-gradient( 45deg, var(--g1-125), var(--g2-125) );
 `
 
 export const TitleText = styled.div`
@@ -90,13 +98,14 @@ export const TitleText = styled.div`
   ${ P.TransitionDefault }
   display: flex;
   align-items: center;
-  padding: 8px 16px;
+  height: 100%;
+  padding: 0px 16px;
   line-height: 1;
-  font-size: ${P.fontSizes[4]};
-  border-radius: ${P.roundeds[1]};
-  font-weight: 900;
+  font-size: ${P.fontSizes[5]};
+  font-weight: 800;
   background: var(--c1-025-10);
-  color: var(--c1-725);
+  color: var(--c1-650);
+  border-radius: ${P.roundeds[3]} 0 0 0;
 `
 
 export const TableHeader = styled.div<I.IStyTableHeader>`
@@ -108,23 +117,36 @@ export const TableHeader = styled.div<I.IStyTableHeader>`
   width: 100%;
   min-height: 40px;
   background: var(--c1-075);
-  border-top: solid 1px var(--c1-300);
+  ${({showTableHeaderOptions}) => showTableHeaderOptions ?
+    'border-top: solid 1px var(--c1-300);' :
+    ''
+  }
   border-bottom: solid 1px var(--c1-300);
 `
+interface Iaux {
+  alt?: boolean
+  color?: string
+}
+
+const aux = ({alt = false, color}: Iaux) => {
+  if      ( alt && color !== undefined) { return `var(--color-${color}-025)` }
+  else if (!alt && color !== undefined) { return `var(--color-${color}-025)` }
+  else if (!alt && color === undefined) { return `var(--c1-025)` }
+  else if ( alt && color === undefined) { return `var(--c1-075)` }
+  return 'var(--c1-025)'
+}
 
 export const TableRow = styled.div<I.ITableRow>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
+  ${({statusColor}) => statusColor && `--c1-100: var(--color-${statusColor}-100);`}
   display: grid;
   grid-template-columns: ${ ({sizesString}) => sizesString };
-  ${({alternateBg}) => alternateBg && `background: var(--c1-050);`}
-  background: ${({alternateBg}) => alternateBg ?
-    'var(--c1-050)' : 'var(--c1-025)'
-  };
+  background: ${({alternateBg, statusColor}) => aux({alt: alternateBg, color: statusColor}) };
   min-height: 44px;
   cursor: pointer;
   &:hover {
-    background: var(--c1-075);
+    background: var(--c1-100);
   }
 `
 
@@ -168,10 +190,9 @@ export const CellHeader = styled.div<I.ICellHeader>`
 export const CellHeaderSelector = styled.div<I.ICellHeaderSelector>`
   ${P.CenterFlex}
   width: 100%;
-  height: calc(100%);
+  height: calc(100% + 0px);
   background: var(--c1-025);
   border-right: solid 1px var(--c1-150);
-  border-left: solid 1px var(--c1-150);
   position: relative;
   z-index: 40;
   &::after {
@@ -209,7 +230,7 @@ export const CellSelector = styled.div`
   height: calc(100%);
   background: var(--c1-025);
   border-right: solid 1px var(--c1-150);
-  border-left: solid 1px var(--c1-150);
+  /* border-left: solid 1px var(--c1-150); */
   /* border-bottom: solid 1px var(--c1-150); */
   z-index: 40;
 `
@@ -254,7 +275,7 @@ export const CellRow = styled.div<I.ICellRow>`
     position: absolute;
     left: -1px;
     width: 1px;
-    height: 64%;
+    height: 40%;
     background: var(--c1-175);
     opacity: ${({isFirst}) => isFirst ? '0' : '1'};
   }
@@ -263,7 +284,7 @@ export const CellRow = styled.div<I.ICellRow>`
     position: absolute;
     right: 0px;
     width: 1px;
-    height: 64%;
+    height: 40%;
     background: var(--c1-175);
     opacity: ${({isLast}) => isLast ? '0' : '1'};
   }
@@ -367,7 +388,19 @@ export const ExpandableWrapper = styled.div<I.IExapandableWrapper>`
   align-items: flex-start;
   gap: 8px;
   padding: 0;
-  border-top: solid ${ ({isOpen}) => isOpen ? '1px var(--c1-100)' : '0px transparent' };
-  border-bottom: solid ${ ({isOpen}) => isOpen ? '1px var(--c1-100)' : '0px transparent' };
-  border-left: solid 24px var(--c1-200);
+  border-top: solid ${ ({isOpen}) => isOpen ? '1px var(--c1-200)' : '0px transparent' };
+  border-bottom: solid ${ ({isOpen}) => isOpen ? '1px var(--c1-200)' : '0px transparent' };
+  border-left: solid ${ ({isOpen}) => isOpen ? '16px var(--c1-200)' : '0px transparent' };
+  /* border-left: solid 24px var(--c1-200); */
+`
+
+export const Footer = styled.div`
+  ${P.TransitionDefault}
+  ${P.ShowTransition}
+  ${P.Size('100%')}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--c1-200);
 `

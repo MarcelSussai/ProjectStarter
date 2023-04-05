@@ -9,7 +9,7 @@ export const ContainerAll = styled.section`
   ${P.TransitionDefault}
   flex-wrap: wrap;
   padding: 16px;
-  gap: 40px;
+  gap: 16px;
 `
 
 
@@ -93,4 +93,53 @@ export const ContainerColor = styled.div.attrs((props: I.IColorsItem) => ({
   text-shadow: 0 0 4px #000,
     0 0 6px #000, 0 0 8px #000, 0 0 12px #000, 0 0 16px #000
   ;
+`
+
+export const WrapperCodeBlock = styled.div`
+  ${P.TransitionDefault}
+  ${P.ShowTransition}
+  width: 100%;
+  padding: 16px;
+  border-radius: ${P.roundeds[2]};
+  margin: 0;
+  background: var(--color-grey-900);
+  pre, code {
+    padding: 0;
+    margin: 0;
+    color: var(--color-grey-025);
+    font-family: var(--font-mono);
+    font-size: ${P.fontSizes[2]};
+  }
+  .hljs-deletion { color: var(--color-red-100); }
+  .hljs-addition { color: var(--color-blue-100); }
+  .hljs-string { color: var(--color-orange-100); }
+  .hljs-section { color: var(--color-wine-200); }
+  .hljs-selector-class { color: var(--color-orange-100); }
+  .hljs-selector-tag { color: var(--color-teal-100); }
+  .hljs-selector-id { color: var(--color-orange-200); }
+  .hljs-selector-class { color: var(--color-red-100); }
+  .hljs-selector-attr { color: var(--color-paleRed-200); }
+  .hljs-selector-pseudo { color: var(--color-red-100); }
+  .hljs-template-variable { color: var(--color-orange-075); }
+  .hljs-template-tag { color: var(--color-orange-075); }
+  .hljs-params { color: var(--color-red-125);}
+  .hljs-keyword { color: var(--color-green-200); }
+  .hljs-function { color: var(--color-purple-200); }
+  .hljs-type { color: var(--color-limeGreen-200); }
+  .hljs-literal { color: var(--color-pink-200); }
+  .hljs-number { color: var(--color-pink-200); }
+  .hljs-operator { color: var(--color-gold-200); }
+  .hljs-punctuation { color: var(--color-paleRed-200); }
+  .hljs-property { color: var(--color-pink-200); }
+  .hljs-subst { color: var(--color-orange-200); }
+  .hljs-symbol { color: var(--color-red-200); }
+  .hljs-class { color: var(--color-pink-200); }
+  .hljs-variable { color: #3C90E5; }
+  .hljs-title { color: #3C90E5; }
+  .hljs-comment { color: #3C90E5; }
+  .hljs-section { color: #3C90E5; }
+  .hljs-tag { color: #3C90E5; }
+  .hljs-attr { color: #3C90E5; }
+  .hljs-name { color: #3C90E5; }
+  .hljs-attribute { color: #3C90E5; }
 `

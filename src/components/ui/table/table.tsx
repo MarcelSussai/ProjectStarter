@@ -10,6 +10,7 @@ import Loading from '@/loading/loading'
 import Checkbox from '@/checkboxes/checkbox'
 import SemiArrowUp from '@/components/icons/semiArrowUp'
 import ExpandableItem from './expandableItem'
+import { changeStatusToColorName } from '@/type/utils'
 
 const rawOpts = {
   optColumns: true,
@@ -19,12 +20,14 @@ const rawOpts = {
   optSearch: true,
 }
 
+
 export default function Table<T>({
   data, configColumns, color1 = 'grey', colorG1 = 'main', showTitle = true,
   colorG2 = 'second', title = 'Título exemplo da tabela', showCheck = true,
-  alternateBg = true, maxOptionCellSize, sortByHeader = true,
-  showExpandableCell = true, isLoading, opts = rawOpts,
-  expandableComponent, componentOptionsCell, onChangeSelecteds, onChangeClicked
+  alternateBg = true, maxOptionCellSize, sortByHeader = true, showFooter = false,
+  showExpandableCell = true, isLoading, opts = rawOpts, showTableHeaderOptions = true,
+  expandableComponent, componentOptionsCell, onChangeSelecteds, onChangeClicked,
+  fnStatusForRow
 }: I.ITable<T>) {
 
   const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -86,23 +89,27 @@ export default function Table<T>({
   return (
     <>
       <S.All color1={color1} colorG1={colorG1} colorG2={colorG2}>
-        <TableOptions opts={optsState}
-          color={color1} configColumns={configColumns} showTitle={showTitle}
-          hiddens={hiddens} showOrHideColumn={showOrHideColumn}
-        />
+        { showTableHeaderOptions &&
+          <TableOptions opts={optsState}
+            color={color1} configColumns={configColumns} showTitle={showTitle}
+            hiddens={hiddens} showOrHideColumn={showOrHideColumn}
+          />
+        }
         <S.AllScroll>
           <S.WrapperAll>
             <S.WrapperTable>
-              <S.TableTitle showTitle={showTitle}>
-                { showTitle &&
-                  <S.TitleText>
-                    {title}
-                  </S.TitleText>
-                }
-              </S.TableTitle>
+              { showTableHeaderOptions &&
+                <S.TableTitle showTitle={showTitle}>
+                  { showTitle &&
+                    <S.TitleText>
+                      {title}
+                    </S.TitleText>
+                  }
+                </S.TableTitle>
+              }
               { isLoading ? <Loading color={color1} /> :
                 <>
-                  <S.TableHeader sizesString={sizesCompositeString}>
+                  <S.TableHeader sizesString={sizesCompositeString} showTableHeaderOptions={showTableHeaderOptions}>
                     { showExpandableCell && (<div></div>) }
                     { showCheck && (<S.CellHeaderSelector
                         qtd={selectedsRows.length.toString()}
@@ -141,6 +148,11 @@ export default function Table<T>({
                     <Fragment key={i1}>
                       <S.TableRow
                         sizesString={sizesCompositeString}
+                        statusColor={
+                          fnStatusForRow !== undefined && fnStatusForRow(row) !== 'normal' ?
+                          changeStatusToColorName(fnStatusForRow(row), color1) :
+                          undefined
+                        }
                         alternateBg={(alternateBg ? !(i1 % 2 === 0) : false)}
                         onClick={() => setClickedRow(`${row.id}`)}
                         isLast={i1 === (results.length - 1)} isFirst={i1 === 0}
@@ -182,10 +194,12 @@ export default function Table<T>({
                       }
                     </Fragment>
                   )) }
-                  <div>footer</div>
                 </>
               }
             </S.WrapperTable>
+            { showFooter &&
+              <S.Footer>footer</S.Footer>
+            }
           </S.WrapperAll>
         </S.AllScroll>
       </S.All>

@@ -8,6 +8,7 @@ export interface IColors {
   second: I.ImakeColorsTone
   grey: I.ImakeColorsTone
   greyAzure?: I.ImakeColorsTone
+  greyGreen?: I.ImakeColorsTone
   limeGreen?: I.ImakeColorsTone
   green?: I.ImakeColorsTone
   leaf?: I.ImakeColorsTone
@@ -22,6 +23,7 @@ export interface IColors {
   paleRed?: I.ImakeColorsTone
   pink?: I.ImakeColorsTone
   red?: I.ImakeColorsTone
+  greyRed?: I.ImakeColorsTone
   strongRed?: I.ImakeColorsTone
   brown?: I.ImakeColorsTone
   orange?: I.ImakeColorsTone
@@ -32,27 +34,30 @@ export interface IColors {
 }
 // valores dos alphas em dois digitos hexadecimais a ser acrescido na cor
 const alphas = ['08', '12', '16', '24', '32', '48', '64', '80', '96', 'A0', 'B0', 'C0', 'D0', 'E0']
+
 // criando o objecto com as escalas
 const theme_colors_default: IColors = {
   default:        makingTonesGiant('#888888'),
   main:           makingTonesGiant('#3C90E5'),
   second:         makingTonesGiant('#3ce579'),
   grey:           makingTonesGiant('#A3ABBD'),
-  greyAzure:      makingTonesGiant('#a5b9cd'),
+  greyAzure:      makingTonesGiant('#a1b0cd'),
+  greyBlue:       makingTonesGiant('#BCC6DB'),
+  greyGreen:      makingTonesGiant('#B6C1B9'),
+  greyPurple:     makingTonesGiant('#BEB6CC'),
+  greyRed:        makingTonesGiant('#c9b7b5'),
   limeGreen:      makingTonesGiant('#a8e53c'),
   green:          makingTonesGiant('#2AA071'),
   leaf:           makingTonesGiant('#00755D'),
   paleGreen:      makingTonesGiant('#6C9F76'),
   teal:           makingTonesGiant('#008796'),
   cyan:           makingTonesGiant('#3ce4e5'),
-  blue:           makingTonesGiant('#3B6AFF'),
-  greyBlue:       makingTonesGiant('#3D4372'),
-  greyPurple:     makingTonesGiant('#555480'),
+  blue:           makingTonesGiant('#4775FF'),
   purple:         makingTonesGiant('#913ce5'),
+  pink:           makingTonesGiant('#D92884'),
   wine:           makingTonesGiant('#904B72'),
   paleRed:        makingTonesGiant('#BB767D'),
-  pink:           makingTonesGiant('#D92884'),
-  red:            makingTonesGiant('#E53C3B'),
+  red:            makingTonesGiant('#FC5554'),
   strongRed:      makingTonesGiant('#990F09'),
   brown:          makingTonesGiant('#6D563F'),
   orange:         makingTonesGiant('#E5913C'),
@@ -61,6 +66,7 @@ const theme_colors_default: IColors = {
   gold:           makingTonesGiant('#FFDE82'),
   cream:          makingTonesGiant('#FFEDCB'),
 }
+
 // criando arrays de nomes das cores
 export type themeRawColors = typeof theme_colors_default
 export const colorsNames = Object.entries(theme_colors_default)

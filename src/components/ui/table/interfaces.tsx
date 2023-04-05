@@ -1,3 +1,4 @@
+import { StatusType } from '@/type/interfaces';
 export interface IResults { id: string | number }
 export interface ITableData {
   status: number
@@ -40,9 +41,13 @@ export interface ITable<T> {
   title?: string
   showTitle?: boolean
   showCheck?: boolean
+  showTableHeaderOptions?: boolean
+  showFooter?: boolean
   showExpandableCell?: boolean
   maxOptionCellSize?: string
   componentOptionsCell?: (row: T) => JSX.Element
+  componentFooter?: (rows: T[]) => JSX.Element
+  fnStatusForRow?: (row: T) => StatusType
   alternateBg?: boolean
   onChangeSelecteds?: (selecteds: string[]) => void
   onChangeClicked?: (rowId: string) => void
@@ -74,8 +79,13 @@ export interface ISizesAndDarkTheme {
 }
 
 export interface IAll extends IColorsTable {}
-export interface IStyTableHeader extends ISizesAndDarkTheme {}
-export interface ITableRow extends ISizesAndDarkTheme { alternateBg?: boolean }
+export interface IStyTableHeader extends ISizesAndDarkTheme {
+  showTableHeaderOptions?: boolean
+}
+export interface ITableRow extends ISizesAndDarkTheme {
+  alternateBg?: boolean
+  statusColor?: string
+}
 export interface ICellHeader extends ISizesAndDarkTheme {
   sortByHeader?: boolean
 }

@@ -22,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <style jsx global>{`
+      
         :root {
           ${rawStringAllCssVars}
           --alpha-texture: ${isDarkTheme ? '.2' : '.1'};

@@ -5,8 +5,10 @@ import * as I from './interfaces'
 
 
 export const ContainerAll = styled.section`
-  ${P.CenterFlex}
   ${P.TransitionDefault}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex-wrap: wrap;
   padding: 16px;
   gap: 16px;
@@ -50,7 +52,7 @@ export const ContainerColorsValues = styled.section`
   flex-wrap: nowrap;
   gap: 16px;
   /* width: 88%; */
-  width: 100%;
+  width: 888px;
   padding: 24px;
 `
 
@@ -58,10 +60,11 @@ export const AllColorValues = styled.section`
   ${P.TransitionDefault}
   ${P.TransitionDefault}
   display: grid;
-  grid-template-columns: repeat(16, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
   border: solid 1px;
 `
+
 export const ColorName = styled.h2`
   ${P.TransitionDefault}
   width: 100%;

@@ -14,10 +14,10 @@ export const SrcTextStyled = styled.span<I.IIdText>`
   z-index: 2;
   cursor: text;
   font-size: clamp(${P.fontSizes[1]}, 3vw, ${P.fontSizes[2]});
-  width: fit-content;
+  width: ${({fit}) => fit ? 'fit-content' : '100%'};
   border-radius: ${P.roundeds[1]};
   font-weight: 300;
-  padding: 2px 6.4px;
+  padding: 3px 8px;
   line-height: 1;
   position: relative;
   font-family: var(--font-mono);
@@ -25,7 +25,7 @@ export const SrcTextStyled = styled.span<I.IIdText>`
   background: var(--c1-875);
 `
 interface SrcText extends I.ISrcText { children?: React.ReactNode }
-export default function SrcText({children, color = 'grey', alignment = 'flex-end', fit = false}: SrcText) {
+export default function SrcText({children, color = 'grey', alignment = 'flex-end', fit = true}: SrcText) {
   return (
     <SrcTextStyled fit={fit} alignment={alignment} color={color}>{children}</SrcTextStyled>
   )

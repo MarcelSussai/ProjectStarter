@@ -29,8 +29,6 @@ const rawInfoStatus = [
   40.00,
 ]
 
-
-
 export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
   {
     idKey: 'id', name: 'ID', order: 1,
@@ -43,7 +41,9 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
   {
     idKey: 'description', name: 'Descrição', order: 2,
     ValueComponent: ({row, color}) => (
-      <TextDefault color={color}>{row.description}</TextDefault>
+      <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center', width: '100%'}}>
+        <TextDefault fit color={color}>{row.description}</TextDefault>
+      </div>
     ),
     sizeOfColumn: { min: '512px', max: '10fr' },
     hideByDefault: false,
@@ -55,7 +55,7 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
         {formatAsPercentage(Number(row.percentage))}
       </PercentText>
     ),
-    sizeOfColumn: { min: '88px', max: '88px' },
+    sizeOfColumn: { min: '72px', max: '72px' },
     hideByDefault: false,
   },
   {
@@ -85,7 +85,18 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
         {configMonetaryValue(row.monetaryValue)}
       </MonetaryText>
     )},
-    sizeOfColumn: { min: '176px', max: '176px' },
+    sizeOfColumn: { min: '220px', max: '220px' },
+    hideByDefault: false,
+  },
+  {
+    idKey: 'monetaryValue2', name: 'Valor 2', order: 6,
+    ValueComponent: ({row, color}) => {
+      return (
+      <MonetaryText color={color} >
+        {configMonetaryValue(row.monetaryValue)}
+      </MonetaryText>
+    )},
+    sizeOfColumn: { min: '220px', max: '220px' },
     hideByDefault: false,
   },
 ]

@@ -1,17 +1,19 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import * as P from '@/styles/parts'
+import * as I from './interfaces'
 // import 'highlight.js/styles/monokai.css'
 import hljs from 'highlight.js'
 
-const All = styled.div`
+const All = styled.div<I.ICodeBlock>`
   ${P.TransitionDefault}
   ${P.ShowTransition}
   width: calc(100% - 16px);
-  padding: 8px 16px;
-  border-radius: ${P.roundeds[0]};
+  max-width: ${({fit}) => fit ? 'fit-content' : '100%'};
+  padding: 16px 32px;
+  border-radius: ${P.roundeds[4]};
   margin: 0;
-  background: linear-gradient(0deg, var(--color-grey-975), var(--color-grey-875));
+  background: linear-gradient(-45deg, var(--color-grey-975), var(--color-grey-875));
   font-weight: 400;
   overflow-x: auto;
   box-shadow:
@@ -20,7 +22,10 @@ const All = styled.div`
   scrollbar-color: var(--color-grey-800) var(--color-grey-025);
   &::-webkit-scrollbar { width: 10px; height: 10px; }
   &::-webkit-scrollbar-button { display: none; }
-  &::-webkit-scrollbar-track-piece { background: var(--color-grey-025); }
+  &::-webkit-scrollbar-track-piece {
+    background: var(--color-grey-025);
+    border-radius: 0 0 10px 10px;
+  }
   &::-webkit-scrollbar-thumb {
     background: var(--color-grey-800);
     border-radius: 0 0 10px 10px;
@@ -73,20 +78,16 @@ const All = styled.div`
   .hljs-built_in { color: var(--color-gold-400); font-weight: 400; }
 `
 
-interface ICodeBlock {
-  lang?: string
-  text: string
-}
 export default function CodeBlock({
-  text, lang = 'javascript'
-}: ICodeBlock) {
+  text, lang = 'javascript', fit = true
+}: I.ICodeBlock) {
   useEffect(() => {
     hljs.highlightAll()
     hljs.configure({ignoreUnescapedHTML: true})
   }, []);
 
   return (
-    <All>
+    <All fit={fit}>
       <pre>
         <code className={`language-${lang}`}>{text}</code>
       </pre>

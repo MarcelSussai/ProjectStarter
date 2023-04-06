@@ -1,18 +1,32 @@
 import { makingTonesGiant } from './makingTones'
 import * as I from './interfaces'
+import { themed } from '@/endpoints/themed'
 
+
+
+
+
+let rawThemed = {
+  main: '#3C90E5',
+  second: '#3CE579'
+}
+const colorsThemed = themed().then((r: any) => r)
+colorsThemed.then((r) => { rawThemed = {...r.color} })
 
 export interface IColors {
   default: I.ImakeColorsTone
   main: I.ImakeColorsTone
   second: I.ImakeColorsTone
   grey: I.ImakeColorsTone
+  greyAqua?: I.ImakeColorsTone
   greyAzure?: I.ImakeColorsTone
   greyGreen?: I.ImakeColorsTone
   limeGreen?: I.ImakeColorsTone
   green?: I.ImakeColorsTone
   leaf?: I.ImakeColorsTone
+  strongGreen?: I.ImakeColorsTone
   paleGreen?: I.ImakeColorsTone
+  aqua?: I.ImakeColorsTone
   teal?: I.ImakeColorsTone
   cyan?: I.ImakeColorsTone
   blue?: I.ImakeColorsTone
@@ -38,21 +52,24 @@ const alphas = ['08', '12', '16', '24', '32', '48', '64', '80', '96', 'A0', 'B0'
 // criando o objecto com as escalas
 const theme_colors_default: IColors = {
   default:        makingTonesGiant('#888888'),
-  main:           makingTonesGiant('#3C90E5'),
-  second:         makingTonesGiant('#3ce579'),
+  main:           makingTonesGiant(rawThemed.main),
+  second:         makingTonesGiant(rawThemed.second),
   grey:           makingTonesGiant('#A3ABBD'),
   greyAzure:      makingTonesGiant('#a1b0cd'),
-  greyBlue:       makingTonesGiant('#BCC6DB'),
+  greyBlue:       makingTonesGiant('#B3BFE6'),
   greyGreen:      makingTonesGiant('#B6C1B9'),
   greyPurple:     makingTonesGiant('#BEB6CC'),
   greyRed:        makingTonesGiant('#c9b7b5'),
+  greyAqua:       makingTonesGiant('#CAD7D6'),
   limeGreen:      makingTonesGiant('#a8e53c'),
   green:          makingTonesGiant('#2AA071'),
-  leaf:           makingTonesGiant('#00755D'),
+  leaf:           makingTonesGiant('#00A455'),
+  strongGreen:    makingTonesGiant('#00755D'),
   paleGreen:      makingTonesGiant('#6C9F76'),
+  aqua:           makingTonesGiant('#5fb7b0'),
   teal:           makingTonesGiant('#008796'),
   cyan:           makingTonesGiant('#3ce4e5'),
-  blue:           makingTonesGiant('#4775FF'),
+  blue:           makingTonesGiant('#3c54e5'),
   purple:         makingTonesGiant('#913ce5'),
   pink:           makingTonesGiant('#D92884'),
   wine:           makingTonesGiant('#904B72'),

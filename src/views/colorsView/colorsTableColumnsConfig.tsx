@@ -29,7 +29,7 @@ export const ColorsTableColumnsConfig: I.ICollunnsConfig<IRowData>[] = [
     ValueComponent: ({row, color}) => (
       <IdText color={color}>{`--color-${row.nameColor}-500`}</IdText>
     ),
-    sizeOfColumn: { min: '240px', max: '240px' },
+    sizeOfColumn: { min: '264px', max: '264px' },
     hideByDefault: false,
   },
   {

@@ -9,3 +9,10 @@ export interface Mock01Data {
     text: string;
   }[];
 }
+export interface Themed {
+  color: {
+    main: string
+    second: string
+    grey?: string
+  }
+}

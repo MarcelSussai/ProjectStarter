@@ -23,11 +23,12 @@ export const All = styled.section<I.IAll>`
   ${({color1})  => P.doCssColor(color1,  '725', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '750', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '800', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '850', 'c1',)}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-3')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-4')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-5')}
-  ${({colorG1}) => P.doCssColor(colorG1, '125', 'g1')}
-  ${({colorG2}) => P.doCssColor(colorG2, '125', 'g2')}
+  ${({colorG1}) => P.doCssColor(colorG1, '075', 'g1')}
+  ${({colorG2}) => P.doCssColor(colorG2, '075', 'g2')}
   ${({colorG1}) => P.doCssColor(colorG1, '500', 'g1')}
   ${({colorG2}) => P.doCssColor(colorG2, '500', 'g2')}
   ${ P.ShowTransition }
@@ -48,11 +49,11 @@ export const AllScroll = styled.div`
   background: var(--c1-025);
   position: relative;
   overflow: auto;
-  scrollbar-color: var(--c1-800) var(--c1-025);
+  scrollbar-color: var(--c1-800) var(--c1-125);
   &::-webkit-scrollbar { width: 10px; height: 10px; }
   &::-webkit-scrollbar-button { display: none; }
   &::-webkit-scrollbar-track-piece {
-    background: var(--c1-100);
+    background: var(--c1-125);
     border-radius: 0 0 10px 10px;
   }
   &::-webkit-scrollbar-thumb {
@@ -90,7 +91,7 @@ export const TableTitle = styled.div<I.ITableTitle>`
   width: 100%;
   height: ${({showTitle}) => showTitle ? '48px' : '48px'};
   padding: 4px 0 4px 4px;
-  background: linear-gradient( 45deg, var(--g1-125), var(--g2-125) );
+  background: linear-gradient( 45deg, var(--g1-075), var(--g2-075) );
 `
 
 export const TitleText = styled.div`
@@ -103,8 +104,8 @@ export const TitleText = styled.div`
   line-height: 1;
   font-size: ${P.fontSizes[5]};
   font-weight: 800;
-  background: var(--c1-025-10);
-  color: var(--c1-650);
+  /* background: var(--c1-025-10); */
+  color: var(--c1-750);
   border-radius: ${P.roundeds[3]} 0 0 0;
 `
 
@@ -129,8 +130,8 @@ interface Iaux {
 }
 
 const aux = ({alt = false, color}: Iaux) => {
-  if      ( alt && color !== undefined) { return `var(--color-${color}-025)` }
-  else if (!alt && color !== undefined) { return `var(--color-${color}-025)` }
+  if      ( alt && color !== undefined) { return `var(--color-${color}-050)` }
+  else if (!alt && color !== undefined) { return `var(--color-${color}-050)` }
   else if (!alt && color === undefined) { return `var(--c1-025)` }
   else if ( alt && color === undefined) { return `var(--c1-075)` }
   return 'var(--c1-025)'
@@ -143,11 +144,9 @@ export const TableRow = styled.div<I.ITableRow>`
   display: grid;
   grid-template-columns: ${ ({sizesString}) => sizesString };
   background: ${({alternateBg, statusColor}) => aux({alt: alternateBg, color: statusColor}) };
-  min-height: 44px;
+  min-height: 52px;
   cursor: pointer;
-  &:hover {
-    background: var(--c1-100);
-  }
+  &:hover { background: var(--c1-100); }
 `
 
 export const CellHeader = styled.div<I.ICellHeader>`
@@ -164,7 +163,6 @@ export const CellHeader = styled.div<I.ICellHeader>`
   position: relative;
   cursor: ${({sortByHeader}) => sortByHeader ? 'pointer' : 'default'};
   user-select: none;
-  /* border-bottom: solid 1px var(--c1-125); */
   z-index: 1;
   &::before {
     content: '';
@@ -241,7 +239,7 @@ export const TextHeader = styled.span`
   width: 100%;
   text-align: center;
   font-weight: 700;
-  color: var(--c1-725);
+  color: var(--c1-850);
   font-size: ${P.fontSizes[3]};
 `
 
@@ -258,18 +256,22 @@ export const CellHeaderDetail = styled.div`
 export const CellRow = styled.div<I.ICellRow>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
+  ${({statusColor}) => statusColor && `--c1-150: var(--color-${statusColor}-150);`}
+  ${({statusColor}) => statusColor && `--c1-175: var(--color-${statusColor}-175);`}
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  text-align: flex-start;
+  justify-content: center;
   line-height: 1.4;
   gap: 2px;
   width: 100%;
   height: 100%;
   position: relative;
-  /* padding: 0px 8px; */
-  /* border-bottom: solid 1px var(--c1-125); */
+  ${({altBg}) => !altBg ? `
+  border-bottom: 1px solid var(--c1-150);
+  ` : ``}
+
   &::before {
     content: '';
     position: absolute;
@@ -375,7 +377,7 @@ export const ExpandableIcon = styled.div`
 `
 
 export const ExpandableWrapper = styled.div<I.IExapandableWrapper>`
-  ${P.TransitionFn('.5s')}
+  ${P.TransitionFn('.4s')}
   height: auto;
   width: 100%;
   max-height:${ ({isOpen, elementHeight}) => isOpen ? `${elementHeight}px` : '0px' };

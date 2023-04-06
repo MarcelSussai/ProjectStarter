@@ -36,6 +36,7 @@ export const mBps = [
   '1912px', // 31
   '2000px', // 32
 ]
+
 export const medias = mBps.map(bp => {
   return `@media (min-width: ${bp})`
 })

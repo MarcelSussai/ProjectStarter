@@ -22,12 +22,12 @@ const rawOpts = {
 
 
 export default function Table<T>({
-  data, configColumns, color1 = 'grey', colorG1 = 'main', showTitle = true,
-  colorG2 = 'second', title = 'Título exemplo da tabela', showCheck = true,
-  alternateBg = true, maxOptionCellSize, sortByHeader = true, showFooter = false,
-  showExpandableCell = true, isLoading, opts = rawOpts, showTableHeaderOptions = true,
-  expandableComponent, componentOptionsCell, onChangeSelecteds, onChangeClicked,
-  fnStatusForRow
+  data, configColumns, color1 = 'grey', colorG1 = 'main',
+  showTitle = true, colorG2 = 'second', title = 'Título exemplo da tabela',
+  showCheck = true, alternateBg = true, maxOptionCellSize, sortByHeader = true,
+  showFooter = false, showExpandableCell = true, isLoading, opts = rawOpts,
+  showTableHeaderOptions = true, expandableComponent, componentOptionsCell,
+  onChangeSelecteds, onChangeClicked, fnStatusForRow,
 }: I.ITable<T>) {
 
   const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -90,8 +90,9 @@ export default function Table<T>({
     <>
       <S.All color1={color1} colorG1={colorG1} colorG2={colorG2}>
         { showTableHeaderOptions &&
-          <TableOptions opts={optsState}
-            color={color1} configColumns={configColumns} showTitle={showTitle}
+          <TableOptions
+            opts={optsState} color={color1}
+            configColumns={configColumns} showTitle={showTitle}
             hiddens={hiddens} showOrHideColumn={showOrHideColumn}
           />
         }
@@ -109,7 +110,10 @@ export default function Table<T>({
               }
               { isLoading ? <Loading color={color1} /> :
                 <>
-                  <S.TableHeader sizesString={sizesCompositeString} showTableHeaderOptions={showTableHeaderOptions}>
+                  <S.TableHeader
+                    sizesString={sizesCompositeString}
+                    showTableHeaderOptions={showTableHeaderOptions}
+                  >
                     { showExpandableCell && (<div></div>) }
                     { showCheck && (<S.CellHeaderSelector
                         qtd={selectedsRows.length.toString()}
@@ -152,33 +156,44 @@ export default function Table<T>({
                           fnStatusForRow !== undefined && fnStatusForRow(row) !== 'normal' ?
                           changeStatusToColorName(fnStatusForRow(row), color1) :
                           undefined
-                        }
+                        } altBg={alternateBg}
                         alternateBg={(alternateBg ? !(i1 % 2 === 0) : false)}
                         onClick={() => setClickedRow(`${row.id}`)}
                         isLast={i1 === (results.length - 1)} isFirst={i1 === 0}
                       >
-                        { showExpandableCell && (<S.ExpandableIcon onClick={() => handleExpand(`${row.id}`)}>
-                          <SemiArrowUp
-                            color={color1}
-                            show={showExpandableCell}
-                            mode={!expandedRowsIds.includes(`${row.id}`) ? 'right' : 'down'}
-                          />
-                        </S.ExpandableIcon>) }
-                        { showCheck && (<S.CellSelector>
-                          <Checkbox
-                            checked={selectedsRows.includes(`${row.id}`)}
-                            onChange={() => handleCheckRow(`${row.id}`)} hideText
-                            horizontalAlignment='center' color={color1} noBg
-                          />
-                        </S.CellSelector>) }
+                        { showExpandableCell && (
+                          <S.ExpandableIcon onClick={() => handleExpand(`${row.id}`)}>
+                            <SemiArrowUp
+                              color={color1}
+                              show={showExpandableCell}
+                              mode={!expandedRowsIds.includes(`${row.id}`) ? 'right' : 'down'}
+                            />
+                          </S.ExpandableIcon> )
+                        }
+                        { showCheck && (
+                          <S.CellSelector>
+                            <Checkbox
+                              checked={selectedsRows.includes(`${row.id}`)}
+                              onChange={() => handleCheckRow(`${row.id}`)} hideText
+                              horizontalAlignment='center' color={color1} noBg
+                            />
+                          </S.CellSelector> )
+                        }
                         { columnsToShow.map((col: I.ICollunnsConfig<T>, i2: number) => (
                           <S.CellRow key={i2}
                             isLast={i2 === (columnsToShow.length - 1)}
                             isFirst={i2 === 0}
+                            statusColor={
+                              fnStatusForRow !== undefined && fnStatusForRow(row) !== 'normal' ?
+                              changeStatusToColorName(fnStatusForRow(row), color1) :
+                              undefined
+                            } altBg={alternateBg}
                           >
                             {
                               col.ValueComponent ?
-                              col.ValueComponent({row, color: color1, rowId: `${row.id}`}) :
+                              col.ValueComponent({
+                                row, color: color1, rowId: `${row.id}`
+                              }) :
                               row[col.idKey]
                             }
                           </S.CellRow>

@@ -14,3 +14,7 @@ export interface IHeadTitles extends ITexts {
 }
 export interface IIdText extends ITexts {}
 export interface ISrcText extends ITexts {}
+export interface ICodeBlock extends ITexts{
+  lang?: string
+  text?: string
+}

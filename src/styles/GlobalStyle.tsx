@@ -18,18 +18,18 @@ export default createGlobalStyle<IGlobalSTyle>`
   html::-webkit-scrollbar-track  {}
   html::-webkit-scrollbar { width: 10px; }
   html::-webkit-scrollbar-button { display: none; }
-  html::-webkit-scrollbar-track-piece { background: var(--color-default-500); }
-  html::-webkit-scrollbar-thumb { background: var(--color-default-800); }
+  html::-webkit-scrollbar-track-piece { background: var(--color-grey-500); }
+  html::-webkit-scrollbar-thumb { background: var(--color-grey-800); }
   html {
     scroll-behavior: smooth;
     font-size: 62.5%;
     overflow-x: hidden;
-    scrollbar-color: var(--color-default-800) var(--color-default-500);
+    scrollbar-color: var(--color-grey-800) var(--color-grey-500);
     font-family: var(--font-default);
   }
   a {
     text-decoration: none;
-    color: var(--color-default-800);
+    color: var(--color-grey-800);
   }
   body {
     min-height: 100vh;
@@ -49,7 +49,7 @@ export default createGlobalStyle<IGlobalSTyle>`
         24deg,
         var(--color-grey-100),
         var(--color-grey-025),
-        var(--color-grey-025)
+        var(--color-grey-050)
       );
     ` }
     background-repeat: repeat;

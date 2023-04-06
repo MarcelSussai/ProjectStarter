@@ -54,6 +54,7 @@ export interface ITable<T> {
   isLoading?: boolean
   expandableComponent?: (props: IValueComponent<T>) => JSX.Element
   sortByHeader?: boolean
+  paddingCell?: boolean
   opts?: {
     optColumns?: boolean
     optFilters?: boolean
@@ -85,11 +86,16 @@ export interface IStyTableHeader extends ISizesAndDarkTheme {
 export interface ITableRow extends ISizesAndDarkTheme {
   alternateBg?: boolean
   statusColor?: string
+  altBg: boolean
 }
 export interface ICellHeader extends ISizesAndDarkTheme {
   sortByHeader?: boolean
 }
-export interface ICellRow extends ISizesAndDarkTheme {}
+export interface ICellRow extends ISizesAndDarkTheme {
+  altBg: boolean
+  statusColor?: string
+  paddingCell?: boolean
+}
 
 export interface IIconOption {
   zIndex?: string

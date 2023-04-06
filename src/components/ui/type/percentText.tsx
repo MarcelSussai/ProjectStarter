@@ -1,9 +1,10 @@
 import * as P from '@/styles/parts'
+import * as U from './utils'
 import * as I from './interfaces'
 import styled from 'styled-components'
 
 export const PercentTextStyle = styled.span<I.IPercentText>`
-  ${({color}) => P.doCssColor(`${color}`, '700', 'c1')}
+  ${({color}) => P.doCssColor(`${color}`, '800', 'c1')}
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   display: flex;
@@ -13,15 +14,14 @@ export const PercentTextStyle = styled.span<I.IPercentText>`
   overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: clamp(${P.fontSizes[1]}, 3vw, ${P.fontSizes[2]});
-  width: 100%;
+  font-size: ${P.fontSizes[3]};
+  width: calc(100% - 16px);
   height: 100%;
-  margin: 0 8px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   position: relative;
   font-family: var(--font-mono);
-  color: var(--c1-700);
+  color: var(--c1-800);
 `
 interface PercentText extends I.IPercentText { children?: React.ReactNode }
 export default function PercentText({children, color = 'grey'}: PercentText) {

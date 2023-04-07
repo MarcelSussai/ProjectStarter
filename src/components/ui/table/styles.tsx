@@ -24,11 +24,12 @@ export const All = styled.section<I.IAll>`
   ${({color1})  => P.doCssColor(color1,  '750', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '800', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '850', 'c1',)}
+  ${({color1})  => P.doCssColor(color1,  '900', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-3')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-4')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-5')}
-  ${({colorG1}) => P.doCssColor(colorG1, '075', 'g1')}
-  ${({colorG2}) => P.doCssColor(colorG2, '075', 'g2')}
+  ${({colorG1}) => P.doCssColor(colorG1, '100', 'g1')}
+  ${({colorG2}) => P.doCssColor(colorG2, '100', 'g2')}
   ${({colorG1}) => P.doCssColor(colorG1, '500', 'g1')}
   ${({colorG2}) => P.doCssColor(colorG2, '500', 'g2')}
   ${ P.ShowTransition }
@@ -91,7 +92,7 @@ export const TableTitle = styled.div<I.ITableTitle>`
   width: 100%;
   height: ${({showTitle}) => showTitle ? '48px' : '48px'};
   padding: 4px 0 4px 4px;
-  background: linear-gradient( 45deg, var(--g1-075), var(--g2-075) );
+  background: linear-gradient( 0deg, var(--g1-100), var(--g2-100) );
 `
 
 export const TitleText = styled.div`
@@ -102,10 +103,10 @@ export const TitleText = styled.div`
   height: 100%;
   padding: 0px 16px;
   line-height: 1;
-  font-size: ${P.fontSizes[5]};
-  font-weight: 800;
+  font-size: ${P.fontSizes[6]};
+  font-weight: 900;
   /* background: var(--c1-025-10); */
-  color: var(--c1-750);
+  color: var(--c1-800);
   border-radius: ${P.roundeds[3]} 0 0 0;
 `
 
@@ -116,7 +117,7 @@ export const TableHeader = styled.div<I.IStyTableHeader>`
   grid-template-columns: ${ ({sizesString}) => sizesString };
   position: relative;
   width: 100%;
-  min-height: 40px;
+  min-height: 36px;
   background: var(--c1-075);
   ${({showTableHeaderOptions}) => showTableHeaderOptions ?
     'border-top: solid 1px var(--c1-300);' :
@@ -130,8 +131,8 @@ interface Iaux {
 }
 
 const aux = ({alt = false, color}: Iaux) => {
-  if      ( alt && color !== undefined) { return `var(--color-${color}-050)` }
-  else if (!alt && color !== undefined) { return `var(--color-${color}-050)` }
+  if      ( alt && color !== undefined) { return `var(--color-${color}-025)` }
+  else if (!alt && color !== undefined) { return `var(--color-${color}-025)` }
   else if (!alt && color === undefined) { return `var(--c1-025)` }
   else if ( alt && color === undefined) { return `var(--c1-075)` }
   return 'var(--c1-025)'
@@ -144,7 +145,7 @@ export const TableRow = styled.div<I.ITableRow>`
   display: grid;
   grid-template-columns: ${ ({sizesString}) => sizesString };
   background: ${({alternateBg, statusColor}) => aux({alt: alternateBg, color: statusColor}) };
-  min-height: 52px;
+  min-height: 32px;
   cursor: pointer;
   &:hover { background: var(--c1-100); }
 `
@@ -194,31 +195,24 @@ export const CellHeaderSelector = styled.div<I.ICellHeaderSelector>`
   position: relative;
   z-index: 40;
   &::after {
+    ${P.CenterFlex}
     transition: all .24s ease-in-out;
     content: '${({qtd}) => qtd}';
     opacity: ${({qtd}) => qtd !== '0' ? '1' : '0'};
     position: absolute;
-    border-top: solid 1px var(--c1-150);
-    border-left: solid 1px var(--c1-150);
     border-right: solid 1px var(--c1-150);
     ${P.CenterFlex}
     width: calc(100% + 2px);
-    min-height: 14px;
     top: -14px;
-    /* right: -14px; */
-    border-top-left-radius: ${P.roundeds[3]};
-    border-top-right-radius: ${P.roundeds[3]};
-    padding: 2px 0 0 0;
+    border-top-left-radius: ${P.roundeds[4]};
+    border-top-right-radius: ${P.roundeds[4]};
+    padding: 1px 0 1px 0;
     color: var(--c1-725);
     background: var(--c1-025);
     font-family: var(--font-mono);
     font-weight: 600;
     font-size: ${P.fontSizes[2]};
     line-height: 1;
-    min-width: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `
 
@@ -237,16 +231,17 @@ export const TextHeader = styled.span`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   width: 100%;
-  text-align: center;
-  font-weight: 700;
-  color: var(--c1-850);
+  text-align: start;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--c1-800);
   font-size: ${P.fontSizes[3]};
 `
 
 export const CellHeaderDetail = styled.div`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  max-width: 32px;
+  max-width: 12px;
   height: 100%;
   display: flex;
   justify-content: center;

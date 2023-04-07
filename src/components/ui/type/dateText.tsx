@@ -14,9 +14,9 @@ export const DateTextStyled = styled.span<I.IDateText>`
   overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: ${P.fontSizes[2]};
+  font-size: ${P.fontSizes[3]};
   border-radius: ${P.roundeds[16]};
-  width: calc(100% - 12px);
+  width: calc(100% - 16px);
   padding: 6px 0;
   font-weight: 500;
   line-height: 1;

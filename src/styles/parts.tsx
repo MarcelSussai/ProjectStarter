@@ -122,3 +122,7 @@ export const doCssColor = (
   color: string, weight: string, localName: string, alpha?: string
 ) => `
 --${localName}-${weight}${alpha || ''}: var(--color-${color}-${weight}${alpha || ''});`
+
+export const doCssColorVar = (
+  color: string, weight: string, alpha?: string
+) => `var(--color-${color}-${weight}${alpha || ''})`

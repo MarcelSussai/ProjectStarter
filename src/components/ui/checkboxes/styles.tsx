@@ -32,15 +32,13 @@ export const All = styled.label<I.IAll>`
   gap: 6px;
   user-select: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 4px;
   background: ${
     ({noBg, checked}) => noBg ? 'transparent' :
     checked ? 'var(--c1-025-10)' : 'var(--c1-025-10)'
   };
-  width: 100%;
   width: ${ ({fit}) => fit ? 'fit-content' : '100%' };
   height: ${ ({fit}) => fit ? 'fit-content' : '100%' };
-  border-radius: ${ ({fit}) => fit ? '2px' : 'none' };
   border-bottom: solid 1px ${
     ({checked, noBg}) => !noBg && checked ? 'var(--c1-275)' : 'transparent'
   };
@@ -78,13 +76,13 @@ export const StyledCheckbox = styled.div<I.IStyledCheckbox>`
   align-items: center;
   width: var(--size);
   height: var(--size);
-  border-radius: ${P.roundeds[0]};
-  background: ${ ({checked}) => checked ? 'var(--c1-775)' : 'var(--c1-025)' };
-  color: ${ ({checked}) => !checked ? 'var(--c1-400)' : 'var(--c1-050)' };
+  border-radius: ${P.roundeds[2]};
+  background: ${ ({checked}) => checked ? 'var(--c1-825)' : 'var(--c1-025)' };
+  color: ${ ({checked}) => !checked ? 'var(--c1-275)' : 'var(--c1-025)' };
   font-size: ${P.fontSizes[1]};
   font-weight: 900;
   line-height: 1;
-  border: solid 1px ${({checked}) => !checked ? 'var(--c1-275)' : 'var(--c1-925)'};
+  border: solid 1px ${({checked}) => !checked ? 'var(--c1-275)' : 'var(--c1-825)'};
 `
 
 

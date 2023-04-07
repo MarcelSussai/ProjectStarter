@@ -63,7 +63,7 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
     ValueComponent: ({row, color}) => (
       <DateText color={color}>{new Date(`${row.date}`).toLocaleDateString()}</DateText>
     ),
-    sizeOfColumn: { min: '112px', max: '112px'},
+    sizeOfColumn: { min: '144px', max: '144px'},
     hideByDefault: false,
   },
   {

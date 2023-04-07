@@ -20,7 +20,6 @@ const rawOpts = {
   optSearch: true,
 }
 
-
 export default function Table<T>({
   data, configColumns, color1 = 'grey', colorG1 = 'main',
   showTitle = true, colorG2 = 'second', title = 'Título exemplo da tabela',

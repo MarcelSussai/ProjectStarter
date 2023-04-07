@@ -14,7 +14,7 @@ export const HeadTitleSty = styled.h1<I.IHeadTitles>`
   font-size: clamp(${P.fontSizes[12]}, 3vw, ${P.fontSizes[16]});
   font-weight: 900;
   line-height: 1.16;
-  padding: 8px;
+  /* padding: 8px; */
   color: var(--c1-750);
   background: var(--c1-025-8);
   backdrop-filter: blur(2px);

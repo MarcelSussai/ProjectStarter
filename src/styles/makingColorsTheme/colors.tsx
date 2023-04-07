@@ -7,12 +7,16 @@ import { themed } from '@/endpoints/themed'
 
 
 let rawThemed = {
-  main: '#3C90E5',
-  second: '#3CE579'
+  main:           '#3C90E5',
+  second:         '#3CE579',
+  grey:           '#A3ABBD',
+  default:        '#888888',
 }
-const colorsThemed = themed().then((r: any) => r)
-colorsThemed.then((r) => { rawThemed = {...r.color} })
-
+// const colorsThemed = themed().then((r: any) => r)
+// colorsThemed.then((r) => {
+//   console.log(r.color)
+//   rawThemed = {...r.color}
+// })
 export interface IColors {
   default: I.ImakeColorsTone
   main: I.ImakeColorsTone
@@ -51,10 +55,10 @@ const alphas = ['08', '12', '16', '24', '32', '48', '64', '80', '96', 'A0', 'B0'
 
 // criando o objecto com as escalas
 const theme_colors_default: IColors = {
-  default:        makingTonesGiant('#888888'),
+  default:        makingTonesGiant(rawThemed.default),
   main:           makingTonesGiant(rawThemed.main),
   second:         makingTonesGiant(rawThemed.second),
-  grey:           makingTonesGiant('#A3ABBD'),
+  grey:           makingTonesGiant(rawThemed.grey),
   greyAzure:      makingTonesGiant('#a1b0cd'),
   greyBlue:       makingTonesGiant('#B3BFE6'),
   greyGreen:      makingTonesGiant('#B6C1B9'),
@@ -78,7 +82,7 @@ const theme_colors_default: IColors = {
   strongRed:      makingTonesGiant('#990F09'),
   brown:          makingTonesGiant('#6D563F'),
   orange:         makingTonesGiant('#E5913C'),
-  strongYellow:   makingTonesGiant('#e5cd3c'),
+  strongYellow:   makingTonesGiant('#DEC634'),
   yellow:         makingTonesGiant('#F9F871'),
   gold:           makingTonesGiant('#FFDE82'),
   cream:          makingTonesGiant('#FFEDCB'),

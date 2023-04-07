@@ -3,7 +3,9 @@ import * as I from './interfaces'
 
 
 
-export default function ArrowUp({color = 'default', show = false, mode = 'up'}: I.IIcon) {
+export default function ArrowUp({
+  color = 'default', show = false, mode = 'up', width = '100%'
+}: I.IIcon) {
   return (
     <S.Svg
       viewBox="0 0 16 16"
@@ -11,6 +13,7 @@ export default function ArrowUp({color = 'default', show = false, mode = 'up'}: 
       color={color}
       mode={mode}
       show={show}
+      width={width}
     >
       <path
         fillRule="evenodd"

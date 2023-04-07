@@ -24,7 +24,8 @@ const styPai = styled\.\d\iv\`
 /* usando no mesmo componente: */
 background: var(--c1-125);
 `,
-`background: var(--c1-125); `,
+`background: var(--c1-125);`,
+`fill: \${({color}) => P.doCssColorVar(color, '825')};`, 'var(--color-main-825)'
 ]
 
 const texts = [

@@ -8,6 +8,7 @@ import TextDefault from '@/ui/type/textDefault'
 import HeadTitles from '@/ui/type/headTitles'
 import CodeBlock from '../../components/ui/type/codeBlock';
 import SrcText from '@/components/ui/type/srcText'
+import { ContentText } from '@/components/ui/containers/ContentText'
 
 
 const code = [
@@ -201,9 +202,17 @@ export default function TableTestView({
       <TextDefault>
         {`Será preciso passar as seguintes propriedades para o componente de tabela:`}
       </TextDefault>
-      <SrcText alignment='flex-start'>
-        {`Um objeto contendo dados que serão passados via propriedade ao componente de tabela:`}
-      </SrcText>
+      <ContentText>
+        <SrcText alignment='flex-start'> {`data`} </SrcText>
+        <TextDefault>
+          {`Um objeto contendo dados que serão exibidos na tabela`}
+        </TextDefault>
+        <SrcText alignment='flex-start'> {`configColumns`} </SrcText>
+        <TextDefault>
+          {`Um array de objetos contendo as configurações das colunas`}
+        </TextDefault>
+      </ContentText>
+      <SrcText alignment='flex-start'> {`data`} </SrcText>
       <TextDefault>
         {`Esses dados também podem ser consultados com o react query configurados no projeto.`} <br />
         {`e buscados com a api fetch do navegador melhorada pelo nextjs já imbutida no projeto!`} <br />
@@ -216,9 +225,7 @@ export default function TableTestView({
         <SrcText alignment='flex-start'>{'200'}</SrcText>{` .`}
       </TextDefault>
       <CodeBlock lang='tsx' text={code[0]} fit={true} />
-      <SrcText alignment='flex-start'>
-        {`Um array de objetos contendo as configurações das colunas:`}
-      </SrcText>
+      <SrcText alignment='flex-start'> {`configColumns`} </SrcText>
       <TextDefault>
         {`O idKey tem que ser único em cada coluna `}
         {`e também é bom especificar a ordem de cada coluna`}
@@ -230,7 +237,7 @@ export default function TableTestView({
         {`Exemplo de vários tipos de uso do componente de tabela:`}
       </TextDefault>
       <Table
-        colorG1='main' colorG2='second' color1='greyAqua'
+        colorG1='greyBlue' colorG2='greyRed' color1='greyAqua'
         configColumns={ConfigColumns} expandableComponent={ExpandableTest}
         data={mock01} isLoading={mock01isLoading}
         fnStatusForRow={rawFnStatusForRow} alternateBg={false}
@@ -256,7 +263,7 @@ export default function TableTestView({
         data={mock01} isLoading={mock01isLoading}
       />
       <Table
-        colorG1='purple' colorG2='cyan' color1='grey'
+        colorG1='purple' colorG2='teal' color1='grey'
         configColumns={ConfigColumns} expandableComponent={ExpandableTest}
         data={mock01} isLoading={mock01isLoading} alternateBg={false}
       />

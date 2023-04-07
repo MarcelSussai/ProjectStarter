@@ -4,9 +4,9 @@ import * as U from './utils'
 import styled from 'styled-components'
 
 export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
-  ${({color}) => P.doCssColor(`${color}`, '825', 'c1')}
+  ${({color}) => P.doCssColor(`${color}`, '775', 'c1')}
   ${({color}) => P.doCssColor(`${color}`, '800', 'c1')}
-  ${({color}) => P.doCssColor(`${color}`, '050', 'c1', '-8')}
+  ${({color}) => P.doCssColor(`${color}`, '075', 'c1', '-12')}
   ${({color}) => P.doCssColor(`${color}`, '025', 'c1', '-3')}
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
@@ -26,8 +26,8 @@ export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
   line-height: 1;
   position: relative;
   font-family: var(--font-mono);
-  color: var(--c1-825);
-  ${({status}) => status !== 'normal' ? `background: var(--c1-050-8);` : `background: var(--c1-025-3);`}
+  color: var(--c1-775);
+  ${({status}) => status !== 'normal' ? `background: var(--c1-075-12);` : `background: var(--c1-025-3);`}
   
   &::before {
     content: 'R$';

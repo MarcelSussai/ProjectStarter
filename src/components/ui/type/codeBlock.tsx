@@ -10,29 +10,36 @@ const All = styled.div<I.ICodeBlock>`
   ${P.ShowTransition}
   width: calc(100% - 16px);
   max-width: ${({fit}) => fit ? 'fit-content' : '100%'};
-  padding: 16px 32px;
   border-radius: ${P.roundeds[4]};
   margin: 0;
-  background: linear-gradient(-45deg, var(--color-grey-975), var(--color-grey-875));
-  font-weight: 400;
-  overflow-x: auto;
   box-shadow:
     4px 4px 4px var(--color-grey-900-8)
   ;
-  scrollbar-color: var(--color-grey-800) var(--color-grey-025);
-  &::-webkit-scrollbar { width: 10px; height: 10px; }
-  &::-webkit-scrollbar-button { display: none; }
-  &::-webkit-scrollbar-track-piece {
-    background: var(--color-grey-025);
-    border-radius: 0 0 10px 10px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-grey-800);
-    border-radius: 0 0 10px 10px;
+  font-weight: 400;
+  background: linear-gradient(-45deg, var(--color-grey-975), var(--color-grey-875));
+  div.scrollAll {
+    margin: 0;
+    width: calc(100%);
+    padding: 12px;
+    max-width: ${({fit}) => fit ? 'fit-content' : '100%'};
+    overflow-x: auto;
+    scrollbar-color: var(--color-grey-800) var(--color-grey-025);
+    &::-webkit-scrollbar { width: 10px; height: 10px; }
+    &::-webkit-scrollbar-button { display: none; }
+    &::-webkit-scrollbar-track-piece {
+      background: var(--color-grey-075-4);
+      border-radius: 0 0 10px 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-grey-500);
+      border-radius: 0 0 10px 10px;
+    }
+    
   }
   pre, code {
-    padding: 0;
-    margin: 0;
+    white-space: pre;
+    width: calc(100%);
+    margin: 0px 0px 0px 0px;
     color: var(--color-grey-025);
     font-family: var(--font-mono);
     font-size: ${P.fontSizes[2]};
@@ -88,9 +95,11 @@ export default function CodeBlock({
 
   return (
     <All fit={fit}>
-      <pre>
-        <code className={`language-${lang}`}>{text}</code>
-      </pre>
+      <div className="scrollAll">
+        <pre>
+          <code className={`language-${lang}`}>{text}</code>
+        </pre>
+      </div>
     </All>
   )
 }

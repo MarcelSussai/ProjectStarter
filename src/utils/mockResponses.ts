@@ -68,7 +68,7 @@ export const mock_01 = {
     {
       id: 9,
       date: new Date().toISOString().substring(0, 19),
-      description: 'Este é Descrição do item 09',
+      description: 'Esta é a Descrição do item 09',
       monetaryValue: 128256880.050000,
       percentage: 96.720000,
       text: 'Texto do mock'

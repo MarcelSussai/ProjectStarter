@@ -17,7 +17,7 @@ export const SrcTextStyled = styled.span<I.IIdText>`
   width: ${({fit}) => fit ? 'fit-content' : '100%'};
   border-radius: ${P.roundeds[1]};
   font-weight: 300;
-  padding: 3px 8px;
+  padding: 4px 8px;
   line-height: 1;
   position: relative;
   font-family: var(--font-mono);

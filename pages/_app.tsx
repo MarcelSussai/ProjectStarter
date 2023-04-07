@@ -8,10 +8,17 @@ import { useContext, createContext, useState, useEffect } from 'react'
 import { GlobalContext } from '@/contexts/globalContext';
 
 
+// const colorsThemed = themed().then((r: any) => r)
+// colorsThemed.then((r) => {
+//   console.log(r.color)
+//   rawThemed = {...r.color}
+// })
+
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDarkTheme, setIsDarkTheme] = useState(false)
+  
 
   useEffect(() => {
     // para ligar o tema pela preferência do usuário

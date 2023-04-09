@@ -5,7 +5,7 @@ import styled from 'styled-components'
 export const IdTextStyled = styled.span<I.IIdText>`
   ${({color}) => P.doCssColor(`${color}`, '100', 'c1', '-10')}
   ${({color}) => P.doCssColor(`${color}`, '050', 'c1', '-8')}
-  ${({color}) => P.doCssColor(`${color}`, '800', 'c1')}
+  ${({color}) => P.doCssColor(`${color}`, '875', 'c1')}
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   display: flex;
@@ -16,17 +16,17 @@ export const IdTextStyled = styled.span<I.IIdText>`
   overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: clamp(${P.fontSizes[2]}, 3vw, ${P.fontSizes[3]});
+  font-size: clamp(${P.fontSizes[2]}, ${P.fontSizes[2]}, ${P.fontSizes[2]});
   width: ${({fit}) => fit ? 'fit-content' : '100%'};
   height: ${({fit}) => fit ? 'fit-content' : 'calc(100% - 16px)'};
   border-radius: ${P.roundeds[1]};
-  font-weight: 500;
+  font-weight: 600;
   padding: 6px;
   margin: 0 8px;
   line-height: 1;
   position: relative;
   font-family: var(--font-mono);
-  color: var(--c1-800);
+  color: var(--c1-875);
   background: var(--c1-050-8);
   border: solid 1px var(--c1-100-10);
   backdrop-filter: blur(2px);

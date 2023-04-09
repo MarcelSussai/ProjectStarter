@@ -22,6 +22,7 @@ export interface IColors {
   main: I.ImakeColorsTone
   second: I.ImakeColorsTone
   grey: I.ImakeColorsTone
+  greyVista?: I.ImakeColorsTone
   greyAqua?: I.ImakeColorsTone
   greyAzure?: I.ImakeColorsTone
   greyGreen?: I.ImakeColorsTone
@@ -59,6 +60,7 @@ const theme_colors_default: IColors = {
   main:           makingTonesGiant(rawThemed.main),
   second:         makingTonesGiant(rawThemed.second),
   grey:           makingTonesGiant(rawThemed.grey),
+  greyVista:      makingTonesGiant('#A5AAB4'),
   greyAzure:      makingTonesGiant('#a1b0cd'),
   greyBlue:       makingTonesGiant('#B3BFE6'),
   greyGreen:      makingTonesGiant('#B6C1B9'),

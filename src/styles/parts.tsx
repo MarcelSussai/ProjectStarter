@@ -43,24 +43,24 @@ export const medias = mBps.map(bp => {
 
 export const fontSizes = [
   '1rem',    // 0
-  '1.2rem',  // 1
-  '1.4rem',  // 2
+  '1.24rem',  // 1
+  '1.48rem',  // 2
   '1.6rem',  // 3
-  '1.8rem',  // 4
+  '1.88rem',  // 4
   '2rem',    // 5
   '2.4rem',  // 6
-  '2.8rem',  // 7
+  '2.88rem',  // 7
   '3.2rem',  // 8
-  '3.6rem',  // 9
+  '3.64rem',  // 9
   '4rem',    // 10
   '4.8rem',  // 11
-  '5.6rem',  // 12
+  '5.64rem',  // 12
   '6.4rem',  // 13
-  '7.2rem',  // 14
+  '7.24rem',  // 14
   '8rem',    // 15
   '8.8rem',  // 16
-  '9.6rem',  // 17
-  '10.2rem', // 18
+  '9.64rem',  // 17
+  '10.24rem', // 18
 ]
 
 export const roundeds = [
@@ -105,7 +105,7 @@ export const Size = (value: string) => css `
 `
 
 export const TransitionDefault = css `
-  transition: all .24s ease-in-out;
+  transition: all .2s ease-in-out;
 `
 
 export const TransitionFn = (t: string, e: string | undefined = 'ease-in-out') => css `

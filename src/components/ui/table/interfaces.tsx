@@ -31,7 +31,10 @@ export interface IsizeOfColumn {
   max?: string | undefined
 }
 
-
+export interface IFnSorterHeaderParams {
+  headerId: string
+  sortMode: boolean
+}
 export interface ITable<T> {
   data: ITableData | undefined
   configColumns: ICollunnsConfig<T>[]
@@ -40,12 +43,13 @@ export interface ITable<T> {
   colorG2?: string | 'second'
   title?: string
   showTitle?: boolean
+  columnExtraSize?: IsizeOfColumn
+  showExtraColumn?: boolean
+  showExpandableCell?: boolean
   showCheck?: boolean
   showTableHeaderOptions?: boolean
   showFooter?: boolean
-  showExpandableCell?: boolean
-  maxOptionCellSize?: string
-  componentOptionsCell?: (row: T) => JSX.Element
+  componentExtraCell?: (row: T) => JSX.Element
   componentFooter?: (rows: T[]) => JSX.Element
   fnStatusForRow?: (row: T) => StatusType
   alternateBg?: boolean
@@ -54,13 +58,18 @@ export interface ITable<T> {
   isLoading?: boolean
   expandableComponent?: (props: IValueComponent<T>) => JSX.Element
   sortByHeader?: boolean
+  frSorterHeader?: (value: IFnSorterHeaderParams) => void
   paddingCell?: boolean
   opts?: {
-    optColumns?: boolean
-    optFilters?: boolean
-    optPrint?: boolean
-    optDownload?: boolean
-    optSearch?: boolean
+    optColumns: boolean
+    optFilters: boolean
+    optPrint: boolean
+    optDownload: boolean
+    optSearch: boolean
+    fns?: {
+      fnFilter: (value: any) => void
+      fnSearch: (value: any) => void
+    }
   }
 }
 
@@ -70,6 +79,7 @@ export interface IColorsTable {
   colorG2: string | 'second'
   sizesString?: string | undefined
   isDarkTheme?: boolean
+  showTableHeaderOptions?: boolean
 }
 
 export interface ISizesAndDarkTheme {
@@ -80,6 +90,9 @@ export interface ISizesAndDarkTheme {
 }
 
 export interface IAll extends IColorsTable {}
+export interface IAllScroll {
+  isRadius?: boolean
+}
 export interface IStyTableHeader extends ISizesAndDarkTheme {
   showTableHeaderOptions?: boolean
 }
@@ -95,6 +108,8 @@ export interface ICellRow extends ISizesAndDarkTheme {
   altBg: boolean
   statusColor?: string
   paddingCell?: boolean
+  isLastRow?: boolean
+  isFirstRow?: boolean
 }
 
 export interface IIconOption {
@@ -119,7 +134,9 @@ export interface ITableOptions<T> extends ITableTitle {
 export interface ITableTitle {
   showTitle: boolean
 }
-export interface IAllTableOptions extends ITableTitle {}
+export interface IAllTableOptions extends ITableTitle {
+  opened?: boolean
+}
 
 export interface IExapandableWrapper {
   isOpen?: boolean

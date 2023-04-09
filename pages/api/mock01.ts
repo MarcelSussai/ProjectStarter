@@ -14,7 +14,7 @@ export default async function handler(
         try { setTimeout(() => {
           res.status(200).send(mock_01)
           return resolve(mock_01)
-        }, 6000) }
+        }, 4000) }
         catch (err: any) {
           res.status(500).end()
           return resolve(err)

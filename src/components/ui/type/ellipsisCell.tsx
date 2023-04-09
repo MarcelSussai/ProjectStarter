@@ -11,6 +11,7 @@ export const EllipsisCellStyled = styled.div<I.IEllipsisCell>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: clamp(${P.fontSizes[2]}, ${P.fontSizes[2]}, ${P.fontSizes[2]});
   z-index: 2;
   cursor: text;
   padding: 8px;

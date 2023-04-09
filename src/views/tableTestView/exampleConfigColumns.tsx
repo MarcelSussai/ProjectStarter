@@ -35,7 +35,7 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
     ValueComponent: ({row, color}) => (
       <IdText color={color}>{row.id}</IdText>
     ),
-    sizeOfColumn: { min: '80px' },
+    sizeOfColumn: { min: '80px', max: '88px' },
     hideByDefault: false,
   },
   {
@@ -45,7 +45,7 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
         <TextDefault fit color={color}>{row.description}</TextDefault>
       </div>
     ),
-    sizeOfColumn: { min: '512px', max: '10fr' },
+    sizeOfColumn: { min: '424px', max: '8fr' },
     hideByDefault: false,
   },
   {
@@ -55,7 +55,7 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
         {formatAsPercentage(Number(row.percentage))}
       </PercentText>
     ),
-    sizeOfColumn: { min: '72px', max: '72px' },
+    sizeOfColumn: { min: '80px', max: '80px' },
     hideByDefault: false,
   },
   {
@@ -85,7 +85,7 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
         {configMonetaryValue(row.monetaryValue)}
       </MonetaryText>
     )},
-    sizeOfColumn: { min: '220px', max: '220px' },
+    sizeOfColumn: { min: '192px', max: '192px' },
     hideByDefault: false,
   },
   {
@@ -96,7 +96,24 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
         {configMonetaryValue(row.monetaryValue)}
       </MonetaryText>
     )},
-    sizeOfColumn: { min: '220px', max: '220px' },
+    sizeOfColumn: { min: '192px', max: '192px' },
     hideByDefault: false,
+  },
+]
+
+export const configColPropsTable = []
+
+export const dataTable = [
+  {
+    id: 1, name: 'data',
+    description: 'Um objeto contendo dados que serão exibidos na tabela'
+  },
+  {
+    id: 2, name: 'configColumns',
+    description: 'Um array de objetos contendo as configurações das colunas da tabela'
+  },
+  {
+    id: 3, name: 'color1',
+    description: 'Um array de objetos contendo as configurações das colunas da tabela'
   },
 ]

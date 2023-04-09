@@ -20,13 +20,17 @@ const rawOpts = {
   optSearch: true,
 }
 
+
+
 export default function Table<T>({
-  data, configColumns, color1 = 'grey', colorG1 = 'main',
-  showTitle = true, colorG2 = 'second', title = 'Título exemplo da tabela',
-  showCheck = true, alternateBg = true, maxOptionCellSize, sortByHeader = true,
-  showFooter = false, showExpandableCell = true, isLoading, opts = rawOpts,
-  showTableHeaderOptions = true, expandableComponent, componentOptionsCell,
-  onChangeSelecteds, onChangeClicked, fnStatusForRow,
+  data, configColumns,
+  color1 = 'grey', colorG1 = 'main', colorG2 = 'second',
+  showTitle = true, title = 'Título exemplo da tabela',
+  showTableHeaderOptions = true, showFooter = false, opts = rawOpts,
+  showCheck = true, showExpandableCell = true, showExtraColumn = false,
+  componentExtraCell, columnExtraSize = {min: '24px'},
+  alternateBg = true, sortByHeader = true, frSorterHeader,
+  isLoading, expandableComponent, onChangeSelecteds, onChangeClicked, fnStatusForRow,
 }: I.ITable<T>) {
 
   const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -40,7 +44,7 @@ export default function Table<T>({
   const [clickedRow, setClickedRow] = useState<string>('')
   const [expandedRowsIds, setExpandedRows] = useState<string[]>([])
   const [sizesCompositeString, setSizesCompositeString] = useState(
-    U.refineOptionsOfRow(showCheck, showExpandableCell, sizeString)
+    U.RefineStringSizes({showCheck, showExpandableCell, showExtraColumn, columnExtraSize}, sizeString)
   )
   const [optsState, setOptsState] = useState(opts)
 
@@ -62,8 +66,8 @@ export default function Table<T>({
 
   useEffect(() => { if(data?.status === 200) { setResults(data?.results) } }, [data])
 
-  useEffect(() => { if(results?.length === selectedsRows.length) {
-    setSelecAll(true) }
+  useEffect(() => {
+    if(results?.length === selectedsRows.length) { setSelecAll(true) }
     if (selectedsRows.length === 0) {setSelecAll(false)}
   }, [selectedsRows, results])
 
@@ -82,12 +86,12 @@ export default function Table<T>({
   }, [selectAll, results])
 
   useIsomorphicLayoutEffect(() => {
-    setSizesCompositeString(U.refineOptionsOfRow(showCheck, showExpandableCell, sizeString))
+    setSizesCompositeString(U.RefineStringSizes({showCheck, showExpandableCell, showExtraColumn, columnExtraSize}, sizeString))
   }, [sizeString, showCheck, showExpandableCell])
 
   return (
     <>
-      <S.All color1={color1} colorG1={colorG1} colorG2={colorG2}>
+      <S.All color1={color1} colorG1={colorG1} colorG2={colorG2} showTableHeaderOptions={showTableHeaderOptions}>
         { showTableHeaderOptions &&
           <TableOptions
             opts={optsState} color={color1}
@@ -95,7 +99,7 @@ export default function Table<T>({
             hiddens={hiddens} showOrHideColumn={showOrHideColumn}
           />
         }
-        <S.AllScroll>
+        <S.AllScroll isRadius={showTableHeaderOptions}>
           <S.WrapperAll>
             <S.WrapperTable>
               { showTableHeaderOptions &&
@@ -113,6 +117,7 @@ export default function Table<T>({
                     sizesString={sizesCompositeString}
                     showTableHeaderOptions={showTableHeaderOptions}
                   >
+                    { showExtraColumn && (<div></div>) }
                     { showExpandableCell && (<div></div>) }
                     { showCheck && (<S.CellHeaderSelector
                         qtd={selectedsRows.length.toString()}
@@ -160,6 +165,9 @@ export default function Table<T>({
                         onClick={() => setClickedRow(`${row.id}`)}
                         isLast={i1 === (results.length - 1)} isFirst={i1 === 0}
                       >
+                        { showExtraColumn && (
+                          <div></div>
+                        ) }
                         { showExpandableCell && (
                           <S.ExpandableIcon onClick={() => handleExpand(`${row.id}`)}>
                             <SemiArrowUp
@@ -182,6 +190,8 @@ export default function Table<T>({
                           <S.CellRow key={i2}
                             isLast={i2 === (columnsToShow.length - 1)}
                             isFirst={i2 === 0}
+                            isLastRow={i1 === (results.length - 1)}
+                            isFirstRow={i1 === 0}
                             statusColor={
                               fnStatusForRow !== undefined && fnStatusForRow(row) !== 'normal' ?
                               changeStatusToColorName(fnStatusForRow(row), color1) :
@@ -193,7 +203,7 @@ export default function Table<T>({
                               col.ValueComponent({
                                 row, color: color1, rowId: `${row.id}`
                               }) :
-                              row[col.idKey]
+                              row.id
                             }
                           </S.CellRow>
                         )) }

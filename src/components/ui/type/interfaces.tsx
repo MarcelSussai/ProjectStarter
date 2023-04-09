@@ -6,6 +6,7 @@ export interface ITexts {
   fit?: boolean
 }
 export interface IDateText extends ITexts {}
+export interface IText extends ITexts {}
 export interface IMonetaryText extends ITexts {}
 export interface IEllipsisCell extends ITexts {}
 export interface IPercentText extends ITexts {}

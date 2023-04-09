@@ -17,36 +17,44 @@ export const All = styled.section<I.IAll>`
   ${({color1})  => P.doCssColor(color1,  '300', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '400', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '500', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '600', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '650', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '675', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '700', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '725', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '750', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '775', 'c1')}
   ${({color1})  => P.doCssColor(color1,  '800', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '825', 'c1',)}
   ${({color1})  => P.doCssColor(color1,  '850', 'c1',)}
   ${({color1})  => P.doCssColor(color1,  '900', 'c1')}
+  ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-1')}
+  ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-2')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-3')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-4')}
   ${({color1})  => P.doCssColor(color1,  '975', 'c1', '-5')}
-  ${({colorG1}) => P.doCssColor(colorG1, '100', 'g1')}
-  ${({colorG2}) => P.doCssColor(colorG2, '100', 'g2')}
+  ${({colorG1}) => P.doCssColor(colorG1, '125', 'g1')}
+  ${({colorG2}) => P.doCssColor(colorG2, '125', 'g2')}
   ${({colorG1}) => P.doCssColor(colorG1, '500', 'g1')}
   ${({colorG2}) => P.doCssColor(colorG2, '500', 'g2')}
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  width: 100%;
+  width: calc(100%);
   position: relative;
-  border: solid 1px var(--c1-300);
-  box-shadow: 6px 6px 8px var(--c1-975-4);
-  border-radius: ${P.roundeds[6]};
+  overflow: hidden;
+  box-shadow: 0 0 8px 2px var(--c1-975-3);
+  border: solid 2px var(--c1-025);
+  border-radius: ${({showTableHeaderOptions}) => showTableHeaderOptions && P.roundeds[3]};
 `
 
-export const AllScroll = styled.div`
+export const AllScroll = styled.div<I.IAllScroll>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   width: 100%;
-  border: solid 4px var(--c1-025);
-  border-radius: ${P.roundeds[6]};
+  ${({isRadius}) => isRadius && false && `
+    border: solid 4px var(--c1-025);
+    border-radius: ${P.roundeds[4]};
+  `}
   background: var(--c1-025);
   position: relative;
   overflow: auto;
@@ -55,11 +63,11 @@ export const AllScroll = styled.div`
   &::-webkit-scrollbar-button { display: none; }
   &::-webkit-scrollbar-track-piece {
     background: var(--c1-125);
-    border-radius: 0 0 10px 10px;
+    ${({isRadius}) => isRadius && `border-radius:  0 0 6px 6px;`}
   }
   &::-webkit-scrollbar-thumb {
     background: var(--c1-800);
-    border-radius: 0 0 10px 10px;
+    ${({isRadius}) => isRadius && `border-radius:  0 0 6px 6px;`}
   }
 `
 
@@ -92,7 +100,7 @@ export const TableTitle = styled.div<I.ITableTitle>`
   width: 100%;
   height: ${({showTitle}) => showTitle ? '48px' : '48px'};
   padding: 4px 0 4px 4px;
-  background: linear-gradient( 0deg, var(--g1-100), var(--g2-100) );
+  background: linear-gradient( 1deg, var(--g1-125), var(--g2-125) );
 `
 
 export const TitleText = styled.div`
@@ -101,12 +109,11 @@ export const TitleText = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0px 16px;
+  padding: 0px 12px;
   line-height: 1;
-  font-size: ${P.fontSizes[6]};
+  font-size: ${P.fontSizes[7]};
   font-weight: 900;
-  /* background: var(--c1-025-10); */
-  color: var(--c1-800);
+  color: var(--c1-900);
   border-radius: ${P.roundeds[3]} 0 0 0;
 `
 
@@ -118,7 +125,8 @@ export const TableHeader = styled.div<I.IStyTableHeader>`
   position: relative;
   width: 100%;
   min-height: 36px;
-  background: var(--c1-075);
+  z-index: 2;
+  background: var(--c1-125);
   ${({showTableHeaderOptions}) => showTableHeaderOptions ?
     'border-top: solid 1px var(--c1-300);' :
     ''
@@ -141,13 +149,14 @@ const aux = ({alt = false, color}: Iaux) => {
 export const TableRow = styled.div<I.ITableRow>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  ${({statusColor}) => statusColor && `--c1-100: var(--color-${statusColor}-100);`}
+  ${({statusColor}) => statusColor && `--c1-125: var(--color-${statusColor}-050);`}
   display: grid;
   grid-template-columns: ${ ({sizesString}) => sizesString };
   background: ${({alternateBg, statusColor}) => aux({alt: alternateBg, color: statusColor}) };
   min-height: 32px;
   cursor: pointer;
-  &:hover { background: var(--c1-100); }
+  z-index: 1;
+  &:hover { background: var(--c1-125); }
 `
 
 export const CellHeader = styled.div<I.ICellHeader>`
@@ -165,13 +174,17 @@ export const CellHeader = styled.div<I.ICellHeader>`
   cursor: ${({sortByHeader}) => sortByHeader ? 'pointer' : 'default'};
   user-select: none;
   z-index: 1;
+  box-shadow:
+    inset -4px -4px 12px var(--c1-975-3),
+    inset 4px 4px 12px #FFFFFF88
+  ;
   &::before {
     content: '';
     position: absolute;
     left: -1px;
     width: 1px;
     height: 72%;
-    background: var(--c1-200);
+    background: var(--c1-300);
     opacity: ${({isFirst}) => isFirst ? '0' : '1'};
   }
   &::after {
@@ -180,10 +193,16 @@ export const CellHeader = styled.div<I.ICellHeader>`
     right: 0px;
     width: 1px;
     height: 72%;
-    background: var(--c1-200);
+    background: var(--c1-300);
     opacity: ${({isLast}) => isLast ? '0' : '1'};
   }
-  &:hover {background: var(--c1-125);}
+  &:hover {background: var(--c1-175);}
+  &:active {
+    box-shadow:
+      inset 0px 0px 4px transparent,
+      inset 0px 0px 4px transparent
+    ;
+  }
 `
 
 export const CellHeaderSelector = styled.div<I.ICellHeaderSelector>`
@@ -193,25 +212,31 @@ export const CellHeaderSelector = styled.div<I.ICellHeaderSelector>`
   background: var(--c1-025);
   border-right: solid 1px var(--c1-150);
   position: relative;
-  z-index: 40;
+  z-index: 2;
   &::after {
+    z-index: 3;
     ${P.CenterFlex}
     transition: all .24s ease-in-out;
     content: '${({qtd}) => qtd}';
     opacity: ${({qtd}) => qtd !== '0' ? '1' : '0'};
     position: absolute;
-    border-right: solid 1px var(--c1-150);
+    /* border-right: solid 1px var(--c1-150); */
     ${P.CenterFlex}
-    width: calc(100% + 2px);
-    top: -14px;
-    border-top-left-radius: ${P.roundeds[4]};
-    border-top-right-radius: ${P.roundeds[4]};
-    padding: 1px 0 1px 0;
-    color: var(--c1-725);
-    background: var(--c1-025);
+    /* width: calc(100% + 2px); */
+    background: var(--c1-725);
+    width: fit-content;
+    min-width: 16px;
+    min-height: 16px;
+    top: 28px;
+    right: -8px;
+    /* border-top-left-radius: ${P.roundeds[4]};
+    border-top-right-radius: ${P.roundeds[4]}; */
+    border-radius: ${P.roundeds[16]};
+    padding: 0 4px;
+    color: var(--c1-025);
     font-family: var(--font-mono);
-    font-weight: 600;
-    font-size: ${P.fontSizes[2]};
+    font-weight: 400;
+    font-size: ${P.fontSizes[1]};
     line-height: 1;
   }
 `
@@ -224,13 +249,14 @@ export const CellSelector = styled.div`
   border-right: solid 1px var(--c1-150);
   /* border-left: solid 1px var(--c1-150); */
   /* border-bottom: solid 1px var(--c1-150); */
-  z-index: 40;
+  z-index: 1;
 `
 
 export const TextHeader = styled.span`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  width: 100%;
+  ${ P.CenterFlex }
+  ${ P.Size('100%') }
   text-align: start;
   line-height: 1;
   font-weight: 800;
@@ -251,8 +277,7 @@ export const CellHeaderDetail = styled.div`
 export const CellRow = styled.div<I.ICellRow>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  ${({statusColor}) => statusColor && `--c1-150: var(--color-${statusColor}-150);`}
-  ${({statusColor}) => statusColor && `--c1-175: var(--color-${statusColor}-175);`}
+  ${({statusColor}) => statusColor && `--c1-300: var(--color-${statusColor}-300);`}
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -263,8 +288,8 @@ export const CellRow = styled.div<I.ICellRow>`
   width: 100%;
   height: 100%;
   position: relative;
-  ${({altBg}) => !altBg ? `
-  border-bottom: 1px solid var(--c1-150);
+  ${({altBg, isLastRow}) => !altBg && !isLastRow ? `
+  border-bottom: 1px solid var(--c1-200);
   ` : ``}
 
   &::before {
@@ -273,7 +298,7 @@ export const CellRow = styled.div<I.ICellRow>`
     left: -1px;
     width: 1px;
     height: 40%;
-    background: var(--c1-175);
+    background: var(--c1-300);
     opacity: ${({isFirst}) => isFirst ? '0' : '1'};
   }
   &::after {
@@ -282,7 +307,7 @@ export const CellRow = styled.div<I.ICellRow>`
     right: 0px;
     width: 1px;
     height: 40%;
-    background: var(--c1-175);
+    background: var(--c1-300);
     opacity: ${({isLast}) => isLast ? '0' : '1'};
   }
 `
@@ -290,38 +315,43 @@ export const CellRow = styled.div<I.ICellRow>`
 export const AllTableOptions = styled.div<I.IAllTableOptions>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  --size: ${({showTitle}) => showTitle ? '10px' : '10px'};
+  --rawPositionRightTop: ${({showTitle}) => showTitle ? '10px' : '10px'};
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   position: absolute;
-  right: var(--size);
-  top: var(--size);
+  right: 8px;
+  top: 8px;
   z-index: 2;
+  /* border-radius: ${P.roundeds[3]}; */
+  /* box-shadow: 2px 2px 6px var(--c1-975-4); */
+  /* border-right: solid 1px var(--c1-300); */
+  /* border-top: solid 1px var(--c1-300); */
+  /* border-bottom: solid 1px var(--c1-300); */
 `
 
 export const IconOption = styled.button<I.IIconOption>`
   ${ P.CenterFlex }
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: ${P.roundeds[16]};
-  background: ${({opened}) => opened ? 'var(--c1-025)' : 'var(--c1-100)'};
+  background: ${({opened}) => opened ? 'var(--c1-050)' : 'var(--c1-150)'};
   backdrop-filter: blur(4px);
-  z-index: ${({zIndex}) => zIndex ? zIndex : '1'};
+  z-index: ${({zIndex}) => zIndex ? zIndex : 'unset'};
   cursor: pointer;
-  box-shadow: 2px 2px 6px var(--c1-975-4);
-  border: solid 1px var(--c1-300);
+  box-shadow: 2px 2px 4px var(--c1-975-5);
+  border: solid 1px var(--c1-025);
   ${({opened}) => opened ? 'transform: translate3d(2px, 2px, 0);' : ''}
   &:hover {
-    background: var(--c1-025);
+    background: var(--c1-050);
   }
   &:active {
     transition: all .1s ease-in-out;
     transform: translate3d(2px, 2px, 0);
-    box-shadow: 1px 1px 6px var(--c1-975-4);
+    box-shadow: 1px 1px 4px var(--c1-975-5);
   }
 `
 
@@ -333,11 +363,20 @@ export const OneOptions = styled.div`
     ${ P.ShowTransition }
     ${ P.TransitionDefault }
     font-size: ${P.fontSizes[3]};
-    font-weight: 600;
-    color: var(--c1-500);
+    font-weight: 900;
+    color: var(--c1-650);
     background: var(--c1-050);
     padding: 8px;
     user-select: none;
+    position: absolute;
+    width: calc(100% - 0px);
+    height: calc(100% - 0px);
+    top: 0;
+    line-height: 1;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 
@@ -345,18 +384,28 @@ export const OptionsColumns = styled.div`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
   box-shadow: 4px 4px 16px var(--c1-975-5);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  ${P.medias[1]} { grid-template-columns: repeat(2, 1fr); }
+  ${P.medias[2]} { grid-template-columns: repeat(3, 1fr); }
+  ${P.medias[8]} { grid-template-columns: repeat(6, 1fr); }
+  ${P.medias[16]} { grid-template-columns: repeat(8, 1fr); }
+  ${P.medias[26]} { grid-template-columns: repeat(12, 1fr); }
   justify-content: center;
+  align-items: center;
   position: absolute;
   right: 0px;
   top: 48px;
+  min-width: 144px;
   white-space: nowrap;
+  overflow: hidden;
   outline: solid 1px var(--c1-300);
   border: solid 4px var(--c1-050);
   border-radius: 8px;
-  /* padding: 2px; */
+  padding-top: 32px;
   background: var(--c1-025);
+  z-index: 9999;
+  
 `
 
 export const ExpandableAll = styled.div`
@@ -378,17 +427,18 @@ export const ExpandableWrapper = styled.div<I.IExapandableWrapper>`
   max-height:${ ({isOpen, elementHeight}) => isOpen ? `${elementHeight}px` : '0px' };
   transform-origin: top center;
   opacity: ${ ({isOpen}) => isOpen ? '1' : '0' };
-  overflow: ${ ({isOpen}) => isOpen ? 'hidden' : 'hidden' };
+  overflow: ${ ({isOpen}) => isOpen ? 'visible' : 'hidden' };
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 8px;
   padding: 0;
-  border-top: solid ${ ({isOpen}) => isOpen ? '1px var(--c1-200)' : '0px transparent' };
-  border-bottom: solid ${ ({isOpen}) => isOpen ? '1px var(--c1-200)' : '0px transparent' };
-  border-left: solid ${ ({isOpen}) => isOpen ? '16px var(--c1-200)' : '0px transparent' };
-  /* border-left: solid 24px var(--c1-200); */
+  border: solid ${ ({isOpen}) => isOpen ? '16px var(--c1-050)' : '0px transparent' };
+  /* border-top: solid ${ ({isOpen}) => isOpen ? '12px var(--c1-200)' : '0px transparent' };
+  border-bottom: solid ${ ({isOpen}) => isOpen ? '12px var(--c1-200)' : '0px transparent' };
+  border-left: solid ${ ({isOpen}) => isOpen ? '12px var(--c1-200)' : '0px transparent' };
+  border-right: solid ${ ({isOpen}) => isOpen ? '12px var(--c1-200)' : '0px transparent' }; */
 `
 
 export const Footer = styled.div`

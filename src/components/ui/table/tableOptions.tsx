@@ -26,26 +26,26 @@ export default function TableOptions<T>({
 
   return (
     <>
-      <S.AllTableOptions showTitle={showTitle}>
+      <S.AllTableOptions showTitle={showTitle} opened={btnShowColumns}>
         { opts?.optSearch &&
           <S.IconOption>
-            <SearchIcon width='16px' color={color} show />
+            <SearchIcon width='16px' color={`${color}`} show />
           </S.IconOption>
         }
         { opts?.optDownload &&
           <S.IconOption>
-            <DownloadIcon width='20px' color={color} show />
+            <DownloadIcon width='20px' color={`${color}`} show />
           </S.IconOption>
         }
         { opts?.optPrint &&
           <S.IconOption>
-            <PrintIcon width='16px' color={color} show />
+            <PrintIcon width='16px' color={`${color}`} show />
           </S.IconOption>
         }
         { opts?.optColumns &&
           <S.OneOptions ref={RefColumns}>
             <S.IconOption opened={btnShowColumns} onClick={handleBtnShowColumns}>
-              <ColumnsIcon width='20px' color={color} show />
+              <ColumnsIcon width='20px' color={`${color}`} show />
             </S.IconOption>
             {
               btnShowColumns &&
@@ -53,7 +53,7 @@ export default function TableOptions<T>({
                 <span className='title'>{'Mostrar Colunas'}</span>
                 { configColumns?.map((col, i1) => (
                   <Checkbox
-                    text={col.name} noBg
+                    text={col.name} noBg fit={false}
                     key={i1} color={color}
                     onChange={() => showOrHideColumn(col)}
                     checked={!hiddens.includes(col)}
@@ -65,7 +65,7 @@ export default function TableOptions<T>({
         }
         { opts?.optFilters &&
           <S.IconOption>
-            <FilterIcon width='16px' color={color} show />
+            <FilterIcon width='16px' color={`${color}`} show />
           </S.IconOption>
         }
       </S.AllTableOptions>

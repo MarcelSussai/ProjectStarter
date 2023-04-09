@@ -52,7 +52,7 @@ export const ContainerColorsValues = styled.section`
   flex-wrap: nowrap;
   gap: 16px;
   /* width: 88%; */
-  width: 888px;
+  width: 1092px;
   padding: 24px;
 `
 
@@ -60,7 +60,7 @@ export const AllColorValues = styled.section`
   ${P.TransitionDefault}
   ${P.TransitionDefault}
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   width: 100%;
   border: solid 1px;
 `
@@ -145,4 +145,15 @@ export const WrapperCodeBlock = styled.div`
   .hljs-attr { color: #3C90E5; }
   .hljs-name { color: #3C90E5; }
   .hljs-attribute { color: #3C90E5; }
+`
+
+export const WrapperNameColor = styled.div`
+  ${P.TransitionDefault}
+  ${P.ShowTransition}
+  ${P.Size('100%')}
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
 `

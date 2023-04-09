@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
         :root {
           ${rawStringAllCssVars}
           --alpha-texture: ${isDarkTheme ? '.2' : '.1'};
-          --font-default: 'Montserrat', sans-serif;
+          --font-default: 'Saira', sans-serif;
           --font-mono: 'Source Code Pro', monospace;
           --font-main: 'MuseoModerno', cursive;
           --color-transparent: #0000;

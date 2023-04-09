@@ -1,16 +1,25 @@
+import * as I from "./interfaces"
+import { transformSizesofColumns } from "./useTable"
 
-export const refineOptionsOfRow = (
-  showCheck: boolean, showOptionsCell: boolean,
-  sizesString: string | undefined
-) => {
-  if (showOptionsCell && showCheck) {
-    return ` minmax(24px, 24px) minmax(40px, 40px) ${sizesString} `
-  }
-  if (!showOptionsCell && showCheck) {
-    return ` minmax(40px, 40px) ${sizesString} `
-  }
-  if (showOptionsCell && !showCheck) {
-    return ` minmax(24px, 24px) ${sizesString} `
-  }
-  if (!showOptionsCell && !showCheck) return sizesString
+interface IRefineStringSizes {
+  showCheck?: boolean
+  showExpandableCell?: boolean
+  showExtraColumn?: boolean
+  columnExtraSize?: I.IsizeOfColumn
+}
+export const RefineStringSizes = ({
+  showCheck, showExpandableCell, showExtraColumn,
+  columnExtraSize
+}: IRefineStringSizes, sizesString: string | undefined) => {
+  let rawSizeCheck = `minmax(40px, 40px)`
+  let check = showCheck ? rawSizeCheck : ''
+
+  let rawExpandableCell = `minmax(32px, 32px)`
+  let expandableCell = showExpandableCell ? rawExpandableCell : ''
+
+  let rawExtraColumn = transformSizesofColumns(columnExtraSize || {min: '40px'})
+  let extraColumn = showExtraColumn ? rawExtraColumn : ''
+
+  return ` ${expandableCell} ${extraColumn} ${check} ${sizesString}`
+
 }

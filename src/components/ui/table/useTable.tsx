@@ -2,7 +2,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import * as I from './interfaces'
 
-const transformSizesofColumns = ({min, max}: I.IsizeOfColumn) => ` minmax(${min}, ${max ? max : '1fr' }) `
+export const transformSizesofColumns = ({min, max}: I.IsizeOfColumn) => ` minmax(${min}, ${max ? max : '1fr' }) `
 
 
 
@@ -16,7 +16,7 @@ export default function useTable<T>({
 
   const [hiddens, setHiddens] = useState(hiddensDefaults)
   const [columnsToShow, setColumnsToShow] = useState(columns)
-  const [sizeString, setSizeString] = useState<string>()
+  const [sizeString, setSizeString] = useState<string>('')
   
   useEffect(() => {
     let raw = columnsToShow.sort((a, b) => a.order - b.order)

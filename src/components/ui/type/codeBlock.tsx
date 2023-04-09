@@ -10,17 +10,16 @@ const All = styled.div<I.ICodeBlock>`
   ${P.ShowTransition}
   width: calc(100% - 16px);
   max-width: ${({fit}) => fit ? 'fit-content' : '100%'};
-  border-radius: ${P.roundeds[4]};
   margin: 0;
-  box-shadow:
-    4px 4px 4px var(--color-grey-900-8)
-  ;
+  border-radius: ${P.roundeds[4]};
+  /* border: solid 2px var(--color-grey-075); */
+  /* box-shadow: 0 0 8px var(--color-default-975-7); */
   font-weight: 400;
   background: linear-gradient(-45deg, var(--color-grey-975), var(--color-grey-875));
   div.scrollAll {
     margin: 0;
     width: calc(100%);
-    padding: 12px;
+    padding: 8px 16px;
     max-width: ${({fit}) => fit ? 'fit-content' : '100%'};
     overflow-x: auto;
     scrollbar-color: var(--color-grey-800) var(--color-grey-025);
@@ -28,11 +27,11 @@ const All = styled.div<I.ICodeBlock>`
     &::-webkit-scrollbar-button { display: none; }
     &::-webkit-scrollbar-track-piece {
       background: var(--color-grey-075-4);
-      border-radius: 0 0 10px 10px;
+      border-radius: 0 0 6px 6px;
     }
     &::-webkit-scrollbar-thumb {
       background: var(--color-grey-500);
-      border-radius: 0 0 10px 10px;
+      border-radius: 0 0 6px 6px;
     }
     
   }

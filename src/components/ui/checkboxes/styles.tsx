@@ -33,6 +33,7 @@ export const All = styled.label<I.IAll>`
   user-select: none;
   cursor: pointer;
   padding: 4px;
+  z-index: 1;
   background: ${
     ({noBg, checked}) => noBg ? 'transparent' :
     checked ? 'var(--c1-025-10)' : 'var(--c1-025-10)'

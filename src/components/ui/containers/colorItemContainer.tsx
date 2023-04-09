@@ -11,8 +11,9 @@ export const ColorBox: any = styled.div.attrs(props => ({
   ${P.TransitionDefault}
   ${P.ShowTransition}
   ${P.CenterFlex}
-  width: 64px;
-  height: 64px;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
   color: #FFF;
   border-left: solid 2px ${({isMainColor}) => isMainColor ? '#FFF' : '#FFFFFF00'} ;
   border-right: solid 2px ${({isMainColor}) => isMainColor ? '#FFF' : '#FFFFFF00'} ;

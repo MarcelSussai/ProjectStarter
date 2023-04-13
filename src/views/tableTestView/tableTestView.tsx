@@ -183,12 +183,12 @@ export default function TableTestView({
 
   const rawFnStatusForRow = (row: I.IRowData) => {
     if(row.monetaryValue === 3000.5) {return 'alert'}
-    if(row.monetaryValue === 40) {return 'alert'}
+    if(row.monetaryValue === 40) {return 'ok'}
     if(row.monetaryValue === 6.4) {return 'alert'}
-    if(row.monetaryValue === 480.5) {return 'warn'}
+    if(row.monetaryValue === 480.5) {return 'alert'}
     if(row.monetaryValue === 60000000.4) {return 'ok'}
     if(row.monetaryValue === 128256880.05) {return 'ok'}
-    if(row.monetaryValue === 2.4) {return 'info'}
+    if(row.monetaryValue === 2.4) {return 'alert'}
     return 'normal'
   }
 
@@ -217,15 +217,17 @@ export default function TableTestView({
       <CodeBlock lang='tsx' text={code[2]} fit={true} />
       <Text> {texts[10]} </Text>
       <Table
-        colorG1='greyVista' colorG2='grey' color1='greyAzure'
+        colorG1='greyVista' colorG2='greyVista' color1='greyVista'
         configColumns={ConfigColumns} expandableComponent={ExpandableTest}
-        data={mock01} isLoading={mock01isLoading}
+        data={mock01} isLoading={mock01isLoading} title='Orçamentos'
         fnStatusForRow={rawFnStatusForRow} alternateBg={false}
+        showExtraColumn={true}
       />
       <Table
-        colorG1='blue' colorG2='teal' color1='greyBlue'
-        configColumns={ConfigColumns} showExpandableCell={false}
-        data={mock01} isLoading={mock01isLoading}
+        colorG1='mainVista' colorG2='secondVista' color1='greyVista'
+        configColumns={ConfigColumns} expandableComponent={ExpandableTest}
+        data={mock01} isLoading={mock01isLoading} showExtraColumn={true}
+        title='Orçamentos'
       />
       <Table
         colorG1='leaf' colorG2='green' color1='greyGreen'
@@ -233,17 +235,17 @@ export default function TableTestView({
         data={mock01} isLoading={mock01isLoading}
       />
       <Table
-        colorG1='purple' colorG2='paleRed' color1='greyPurple' showTitle={false}
+        colorG1='greyBlue' colorG2='greyBlue' color1='greyBlue' showTitle={false}
         configColumns={ConfigColumns} expandableComponent={ExpandableTest}
         data={mock01} isLoading={mock01isLoading}
       />
       <Table
-        colorG1='purple' colorG2='teal' color1='greyPurple'
+        colorG1='purple' colorG2='wine' color1='greyPurple'
         configColumns={ConfigColumns} expandableComponent={ExpandableTest}
         data={mock01} isLoading={mock01isLoading} alternateBg={false}
       />
       <Table
-        color1='default' showCheck={true}
+        color1='default' colorG2='default' colorG1='default' showCheck={true}
         configColumns={ConfigColumns} showExpandableCell={false}
         data={mock01} isLoading={mock01isLoading} showTableHeaderOptions={false}
       />

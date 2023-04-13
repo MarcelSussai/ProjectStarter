@@ -23,6 +23,8 @@ export interface IColors {
   second: I.ImakeColorsTone
   grey: I.ImakeColorsTone
   greyVista?: I.ImakeColorsTone
+  mainVista?: I.ImakeColorsTone
+  secondVista?: I.ImakeColorsTone
   greyAqua?: I.ImakeColorsTone
   greyAzure?: I.ImakeColorsTone
   greyGreen?: I.ImakeColorsTone
@@ -55,14 +57,16 @@ export interface IColors {
 const alphas = ['08', '12', '16', '24', '32', '48', '64', '80', '96', 'A0', 'B0', 'C0', 'D0', 'E0']
 
 // criando o objecto com as escalas
-const theme_colors_default: IColors = {
+const theme_colors_default = {
   default:        makingTonesGiant(rawThemed.default),
   main:           makingTonesGiant(rawThemed.main),
   second:         makingTonesGiant(rawThemed.second),
   grey:           makingTonesGiant(rawThemed.grey),
-  greyVista:      makingTonesGiant('#A5AAB4'),
+  mainVista:      makingTonesGiant('#10A4C3'),
+  secondVista:    makingTonesGiant('#943DFF'),
+  greyVista:      makingTonesGiant('#9FB6BB'),
   greyAzure:      makingTonesGiant('#a1b0cd'),
-  greyBlue:       makingTonesGiant('#B3BFE6'),
+  greyBlue:       makingTonesGiant('#A4A9C8'),
   greyGreen:      makingTonesGiant('#B6C1B9'),
   greyPurple:     makingTonesGiant('#BEB6CC'),
   greyRed:        makingTonesGiant('#c9b7b5'),

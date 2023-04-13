@@ -1,8 +1,10 @@
 'use client'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import * as I from './interfaces'
 
-export const transformSizesofColumns = ({min, max}: I.IsizeOfColumn) => ` minmax(${min}, ${max ? max : '1fr' }) `
+export const transformSizesofColumns = (
+  {min, max}: I.IsizeOfColumn
+) => ` minmax(${min}, ${max ? max : '1fr' }) `
 
 
 
@@ -28,7 +30,6 @@ export default function useTable<T>({
     let stringRaw: string = ''
     columnsToShow.map((col) => {
       if (col.sizeOfColumn) {
-
         rawSizes.push({
           str: transformSizesofColumns(col.sizeOfColumn),
           order: col.order
@@ -51,10 +52,14 @@ export default function useTable<T>({
     let rawShow: I.ICollunnsConfig<T>[] = []
     if(!hiddens.includes(col)) {
       rawHiddens = [...hiddens, col]
-      rawShow = columnsToShow.filter((col2: any) => { if(col.idKey !== col2.idKey) return col2} )
+      rawShow = columnsToShow.filter((col2: any) => {
+        if(col.idKey !== col2.idKey) return col2}
+      )
     } else if(!columnsToShow.includes(col)) {
       rawShow = [...columnsToShow, col]
-      rawHiddens = hiddens.filter((col2: any) => { if(col.idKey !== col2.idKey) return col2} )
+      rawHiddens = hiddens.filter((col2: any) => {
+        if(col.idKey !== col2.idKey) return col2}
+      )
     }
     setHiddens(rawHiddens)
     setColumnsToShow(rawShow)

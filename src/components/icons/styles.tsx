@@ -4,7 +4,7 @@ import * as P from '@/styles/parts'
 
 export const Svg = styled.svg<I.ISvg>`
   fill: none;
-  width: ${ ({width}) => width ? width : '12px' };
+  width: ${ ({width}) => width ? width : '14px' };
   height: ${ ({height}) => height ? height : '100%' };
   path {
     fill: ${({color}) => P.doCssColorVar(color, '775')};

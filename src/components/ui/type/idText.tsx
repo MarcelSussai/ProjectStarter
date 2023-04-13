@@ -16,11 +16,11 @@ export const IdTextStyled = styled.span<I.IIdText>`
   overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: clamp(${P.fontSizes[2]}, ${P.fontSizes[2]}, ${P.fontSizes[2]});
+  font-size: clamp(${P.fontSizes[2]}, 1.6vw, ${P.fontSizes[3]});
   width: ${({fit}) => fit ? 'fit-content' : '100%'};
   height: ${({fit}) => fit ? 'fit-content' : 'calc(100% - 16px)'};
   border-radius: ${P.roundeds[1]};
-  font-weight: 600;
+  font-weight: 400;
   padding: 6px;
   margin: 0 8px;
   line-height: 1;

@@ -4,13 +4,14 @@ import * as P from '@/styles/parts'
 
 
 export const All = styled.label<I.IAll>`
-  --size: 20px;
+  --size: 18px;
   ${({color}) => P.doCssColor(color,  '025', 'c1', '-5')}
   ${({color}) => P.doCssColor(color,  '025', 'c1', '-10')}
   ${({color}) => P.doCssColor(color,  '025', 'c1')}
   ${({color}) => P.doCssColor(color,  '050', 'c1')}
   ${({color}) => P.doCssColor(color,  '075', 'c1')}
   ${({color}) => P.doCssColor(color,  '100', 'c1')}
+  ${({color}) => P.doCssColor(color,  '125', 'c1')}
   ${({color}) => P.doCssColor(color,  '150', 'c1')}
   ${({color}) => P.doCssColor(color,  '275', 'c1')}
   ${({color}) => P.doCssColor(color,  '400', 'c1')}
@@ -51,7 +52,7 @@ export const All = styled.label<I.IAll>`
   &:hover {
     border-bottom: solid 1px ${({noBg}) => !noBg ? 'var(--c1-275)' : 'transparent'};
     border-top: solid 1px ${({noBg}) => !noBg ? 'var(--c1-275)' : 'transparent'};
-    background: var(--c1-150);
+    background: var(--c1-125);
   }
 `
 
@@ -72,15 +73,13 @@ export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 export const StyledCheckbox = styled.div<I.IStyledCheckbox>`
   ${ P.ShowTransition }
   ${ P.TransitionDefault }
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${ P.CenterFlex }
   width: var(--size);
   height: var(--size);
-  border-radius: ${P.roundeds[2]};
+  border-radius: ${P.roundeds[1]};
   background: ${ ({checked}) => checked ? 'var(--c1-825)' : 'var(--c1-025)' };
   color: ${ ({checked}) => !checked ? 'var(--c1-275)' : 'var(--c1-025)' };
-  font-size: ${P.fontSizes[1]};
+  font-size: ${P.fontSizes[0]};
   font-weight: 900;
   line-height: 1;
   border: solid 1px ${({checked}) => !checked ? 'var(--c1-275)' : 'var(--c1-825)'};

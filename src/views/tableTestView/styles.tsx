@@ -6,7 +6,7 @@ export const All = styled.article`
   flex-direction: column;
   justify-content: center;
   padding: 4px;
-  gap: 16px;
+  gap: 24px;
   ${P.medias[2]} { padding: 8px; }
   ${P.medias[6]} { padding: 16px; }
 `

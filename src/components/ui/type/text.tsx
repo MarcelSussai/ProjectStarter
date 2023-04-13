@@ -8,7 +8,7 @@ export const TextStyled = styled.p<I.IText>`
   ${ P.TransitionDefault }
   width: ${({fit}) => fit ? 'fit-content' : '100%'};
   font-size: clamp(${P.fontSizes[3]}, 1.8vw, ${P.fontSizes[4]});
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.4;
   padding: 0px 4px;
   color: var(--c1-875);

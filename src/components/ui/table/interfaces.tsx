@@ -28,7 +28,7 @@ export interface ICollunnsConfig<T> {
 
 export interface IsizeOfColumn {
   min: string
-  max?: string | undefined
+  max?: string
 }
 
 export interface IFnSorterHeaderParams {
@@ -145,4 +145,5 @@ export interface IExapandableWrapper {
 export interface IExapandableItem {
   ExpandThis: React.ReactNode
   showExpandable: boolean
+  color?: string
 }

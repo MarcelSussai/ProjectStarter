@@ -20,15 +20,13 @@ const rawOpts = {
   optSearch: true,
 }
 
-
-
 export default function Table<T>({
   data, configColumns,
   color1 = 'grey', colorG1 = 'main', colorG2 = 'second',
   showTitle = true, title = 'Título exemplo da tabela',
   showTableHeaderOptions = true, showFooter = false, opts = rawOpts,
   showCheck = true, showExpandableCell = true, showExtraColumn = false,
-  componentExtraCell, columnExtraSize = {min: '24px'},
+  componentExtraCell, columnExtraSize = {min: '64px', max: '64px'},
   alternateBg = true, sortByHeader = true, frSorterHeader,
   isLoading, expandableComponent, onChangeSelecteds, onChangeClicked, fnStatusForRow,
 }: I.ITable<T>) {
@@ -52,6 +50,7 @@ export default function Table<T>({
     let raw = addOrRemoveInArray(id, expandedRowsIds)
     setExpandedRows(raw)
   }
+
 
   const handleCheckRow = (rowIndex: string) => {
     let raw: string[] = []
@@ -105,69 +104,64 @@ export default function Table<T>({
               { showTableHeaderOptions &&
                 <S.TableTitle showTitle={showTitle}>
                   { showTitle &&
-                    <S.TitleText>
+                    <S.TitleText showTableHeaderOptions={showTableHeaderOptions}>
                       {title}
                     </S.TitleText>
                   }
                 </S.TableTitle>
               }
+              <S.TableHeader
+                sizesString={sizesCompositeString}
+                showTableHeaderOptions={showTableHeaderOptions}
+              >
+                { showExpandableCell && (<div></div>) }
+                { showCheck && (<S.CellHeaderSelector
+                    qtd={selectedsRows.length.toString()}
+                  >
+                  <Checkbox
+                    checked={selectAll} hideText
+                    horizontalAlignment='center'
+                    onChange={() => setSelecAll(!selectAll)}
+                    color={color1} noBg={true}
+                  />
+                </S.CellHeaderSelector>) }
+                { showExtraColumn && (<S.ExtraCellHeader></S.ExtraCellHeader>) }
+                { columnsToShow.map((col: I.ICollunnsConfig<T>, i1: number) => (
+                  <S.CellHeader key={col.idKey} sortByHeader={sortByHeader}
+                    onClick={() => {
+                      if(sortByHeader) {
+                        setClickedKeyColumn(col?.idKey)
+                        if(clickedKeyColumn === col?.idKey) setSortMode(!sortMode)
+                      }
+                    }}
+                    isFirst={i1 === 0}
+                    isLast={i1 === (columnsToShow.length - 1)}
+                  >
+                    <S.TextHeader>{col.name}</S.TextHeader>
+                    <S.CellHeaderDetail>
+                      <ArrowUp
+                        color={color1}
+                        show={(clickedKeyColumn === col?.idKey)}
+                        mode={sortMode ? 'up' : 'down'}
+                      />
+                    </S.CellHeaderDetail>
+                  </S.CellHeader>
+                )) }
+              </S.TableHeader>
               { isLoading ? <Loading color={color1} /> :
                 <>
-                  <S.TableHeader
-                    sizesString={sizesCompositeString}
-                    showTableHeaderOptions={showTableHeaderOptions}
-                  >
-                    { showExtraColumn && (<div></div>) }
-                    { showExpandableCell && (<div></div>) }
-                    { showCheck && (<S.CellHeaderSelector
-                        qtd={selectedsRows.length.toString()}
-                      >
-                      <Checkbox
-                        checked={selectAll}
-                        hideText
-                        horizontalAlignment='center'
-                        onChange={() => setSelecAll(!selectAll)}
-                        color={color1} noBg
-                      />
-                    </S.CellHeaderSelector>) }
-                    { columnsToShow.map((col: I.ICollunnsConfig<T>, i1: number) => (
-                      <S.CellHeader key={i1} sortByHeader={sortByHeader}
-                        onClick={() => {
-                          if(sortByHeader) {
-                            setClickedKeyColumn(col?.idKey)
-                            if(clickedKeyColumn === col?.idKey) setSortMode(!sortMode)
-                          }
-                        }}
-                        isFirst={i1 === 0}
-                        isLast={i1 === (columnsToShow.length - 1)}
-                      >
-                        <S.TextHeader>{col.name}</S.TextHeader>
-                        <S.CellHeaderDetail>
-                          <ArrowUp
-                            color={color1}
-                            show={(clickedKeyColumn === col?.idKey)}
-                            mode={sortMode ? 'up' : 'down'}
-                          />
-                        </S.CellHeaderDetail>
-                      </S.CellHeader>
-                    )) }
-                  </S.TableHeader>
                   { results && results?.map((row: any, i1: number) => (
                     <Fragment key={i1}>
                       <S.TableRow
                         sizesString={sizesCompositeString}
                         statusColor={
                           fnStatusForRow !== undefined && fnStatusForRow(row) !== 'normal' ?
-                          changeStatusToColorName(fnStatusForRow(row), color1) :
-                          undefined
+                          changeStatusToColorName(fnStatusForRow(row), color1) : undefined
                         } altBg={alternateBg}
                         alternateBg={(alternateBg ? !(i1 % 2 === 0) : false)}
                         onClick={() => setClickedRow(`${row.id}`)}
                         isLast={i1 === (results.length - 1)} isFirst={i1 === 0}
                       >
-                        { showExtraColumn && (
-                          <div></div>
-                        ) }
                         { showExpandableCell && (
                           <S.ExpandableIcon onClick={() => handleExpand(`${row.id}`)}>
                             <SemiArrowUp
@@ -186,8 +180,11 @@ export default function Table<T>({
                             />
                           </S.CellSelector> )
                         }
+                        { showExtraColumn && (
+                          <S.ExtraCell></S.ExtraCell>
+                        ) }
                         { columnsToShow.map((col: I.ICollunnsConfig<T>, i2: number) => (
-                          <S.CellRow key={i2}
+                          <S.CellRow key={col.idKey}
                             isLast={i2 === (columnsToShow.length - 1)}
                             isFirst={i2 === 0}
                             isLastRow={i1 === (results.length - 1)}

@@ -40,16 +40,16 @@ export default createGlobalStyle<IGlobalSTyle>`
     ${({isDarkTheme}) => isDarkTheme ? `
       background: linear-gradient(
         45deg,
-        var(--color-grey-900),
+        var(--color-grey-950),
         var(--color-grey-925),
         var(--color-grey-900)
       );
     ` : `
       background: linear-gradient(
         24deg,
+        var(--color-grey-125),
         var(--color-grey-100),
-        var(--color-grey-025),
-        var(--color-grey-050)
+        var(--color-grey-075)
       );
     ` }
     background-repeat: repeat;

@@ -121,7 +121,7 @@ export default function ColorsView() {
         data={colorsTableData} isLoading={false} showExpandableCell={true}
         sortByHeader={false} opts={optsColors}
         title='Cores configuradas no projeto'
-        expandableComponent={ExpandableTest}
+        expandableComponent={ExpandableTest} showTableHeaderOptions={false}
       />
     </S.ContainerAll>
   )

@@ -11,12 +11,10 @@ export const HeadTitleSty = styled.h1<I.IHeadTitles>`
   justify-content: ${({alignment}) => alignment};
   align-items: center;
   width: 100%;
-  font-size: clamp(${P.fontSizes[10]}, 4.8vw, ${P.fontSizes[11]});
+  font-size: clamp(${P.fontSizes[10]}, 7.2vw, ${P.fontSizes[14]});
   font-weight: 900;
   line-height: 1;
   color: var(--c1-750);
-  background: var(--c1-025-8);
-  backdrop-filter: blur(2px);
 `
 
 interface HeadTitles extends I.IHeadTitles {

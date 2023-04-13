@@ -105,7 +105,7 @@ export const Size = (value: string) => css `
 `
 
 export const TransitionDefault = css `
-  transition: all .2s ease-in-out;
+  transition: all .16s ease-in-out;
 `
 
 export const TransitionFn = (t: string, e: string | undefined = 'ease-in-out') => css `

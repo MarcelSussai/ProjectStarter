@@ -19,11 +19,11 @@ export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
   z-index: 2;
   cursor: text;
   font-size: clamp(${P.fontSizes[3]}, ${P.fontSizes[3]}, ${P.fontSizes[3]});
-  width: 100%;
-  height: calc(100% + 0px);
-  min-height: 32px;
+  border-radius: ${P.roundeds[0]};
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
   padding: 0 8px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1;
   position: relative;
   font-family: var(--font-mono);

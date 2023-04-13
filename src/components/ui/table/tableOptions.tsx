@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, Fragment, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, Fragment, useRef, useCallback } from 'react'
 import * as S from './styles'
 import * as I from './interfaces'
 import { isClickOutside } from '@/utils/isClickedOutSide'
@@ -15,6 +15,7 @@ export default function TableOptions<T>({
 
   const RefColumns = useRef<HTMLDivElement>(null)
   const [btnShowColumns, setBtnShowColumns] = useState<boolean>(false)
+  const [btnShowSearch, setBtnShowSearch] = useState(false)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (isClickOutside(RefColumns, event)) setBtnShowColumns(false)
@@ -23,14 +24,20 @@ export default function TableOptions<T>({
     return () => { document.removeEventListener('mousedown', handleClickOutside) }
   })
   const handleBtnShowColumns = () => setBtnShowColumns(!btnShowColumns)
+  const handleBtnShowSearch = () => setBtnShowSearch(!btnShowSearch)
 
   return (
     <>
       <S.AllTableOptions showTitle={showTitle} opened={btnShowColumns}>
         { opts?.optSearch &&
-          <S.IconOption>
-            <SearchIcon width='16px' color={`${color}`} show />
-          </S.IconOption>
+          <>
+            { btnShowSearch &&
+                <S.inputSearch />
+            }
+            <S.IconOption opened={btnShowSearch} onClick={handleBtnShowSearch}>
+              <SearchIcon width='16px' color={`${color}`} show />
+            </S.IconOption>
+          </>
         }
         { opts?.optDownload &&
           <S.IconOption>
@@ -39,7 +46,7 @@ export default function TableOptions<T>({
         }
         { opts?.optPrint &&
           <S.IconOption>
-            <PrintIcon width='16px' color={`${color}`} show />
+            <PrintIcon width='14px' color={`${color}`} show />
           </S.IconOption>
         }
         { opts?.optColumns &&
@@ -51,14 +58,16 @@ export default function TableOptions<T>({
               btnShowColumns &&
               <S.OptionsColumns>
                 <span className='title'>{'Mostrar Colunas'}</span>
-                { configColumns?.map((col, i1) => (
-                  <Checkbox
-                    text={col.name} noBg fit={false}
-                    key={i1} color={color}
-                    onChange={() => showOrHideColumn(col)}
-                    checked={!hiddens.includes(col)}
-                  />
-                )) }
+                <S.ScrollOptionsWrapper>
+                  { configColumns?.map((col) => (
+                    <Checkbox
+                      text={col.name} noBg fit={false}
+                      key={col.idKey} color={color}
+                      onChange={() => showOrHideColumn(col)}
+                      checked={!hiddens.includes(col)}
+                    />
+                  )) }
+                </S.ScrollOptionsWrapper>
               </S.OptionsColumns>
             }
           </S.OneOptions>

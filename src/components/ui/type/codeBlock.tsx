@@ -11,7 +11,7 @@ const All = styled.div<I.ICodeBlock>`
   width: calc(100% - 16px);
   max-width: ${({fit}) => fit ? 'fit-content' : '100%'};
   margin: 0;
-  border-radius: ${P.roundeds[4]};
+  border-radius: ${P.roundeds[3]};
   /* border: solid 2px var(--color-grey-075); */
   /* box-shadow: 0 0 8px var(--color-default-975-7); */
   font-weight: 400;

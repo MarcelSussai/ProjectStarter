@@ -8,9 +8,10 @@ export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
   ${({color}) => P.doCssColor(`${color}`, '800', 'c1')}
   ${({color}) => P.doCssColor(`${color}`, '875', 'c1')}
   ${({color}) => P.doCssColor(`${color}`, '075', 'c1', '-10')}
-  ${({color}) => P.doCssColor(`${color}`, '025', 'c1', '-8')}
+  ${({color}) => P.doCssColor(`${color}`, '050', 'c1', '-12')}
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
+  ${ P.TextClamp({start: 3, mid: '1.6vw', end: 3}) }
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -18,7 +19,6 @@ export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
   overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: clamp(${P.fontSizes[3]}, ${P.fontSizes[3]}, ${P.fontSizes[3]});
   border-radius: ${P.roundeds[0]};
   width: calc(100% - 8px);
   height: calc(100% - 8px);
@@ -28,7 +28,7 @@ export const MonetaryTextStyled = styled.span<I.IMonetaryText>`
   position: relative;
   font-family: var(--font-mono);
   color: var(--c1-875);
-  ${({status}) => status !== 'normal' ? `background: var(--c1-075-10);` : `background: var(--c1-025-8);`}
+  ${({status}) => status !== 'normal' ? `background: var(--c1-075-10);` : `background: var(--c1-050-12);`}
   
   &::before {
     content: 'R$';

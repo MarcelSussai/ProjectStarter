@@ -6,13 +6,13 @@ export const DateTextStyled = styled.span<I.IDateText>`
   ${({color}) => P.doCssColor(`${color}`, '050', 'c1', '-12')}
   ${({color}) => P.doCssColor(`${color}`, '875', 'c1')}
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
   ${ P.CenterFlex }
+  ${ P.TextClamp({start: 3, mid: '1.6vw', end: 3}) }
   text-overflow: ellipsis;
   overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: clamp(${P.fontSizes[3]}, ${P.fontSizes[3]}, ${P.fontSizes[3]});
   border-radius: ${P.roundeds[0]};
   width: calc(100% - 8px);
   height: calc(100% - 8px);

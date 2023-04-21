@@ -11,6 +11,7 @@ import styled from 'styled-components'
 const links = [
   {txt: 'Colors', link: '/projectStarter/colors'},
   {txt: 'Tables', link: '/projectStarter/table'},
+  {txt: 'Inputs', link: '/projectStarter/inputs'},
 ]
 
 const ContainerLinks = styled.nav`

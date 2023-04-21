@@ -9,14 +9,13 @@ export const SrcTextStyled = styled.div<I.IIdText>`
   ${({color}) => P.doCssColor(`${color}`, '975', 'c1', '-7')}
   ${({color}) => P.doCssColor(`${color}`, '025', 'c1')}
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
   ${ P.CenterFlex }
+  ${ P.TextEllipsis }
+  ${ P.TextClamp({start: 2, mid: '1.6vw', end: 3}) }
   text-align: ${({alignment}) => alignment};
-  text-overflow: ellipsis;
-  overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: clamp(${P.fontSizes[2]}, 1.6vw, ${P.fontSizes[3]});
   width: ${({fit}) => fit ? 'fit-content' : '100%'};
   font-weight: 300;
   padding: 8px 16px;
@@ -28,8 +27,6 @@ export const SrcTextStyled = styled.div<I.IIdText>`
   background: var(--c1-875);
   min-height: 32px;
   border-radius: ${P.roundeds[3]};
-  /* border: solid 2px var(--c1-075); */
-  /* box-shadow: 0 0 8px var(--c1-975-7); */
 `
 interface SrcText extends I.ISrcText { children?: React.ReactNode }
 export default function SrcText({children, color = 'grey', alignment = 'flex-end', fit = true}: SrcText) {

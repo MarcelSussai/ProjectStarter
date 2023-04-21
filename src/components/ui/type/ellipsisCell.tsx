@@ -5,13 +5,11 @@ import styled from 'styled-components'
 
 export const EllipsisCellStyled = styled.div<I.IEllipsisCell>`
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
+  ${ P.TextEllipsis }
+  ${ P.TextClamp({}) }
   line-height: 1;
   text-align: left;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: clamp(${P.fontSizes[2]}, ${P.fontSizes[2]}, ${P.fontSizes[2]});
   z-index: 2;
   cursor: text;
   padding: 8px;

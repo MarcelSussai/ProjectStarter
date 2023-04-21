@@ -24,7 +24,7 @@ export const All = styled.label<I.IAll>`
   ${({color}) => P.doCssColor(color,  '925', 'c1')}
   ${({color}) => P.doCssColor(color,  '975', 'c1', '-2')}
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -72,7 +72,7 @@ export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 
 export const StyledCheckbox = styled.div<I.IStyledCheckbox>`
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
   ${ P.CenterFlex }
   width: var(--size);
   height: var(--size);
@@ -88,7 +88,7 @@ export const StyledCheckbox = styled.div<I.IStyledCheckbox>`
 
 export const WrapperCheckbox = styled.div`
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,7 +96,7 @@ export const WrapperCheckbox = styled.div`
 
 export const Text = styled.span<I.IText>`
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
   font-size: ${P.fontSizes[2]};
   line-height: 1.3;
   font-weight: 500;

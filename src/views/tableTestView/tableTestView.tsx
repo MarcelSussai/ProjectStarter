@@ -230,12 +230,12 @@ export default function TableTestView({
         title='Orçamentos'
       />
       <Table
-        colorG1='leaf' colorG2='green' color1='greyGreen'
+        colorG1='leaf' colorG2='strongGreen' color1='greyGreen'
         configColumns={ConfigColumns} expandableComponent={ExpandableTest}
         data={mock01} isLoading={mock01isLoading}
       />
       <Table
-        colorG1='greyBlue' colorG2='greyBlue' color1='greyBlue' showTitle={false}
+        colorG1='greyRed' colorG2='greyRed' color1='greyRed' showTitle={false}
         configColumns={ConfigColumns} expandableComponent={ExpandableTest}
         data={mock01} isLoading={mock01isLoading}
       />

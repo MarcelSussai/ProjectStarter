@@ -48,8 +48,8 @@ export default createGlobalStyle<IGlobalSTyle>`
       background: linear-gradient(
         24deg,
         var(--color-grey-125),
-        var(--color-grey-100),
-        var(--color-grey-075)
+        var(--color-grey-050),
+        var(--color-grey-025)
       );
     ` }
     background-repeat: repeat;

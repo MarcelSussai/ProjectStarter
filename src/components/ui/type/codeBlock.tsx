@@ -6,15 +6,12 @@ import * as I from './interfaces'
 import hljs from 'highlight.js'
 
 const All = styled.div<I.ICodeBlock>`
-  ${P.TransitionDefault}
-  ${P.ShowTransition}
+  ${ P.ShowTransition }
+  ${ P.TransitionFn({}) }
   width: calc(100% - 16px);
   max-width: ${({fit}) => fit ? 'fit-content' : '100%'};
   margin: 0;
   border-radius: ${P.roundeds[3]};
-  /* border: solid 2px var(--color-grey-075); */
-  /* box-shadow: 0 0 8px var(--color-default-975-7); */
-  font-weight: 400;
   background: linear-gradient(-45deg, var(--color-grey-975), var(--color-grey-875));
   div.scrollAll {
     margin: 0;

@@ -3,13 +3,14 @@ import * as I from './interfaces'
 import * as P from '@/styles/parts'
 
 export const Svg = styled.svg<I.ISvg>`
+  ${ P.TransitionFn({}) }
   fill: none;
   width: ${ ({width}) => width ? width : '14px' };
   height: ${ ({height}) => height ? height : '100%' };
   path {
-    fill: ${({color}) => P.doCssColorVar(color, '775')};
+    ${ P.TransitionFn({}) }
+    fill: ${({color}) => P.doCssColorVar(color, '700')};
   }
-  transition: all .2s ease-in-out;
   transform: rotate(${({mode}) =>
     mode === 'up' ? '0deg' :
     mode === 'down' ? '180deg' :

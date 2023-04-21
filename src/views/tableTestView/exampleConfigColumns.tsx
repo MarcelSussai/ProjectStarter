@@ -1,4 +1,4 @@
-import * as S from '../../components/ui/table/styles'
+import * as S from './styles'
 import * as I from './interfaces'
 import { formatAsPercentage } from '@/utils/formatAsPercentage';
 import { configMonetaryValue } from '@/utils/configMonetaryValue';
@@ -41,9 +41,9 @@ export const ConfigColumns: ICollunnsConfig<I.IRowData>[] = [
   {
     idKey: 'description', name: 'Descrição', order: 2,
     ValueComponent: ({row, color}) => (
-      <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center', width: '100%'}}>
+      <S.ContainerTextDefault>
         <TextDefault fit color={color}>{row.description}</TextDefault>
-      </div>
+      </S.ContainerTextDefault>
     ),
     sizeOfColumn: { min: '456px', max: '8fr' },
     hideByDefault: false,

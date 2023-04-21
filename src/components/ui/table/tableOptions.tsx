@@ -8,6 +8,8 @@ import Checkbox from '@/checkboxes/checkbox'
 import SearchIcon from '@/components/icons/searchIcon'
 import ColumnsIcon from '@/components/icons/columnsIcon'
 import DownloadIcon from '@/components/icons/downloadIcon'
+import TrashIcon from '@/components/icons/trashIcon'
+import { InputDefault } from '../inputs/styles'
 
 export default function TableOptions<T>({
   color, configColumns, hiddens, showOrHideColumn, showTitle, opts
@@ -32,26 +34,28 @@ export default function TableOptions<T>({
         { opts?.optSearch &&
           <>
             { btnShowSearch &&
-                <S.inputSearch />
+                <S.inputSearch>
+                  <InputDefault color={color} maxW='224px' />
+                </S.inputSearch>
             }
-            <S.IconOption opened={btnShowSearch} onClick={handleBtnShowSearch}>
+            <S.IconOption tipText='Procurar' opened={btnShowSearch} onClick={handleBtnShowSearch}>
               <SearchIcon width='16px' color={`${color}`} show />
             </S.IconOption>
           </>
         }
         { opts?.optDownload &&
-          <S.IconOption>
+          <S.IconOption tipText='Download'>
             <DownloadIcon width='20px' color={`${color}`} show />
           </S.IconOption>
         }
         { opts?.optPrint &&
-          <S.IconOption>
+          <S.IconOption tipText='Imprimir'>
             <PrintIcon width='14px' color={`${color}`} show />
           </S.IconOption>
         }
         { opts?.optColumns &&
           <S.OneOptions ref={RefColumns}>
-            <S.IconOption opened={btnShowColumns} onClick={handleBtnShowColumns}>
+            <S.IconOption tipText='Mostrar Colunas' opened={btnShowColumns} onClick={handleBtnShowColumns}>
               <ColumnsIcon width='20px' color={`${color}`} show />
             </S.IconOption>
             {
@@ -73,7 +77,7 @@ export default function TableOptions<T>({
           </S.OneOptions>
         }
         { opts?.optFilters &&
-          <S.IconOption>
+          <S.IconOption tipText='Filtros'>
             <FilterIcon width='16px' color={`${color}`} show />
           </S.IconOption>
         }

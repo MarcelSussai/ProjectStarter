@@ -7,7 +7,8 @@ export const IdTextStyled = styled.span<I.IIdText>`
   ${({color}) => P.doCssColor(`${color}`, '050', 'c1', '-8')}
   ${({color}) => P.doCssColor(`${color}`, '875', 'c1')}
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
+  ${ P.TextClamp({start: 2, mid: '1.6vw', end: 3}) }
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -16,7 +17,6 @@ export const IdTextStyled = styled.span<I.IIdText>`
   overflow: hidden;
   z-index: 2;
   cursor: text;
-  font-size: clamp(${P.fontSizes[2]}, 1.6vw, ${P.fontSizes[3]});
   width: ${({fit}) => fit ? 'fit-content' : '100%'};
   height: ${({fit}) => fit ? 'fit-content' : 'calc(100% - 16px)'};
   border-radius: ${P.roundeds[1]};

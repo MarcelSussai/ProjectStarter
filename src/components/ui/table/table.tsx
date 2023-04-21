@@ -11,6 +11,7 @@ import Checkbox from '@/checkboxes/checkbox'
 import SemiArrowUp from '@/components/icons/semiArrowUp'
 import ExpandableItem from './expandableItem'
 import { changeStatusToColorName } from '@/type/utils'
+import TrashIcon from '@/components/icons/trashIcon'
 
 const rawOpts = {
   optColumns: true,
@@ -24,9 +25,9 @@ export default function Table<T>({
   data, configColumns,
   color1 = 'grey', colorG1 = 'main', colorG2 = 'second',
   showTitle = true, title = 'Título exemplo da tabela',
-  showTableHeaderOptions = true, showFooter = false, opts = rawOpts,
+  showTableHeaderOptions = true, showFooter = true, opts = rawOpts,
   showCheck = true, showExpandableCell = true, showExtraColumn = false,
-  componentExtraCell, columnExtraSize = {min: '64px', max: '64px'},
+  componentExtraCell, columnExtraSize = {min: '40px', max: '40px'},
   alternateBg = true, sortByHeader = true, frSorterHeader,
   isLoading, expandableComponent, onChangeSelecteds, onChangeClicked, fnStatusForRow,
 }: I.ITable<T>) {
@@ -125,7 +126,14 @@ export default function Table<T>({
                     color={color1} noBg={true}
                   />
                 </S.CellHeaderSelector>) }
-                { showExtraColumn && (<S.ExtraCellHeader></S.ExtraCellHeader>) }
+                { showExtraColumn && (<S.ExtraCellHeader>
+                  <S.ExtraButton
+                    tipText='Deletar linhas selecionadas'
+                    disabled={selectedsRows.length === 0}
+                  >
+                    <TrashIcon width='14px' color={`${color1}`} show />
+                  </S.ExtraButton>
+                </S.ExtraCellHeader>) }
                 { columnsToShow.map((col: I.ICollunnsConfig<T>, i1: number) => (
                   <S.CellHeader key={col.idKey} sortByHeader={sortByHeader}
                     onClick={() => {
@@ -148,7 +156,8 @@ export default function Table<T>({
                   </S.CellHeader>
                 )) }
               </S.TableHeader>
-              { isLoading ? <Loading color={color1} /> :
+              { isLoading || !results || (data?.status !== 200) ?
+                <Loading color={color1} /> :
                 <>
                   { results && results?.map((row: any, i1: number) => (
                     <Fragment key={i1}>
@@ -181,7 +190,13 @@ export default function Table<T>({
                           </S.CellSelector> )
                         }
                         { showExtraColumn && (
-                          <S.ExtraCell></S.ExtraCell>
+                          <S.ExtraCell
+                            isLastRow={i1 === (results.length - 1)}
+                          >
+                            <S.ExtraButton tipText='Deletar essa linha'>
+                              <TrashIcon width='14px' color={`${color1}`} show />
+                            </S.ExtraButton>
+                          </S.ExtraCell>
                         ) }
                         { columnsToShow.map((col: I.ICollunnsConfig<T>, i2: number) => (
                           <S.CellRow key={col.idKey}

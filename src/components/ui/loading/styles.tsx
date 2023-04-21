@@ -29,7 +29,7 @@ export const All = styled.div<I.IAll>`
   ${({color}) => P.doCssColor(color, '675', 'color')}
   ${({color}) => P.doCssColor(color, '975', 'color', '-2')}
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,7 +49,7 @@ export const All = styled.div<I.IAll>`
 
 export const ContainerAllLoading = styled.div`
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,7 +109,6 @@ export const ContainerLoading = styled.div`
     animation: ${rotate} 1s linear reverse infinite;
   }
   div.circle-04 {
-    /* display: none; */
     position: absolute;
     width: calc(${size} - 64px);
     height: calc(${size} - 64px);

@@ -8,8 +8,8 @@ interface IColorBox {
 export const ColorBox: any = styled.div.attrs(props => ({
   style: {background: props.color}
 }))<IColorBox>`
-  ${P.TransitionDefault}
-  ${P.ShowTransition}
+  ${ P.ShowTransition }
+  ${ P.TransitionFn({}) }
   ${P.CenterFlex}
   gap: 8px;
   width: 100%;
@@ -30,6 +30,8 @@ export const ColorBox: any = styled.div.attrs(props => ({
 `
 
 export const ContainerAllColors = styled.div`
+  ${ P.ShowTransition }
+  ${ P.TransitionFn({}) }
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

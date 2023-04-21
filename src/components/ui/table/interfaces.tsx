@@ -87,8 +87,11 @@ export interface ISizesAndDarkTheme {
   isDarkTheme?: boolean
   isFirst?: boolean
   isLast?: boolean
+  isLastRow?: boolean
+  isFirstRow?: boolean
 }
 
+export interface IExtraCell extends ISizesAndDarkTheme {}
 export interface IAll extends IColorsTable {}
 export interface IAllScroll {
   isRadius?: boolean
@@ -108,13 +111,16 @@ export interface ICellRow extends ISizesAndDarkTheme {
   altBg: boolean
   statusColor?: string
   paddingCell?: boolean
-  isLastRow?: boolean
-  isFirstRow?: boolean
 }
 
+export interface IExtraButton {
+  zIndex?: string
+  tipText?: string
+}
 export interface IIconOption {
   zIndex?: string
   opened?: boolean
+  tipText?: string
 }
 
 export interface ITableOptions<T> extends ITableTitle {

@@ -5,9 +5,9 @@ import * as P from '@/styles/parts'
 export const TextStyled = styled.p<I.IText>`
   ${({color}) => P.doCssColor(`${color}`, '875', 'c1')}
   ${ P.ShowTransition }
-  ${ P.TransitionDefault }
+  ${ P.TransitionFn({}) }
+  ${ P.TextClamp({start: 3, mid: '1.8vw', end: 4}) }
   width: ${({fit}) => fit ? 'fit-content' : '100%'};
-  font-size: clamp(${P.fontSizes[3]}, 1.8vw, ${P.fontSizes[4]});
   font-weight: 400;
   line-height: 1.4;
   padding: 0px 4px;

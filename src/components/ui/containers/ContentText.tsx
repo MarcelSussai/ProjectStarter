@@ -4,8 +4,8 @@ import styled from 'styled-components'
 interface IContentText { color?: string }
 export const ContentText = styled.div<IContentText>`
   ${({color = 'grey'}) => P.doCssColor(color, '200', 'c1')}
-  ${P.TransitionDefault}
-  ${P.ShowTransition}
+  ${ P.ShowTransition }
+  ${ P.TransitionFn({}) }
   ${P.ColumnFlex}
   ${P.Size('fit-content')}
   gap: 8px;

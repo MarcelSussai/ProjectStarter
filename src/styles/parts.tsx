@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css, keyframes } from 'styled-components'
 
 // 33 breakpoints definidos por padrão, uso: mBps[24]
 export const mBps = [
@@ -94,9 +94,14 @@ export const ColumnFlex = css `
   flex-direction: column;
 `
 
-export const GridAutoFit = (value: string) => css `
+export const GridAutoFit = (min: string, max?: string) => css `
   display: grid;
-  grid-template-columns: repeat(auto-fit, ${value});
+  grid-template-columns: repeat(auto-fit, minmax(${min}, ${max || '1fr'}));
+`
+
+export const GridAutoFill = (min: string, max?: string) => css `
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(${min}, ${max || '1fr'}));
 `
 
 export const Size = (value: string) => css `
@@ -104,18 +109,38 @@ export const Size = (value: string) => css `
   height: ${value};
 `
 
-export const TransitionDefault = css `
-  transition: all .16s ease-in-out;
+export const TextEllipsis = css `
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `
 
-export const TransitionFn = (t: string, e: string | undefined = 'ease-in-out') => css `
-  transition: all ${t} ${e};
+interface ITextClamp {
+  start?: number
+  mid?: string
+  end?: number
+}
+export const TextClamp = ({ start = 2, mid = '1.48vw', end = 2 }: ITextClamp) => css `
+  font-size: clamp(${fontSizes[start]},  ${mid},  ${fontSizes[end]});
 `
 
+interface ITransitionFn {
+  name?: string
+  time?: string
+  easing?: string
+  delay?: string
+}
+export const TransitionFn = ({
+  time = '.16s', easing = 'ease-in-out', name = 'all', delay = ''
+}: ITransitionFn) => css ` transition: ${name} ${time} ${easing} ${delay}; `
+
+const showKeys = keyframes `
+  from { opacity: 0; }
+  to { opacity: 1; }
+`
 export const ShowTransition = css `
-  @keyframes show { from { opacity: 0; } to { opacity: 1; } }
   opacity: 0;
-  animation: show .24s ease-in-out forwards;
+  animation: ${showKeys} .24s ease-in-out forwards;
 `
 
 export const doCssColor = (

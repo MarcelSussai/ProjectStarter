@@ -64,7 +64,7 @@ const theme_colors_default = {
   grey:           makingTonesGiant(rawThemed.grey),
   mainVista:      makingTonesGiant('#10A4C3'),
   secondVista:    makingTonesGiant('#943DFF'),
-  greyVista:      makingTonesGiant('#9FB6BB'),
+  greyVista:      makingTonesGiant('#8BADB4'),
   greyAzure:      makingTonesGiant('#a1b0cd'),
   greyBlue:       makingTonesGiant('#A4A9C8'),
   greyGreen:      makingTonesGiant('#B6C1B9'),

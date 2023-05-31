@@ -58,8 +58,7 @@ export interface ITable<T> {
   isLoading?: boolean
   expandableComponent?: (props: IValueComponent<T>) => JSX.Element
   sortByHeader?: boolean
-  frSorterHeader?: (value: IFnSorterHeaderParams) => void
-  paddingCell?: boolean
+  fnSorterHeader?: (value: IFnSorterHeaderParams) => void
   opts?: {
     optColumns: boolean
     optFilters: boolean

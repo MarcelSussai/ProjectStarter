@@ -6,8 +6,6 @@ export const transformSizesofColumns = (
   {min, max}: I.IsizeOfColumn
 ) => ` minmax(${min}, ${max ? max : '1fr' }) `
 
-
-
 export default function useTable<T>({
   configColumns
 }: I.IuseTable<T>) {

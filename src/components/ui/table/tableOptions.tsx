@@ -9,7 +9,7 @@ import SearchIcon from '@/components/icons/searchIcon'
 import ColumnsIcon from '@/components/icons/columnsIcon'
 import DownloadIcon from '@/components/icons/downloadIcon'
 import TrashIcon from '@/components/icons/trashIcon'
-import { InputDefault } from '../inputs/styles'
+import { InputCell, InputDefault } from '../inputs/styles'
 
 export default function TableOptions<T>({
   color, configColumns, hiddens, showOrHideColumn, showTitle, opts
@@ -35,7 +35,7 @@ export default function TableOptions<T>({
           <>
             { btnShowSearch &&
                 <S.inputSearch>
-                  <InputDefault color={color} maxW='224px' />
+                  <InputCell color={color} maxW='232px' />
                 </S.inputSearch>
             }
             <S.IconOption tipText='Procurar' opened={btnShowSearch} onClick={handleBtnShowSearch}>

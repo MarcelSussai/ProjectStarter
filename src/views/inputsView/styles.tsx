@@ -6,6 +6,7 @@ export const All = styled.section`
   ${ P.TransitionFn({}) }
   ${ P.ColumnFlex }
   justify-content: center;
+  gap: 16px;
 `
 
 export const ContainerInput = styled.div`

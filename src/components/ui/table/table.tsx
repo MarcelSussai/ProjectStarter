@@ -22,13 +22,11 @@ const rawOpts = {
 }
 
 export default function Table<T>({
-  data, configColumns,
-  color1 = 'grey', colorG1 = 'main', colorG2 = 'second',
-  showTitle = true, title = 'Título exemplo da tabela',
-  showTableHeaderOptions = true, showFooter = true, opts = rawOpts,
-  showCheck = true, showExpandableCell = true, showExtraColumn = false,
-  componentExtraCell, columnExtraSize = {min: '40px', max: '40px'},
-  alternateBg = true, sortByHeader = true, frSorterHeader,
+  data, configColumns, color1 = 'grey', colorG1 = 'main', colorG2 = 'second',
+  title = 'Título exemplo da tabela', showTitle = true, showTableHeaderOptions = true,
+  showFooter = true, opts = rawOpts, showCheck = true, showExpandableCell = true,
+  showExtraColumn = false, componentExtraCell, columnExtraSize = {min: '40px', max: '40px'},
+  alternateBg = true, sortByHeader = true, fnSorterHeader,
   isLoading, expandableComponent, onChangeSelecteds, onChangeClicked, fnStatusForRow,
 }: I.ITable<T>) {
 
@@ -221,7 +219,6 @@ export default function Table<T>({
                         )) }
                       </S.TableRow>
                       {
-                        // expandedRowsIds.includes(row.id) &&
                         expandableComponent && (
                         <ExpandableItem
                           showExpandable={expandedRowsIds.includes(`${row.id}`) || false}

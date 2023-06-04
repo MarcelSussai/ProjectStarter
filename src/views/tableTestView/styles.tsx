@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import * as P from '@/styles/parts'
 
 export const All = styled.article`
-  ${ P.ShowTransition }
   ${ P.TransitionFn({}) }
   ${ P.ColumnFlex }
   justify-content: center;

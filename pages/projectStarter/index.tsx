@@ -48,7 +48,7 @@ export default function Home() {
           {
             links.map((link, i) => (
               <Link
-                key={i} color='main'
+                key={i}
                 href={link.link}
                 target='_blank'
               >
